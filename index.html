@@ -107,24 +107,26 @@
   }
 
   .hero-grid{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:3rem;
-    align-items:center;
     width:100%;
+    position:relative;
   }
   .hero-photo{
-    width:100%;
-    height:64vh;
-    object-fit:cover;
-    object-position:top center;
-    border-radius:16px;
+    width:150px;
+    height:auto;
+    display:block;
+    object-fit:contain;
     filter:grayscale(1) contrast(1.05);
-    background:#1a1a1a;
+    opacity:0.92;
+    position:absolute;
+    top:-2vh;
+    right:0;
   }
   @media (max-width:820px){
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-photo{height:38vh;order:-1;}
+    .hero-photo{
+      position:static;
+      width:110px;
+      margin-bottom:1.6rem;
+    }
   }
 
   h2{
@@ -312,7 +314,7 @@
       <div class="hero-name">Hi, ich bin Meisam.</div>
       <div class="hero-sub">Ich baue Dinge. Meistens Software, die Probleme löst oder einfach nur funktionieren soll. Hier ist ein Einblick in mein Lab.</div>
     </div>
-    <img class="hero-photo" src="profilBild-crop.jpg" alt="Meisam">
+    <img class="hero-photo" src="profilBild-crop.png" alt="Meisam">
   </div>
   <div class="scroll-hint"><span>&#8595;</span> Scrollen</div>
 </section>
