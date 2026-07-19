@@ -244,9 +244,11 @@
   }
   .video-caption{margin-top:0.7rem;font-size:11px;line-height:1.5;opacity:0.65;}
   .video-caption strong{display:block;font-size:12px;font-weight:700;opacity:1;margin-bottom:2px;}
+  .video-grid--single{grid-template-columns:1fr;max-width:220px;}
 
   @media (max-width:640px){
     .video-grid{grid-template-columns:repeat(2,1fr);}
+    .video-grid--single{grid-template-columns:1fr;}
   }
 
   /* browser frame (CRM) */
@@ -390,6 +392,12 @@
         <div class="build-text">Kein Musik-Interface hat sich richtig angefühlt. Also habe ich mir mein eigenes gebaut.</div>
         <div class="link-row">
           <a class="embed-link" href="projekte.html#mol">Case Study →</a>
+        </div>
+      </div>
+      <div class="video-grid video-grid--single">
+        <div class="video-item">
+          <video src="videos/mol/mol.mp4" poster="videos/mol/mol-poster.jpg" controls playsinline preload="metadata"></video>
+          <div class="video-caption"><strong>Durchgespielt</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
         </div>
       </div>
     </div>

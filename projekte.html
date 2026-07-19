@@ -133,9 +133,11 @@
   }
   .video-caption{margin-top:0.7rem;font-size:11px;line-height:1.5;opacity:0.65;}
   .video-caption strong{display:block;font-size:12px;font-weight:700;opacity:1;margin-bottom:2px;}
+  .video-grid--single{grid-template-columns:1fr;max-width:220px;}
 
   @media (max-width:640px){
     .video-grid{grid-template-columns:repeat(2,1fr);}
+    .video-grid--single{grid-template-columns:1fr;}
   }
 
   /* browser frame */
@@ -260,9 +262,9 @@
   <div class="feature-grid reveal" style="--d:240ms;">
     <div class="feature-item"><p>Sicherer Login per PKCE, ganz ohne eigenen Server</p></div>
     <div class="feature-item"><p>Songsuche direkt über die Spotify-API</p></div>
-    <div class="feature-item"><p>Eigene Playlists und deren Tracks durchsuchen</p></div>
-    <div class="feature-item"><p>Wiedergabe im Browser: Play/Pause, Skip, Lautstärke</p></div>
-    <div class="feature-item"><p>Now-Playing-Leiste mit Cover, Titel und Interpret</p></div>
+    <div class="feature-item"><p>Personalisierte Startseite: "Zuletzt gehört", Alben & Playlists</p></div>
+    <div class="feature-item"><p>Vollflächiger Player: Cover, Fortschritt, Shuffle & Repeat</p></div>
+    <div class="feature-item"><p>Mini-Player bleibt beim Weiterstöbern aktiv</p></div>
     <div class="feature-item"><p>Kein zusätzlicher Client — läuft komplett im Browser</p></div>
   </div>
 
@@ -276,6 +278,14 @@
   <div class="proj-links reveal" style="--d:300ms;">
     <a class="proj-link" href="https://mol-omega.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
   </div>
+
+  <div class="video-grid video-grid--single reveal" style="--d:340ms;">
+    <div class="video-item">
+      <video src="videos/mol/mol.mp4" poster="videos/mol/mol-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Durchgespielt</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
+    </div>
+  </div>
+  <div class="demo-note">Aufgenommen direkt in der App, mit Ton — kein gestelltes Mockup.</div>
 </div>
 
 <!-- CRM -->
