@@ -135,9 +135,14 @@
   .video-caption strong{display:block;font-size:12px;font-weight:700;opacity:1;margin-bottom:2px;}
   .video-grid--single{grid-template-columns:1fr;max-width:220px;}
 
+  /* wide variant — desktop/landscape app footage (e.g. Meizo) */
+  .video-grid--wide{grid-template-columns:repeat(2,1fr);max-width:1000px;}
+  .video-grid--wide .video-item video{aspect-ratio:16/9;object-fit:contain;background:#000;}
+
   @media (max-width:640px){
     .video-grid{grid-template-columns:repeat(2,1fr);}
     .video-grid--single{grid-template-columns:1fr;}
+    .video-grid--wide{grid-template-columns:1fr;}
   }
 
   /* browser frame */
@@ -367,6 +372,26 @@
   <div class="proj-links reveal" style="--d:300ms;">
     <a class="proj-link" href="https://meizo.de" target="_blank" rel="noopener">Live im Einsatz ↗</a>
   </div>
+
+  <div class="video-grid video-grid--wide reveal" style="--d:340ms;">
+    <div class="video-item">
+      <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
+    </div>
+    <div class="video-item">
+      <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
+    </div>
+    <div class="video-item">
+      <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
+    </div>
+    <div class="video-item">
+      <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
+    </div>
+  </div>
+  <p class="demo-note reveal" style="--d:380ms;">Aufnahmen aus der echten Anwendung — Dashboard, Mitarbeiter-App und Abrechnung.</p>
 </div>
 
 <div class="close dark">
