@@ -117,35 +117,26 @@
   }
   .proj-link:hover{opacity:1;}
 
-  .demo-wrap{margin-top:3.5rem;display:flex;flex-direction:column;align-items:flex-start;gap:1rem;}
-  .demo-note{font-size:11px;opacity:0.45;max-width:400px;line-height:1.5;}
+  .demo-note{margin-top:1rem;font-size:11px;opacity:0.45;max-width:400px;line-height:1.5;}
 
-  /* phone frame */
-  .phone-frame{
-    width:290px;flex-shrink:0;background:#000;border-radius:36px;padding:10px;
-    position:relative;box-shadow:0 0 0 1px #262626;
-    transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+  /* video grid — plain clips, no device chrome */
+  .video-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1.4rem;
+    margin-top:3.5rem;
+    max-width:900px;
   }
-  .phone-frame:hover{transform:translateY(-6px);box-shadow:0 0 0 1px #262626, 0 24px 40px -20px rgba(0,0,0,0.35);}
-  .phone-frame::before{
-    content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);
-    width:86px;height:18px;background:#000;border-radius:0 0 12px 12px;z-index:2;
+  .video-item video{
+    width:100%;display:block;border-radius:10px;background:#000;
+    aspect-ratio:480/1040;object-fit:cover;
   }
-  .phone-screen{width:270px;height:584px;border-radius:26px;overflow:hidden;position:relative;background:#fff;}
-  .phone-screen iframe{width:375px;height:812px;border:0;transform:scale(0.72);transform-origin:top left;}
-  .phone-screen video{width:100%;height:100%;object-fit:cover;display:block;background:#000;}
+  .video-caption{margin-top:0.7rem;font-size:11px;line-height:1.5;opacity:0.65;}
+  .video-caption strong{display:block;font-size:12px;font-weight:700;opacity:1;margin-bottom:2px;}
 
-  .video-showcase{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;}
-  .video-tabs{display:flex;gap:6px;flex-wrap:wrap;max-width:290px;}
-  .vtab{
-    font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.02em;
-    padding:0.5rem 0.8rem;border-radius:99px;border:1px solid currentColor;
-    background:none;color:inherit;opacity:0.45;cursor:pointer;
-    transition:opacity .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+  @media (max-width:640px){
+    .video-grid{grid-template-columns:repeat(2,1fr);}
   }
-  .vtab:hover{opacity:0.75;}
-  .light .vtab.active{opacity:1;background:var(--black);color:var(--white);}
-  .dark .vtab.active{opacity:1;background:var(--white);color:var(--black);}
 
   /* browser frame */
   .browser-frame{
@@ -228,22 +219,25 @@
     <a class="proj-link" href="https://set-liard.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
   </div>
 
-  <div class="demo-wrap reveal" style="--d:340ms;">
-    <div class="video-showcase" data-showcase="set">
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <video data-player src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" controls playsinline preload="metadata"></video>
-        </div>
-      </div>
-      <div class="video-tabs">
-        <button class="vtab active" data-src="videos/set/training.mp4" data-poster="videos/set/training-poster.jpg">Training</button>
-        <button class="vtab" data-src="videos/set/dashboard.mp4" data-poster="videos/set/dashboard-poster.jpg">Dashboard</button>
-        <button class="vtab" data-src="videos/set/ernaehrung.mp4" data-poster="videos/set/ernaehrung-poster.jpg">Ernährung</button>
-        <button class="vtab" data-src="videos/set/gewicht.mp4" data-poster="videos/set/gewicht-poster.jpg">Gewicht</button>
-      </div>
+  <div class="video-grid reveal" style="--d:340ms;">
+    <div class="video-item">
+      <video src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Training</strong>Sätze mit Gewicht & Wiederholungen loggen.</div>
     </div>
-    <div class="demo-note">Aufgenommen direkt in der App — kein gestelltes Mockup.</div>
+    <div class="video-item">
+      <video src="videos/set/dashboard.mp4" poster="videos/set/dashboard-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Dashboard</strong>Fortschritt, Rekorde und Trainingstage im Blick.</div>
+    </div>
+    <div class="video-item">
+      <video src="videos/set/ernaehrung.mp4" poster="videos/set/ernaehrung-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Ernährung</strong>Mahlzeit per KI-Freitext schätzen lassen.</div>
+    </div>
+    <div class="video-item">
+      <video src="videos/set/gewicht.mp4" poster="videos/set/gewicht-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption"><strong>Gewicht</strong>Körpergewicht eintragen, Trend verfolgen.</div>
+    </div>
   </div>
+  <div class="demo-note">Aufgenommen direkt in der App — kein gestelltes Mockup.</div>
 </div>
 
 <!-- MOL -->
@@ -351,27 +345,11 @@
       requestAnimationFrame(tick);
     }
     tick();
-    const hoverTargets = 'a, button, .phone-frame, .browser-frame';
+    const hoverTargets = 'a, button, .browser-frame, video';
     document.addEventListener('mouseover', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.add('hover'); });
     document.addEventListener('mouseout', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.remove('hover'); });
     document.addEventListener('mouseleave', ()=>cursor.classList.remove('show'));
   }
-
-  /* video showcase tab switching */
-  document.querySelectorAll('.video-showcase').forEach(showcase=>{
-    const video = showcase.querySelector('[data-player]');
-    showcase.querySelectorAll('.vtab').forEach(tab=>{
-      tab.addEventListener('click', ()=>{
-        if(tab.classList.contains('active')) return;
-        showcase.querySelectorAll('.vtab').forEach(t=>t.classList.remove('active'));
-        tab.classList.add('active');
-        video.pause();
-        video.setAttribute('poster', tab.dataset.poster);
-        video.src = tab.dataset.src;
-        video.load();
-      });
-    });
-  });
 </script>
 
 </body>
