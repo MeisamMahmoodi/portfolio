@@ -133,6 +133,19 @@
   }
   .phone-screen{width:270px;height:584px;border-radius:26px;overflow:hidden;position:relative;background:#fff;}
   .phone-screen iframe{width:375px;height:812px;border:0;transform:scale(0.72);transform-origin:top left;}
+  .phone-screen video{width:100%;height:100%;object-fit:cover;display:block;background:#000;}
+
+  .video-showcase{display:flex;flex-direction:column;align-items:flex-start;gap:1rem;}
+  .video-tabs{display:flex;gap:6px;flex-wrap:wrap;max-width:290px;}
+  .vtab{
+    font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.02em;
+    padding:0.5rem 0.8rem;border-radius:99px;border:1px solid currentColor;
+    background:none;color:inherit;opacity:0.45;cursor:pointer;
+    transition:opacity .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+  }
+  .vtab:hover{opacity:0.75;}
+  .light .vtab.active{opacity:1;background:var(--black);color:var(--white);}
+  .dark .vtab.active{opacity:1;background:var(--white);color:var(--black);}
 
   /* browser frame */
   .browser-frame{
@@ -200,7 +213,7 @@
     <div class="feature-item"><p>Satz-Logging mit Gewicht/Wiederholungen, "letztes Training übernehmen"</p></div>
     <div class="feature-item"><p>Volumen-Trend & persönliche Rekorde pro Übung</p></div>
     <div class="feature-item"><p>Streak-Heatmap der letzten vier Trainingswochen</p></div>
-    <div class="feature-item"><p>Eiweiß-Tracker mit Tagesziel und Ring-Anzeige</p></div>
+    <div class="feature-item"><p>Kalorien- & Makro-Tracking, Mahlzeiten per KI-Freitext geschätzt ("4 Eier mit Ketchup" → automatisch kcal)</p></div>
     <div class="feature-item"><p>Körpergewicht-Verlauf mit 30-Tage-Trend</p></div>
   </div>
 
@@ -213,6 +226,23 @@
 
   <div class="proj-links reveal" style="--d:300ms;">
     <a class="proj-link" href="https://set-liard.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
+  </div>
+
+  <div class="demo-wrap reveal" style="--d:340ms;">
+    <div class="video-showcase" data-showcase="set">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <video data-player src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" controls playsinline preload="metadata"></video>
+        </div>
+      </div>
+      <div class="video-tabs">
+        <button class="vtab active" data-src="videos/set/training.mp4" data-poster="videos/set/training-poster.jpg">Training</button>
+        <button class="vtab" data-src="videos/set/dashboard.mp4" data-poster="videos/set/dashboard-poster.jpg">Dashboard</button>
+        <button class="vtab" data-src="videos/set/ernaehrung.mp4" data-poster="videos/set/ernaehrung-poster.jpg">Ernährung</button>
+        <button class="vtab" data-src="videos/set/gewicht.mp4" data-poster="videos/set/gewicht-poster.jpg">Gewicht</button>
+      </div>
+    </div>
+    <div class="demo-note">Aufgenommen direkt in der App — kein gestelltes Mockup.</div>
   </div>
 </div>
 
@@ -326,6 +356,22 @@
     document.addEventListener('mouseout', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.remove('hover'); });
     document.addEventListener('mouseleave', ()=>cursor.classList.remove('show'));
   }
+
+  /* video showcase tab switching */
+  document.querySelectorAll('.video-showcase').forEach(showcase=>{
+    const video = showcase.querySelector('[data-player]');
+    showcase.querySelectorAll('.vtab').forEach(tab=>{
+      tab.addEventListener('click', ()=>{
+        if(tab.classList.contains('active')) return;
+        showcase.querySelectorAll('.vtab').forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        video.pause();
+        video.setAttribute('poster', tab.dataset.poster);
+        video.src = tab.dataset.src;
+        video.load();
+      });
+    });
+  });
 </script>
 
 </body>
