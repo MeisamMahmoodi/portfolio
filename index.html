@@ -215,10 +215,22 @@
   .embed-link{
     display:inline-flex;align-items:center;gap:5px;
     font-size:11px;font-weight:700;letter-spacing:0.03em;
-    margin-top:1.4rem;opacity:0.55;color:inherit;text-decoration:none;
+    opacity:0.55;color:inherit;text-decoration:none;
     transition:opacity .3s var(--ease), transform .3s var(--ease);
   }
   .embed-link:hover{opacity:0.9;transform:translateX(3px);}
+  .link-row{display:flex;gap:1.4rem;margin-top:1.4rem;flex-wrap:wrap;}
+
+  .all-link{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:12px;font-weight:700;letter-spacing:0.03em;
+    color:inherit;text-decoration:none;
+    margin-top:1.2rem;padding-bottom:2px;
+    border-bottom:1px solid currentColor;
+    opacity:0.7;transition:opacity .3s var(--ease);
+    width:fit-content;
+  }
+  .all-link:hover{opacity:1;}
 
   .build-embed{
     flex:1;min-width:280px;
@@ -317,8 +329,9 @@
 
 <nav>
   <div class="mark">M</div>
-  <a href="#lab">Lab</a>
+  <a href="#projekte">Projekte</a>
   <a href="#approach">Approach</a>
+  <a href="projekte.html">Alle im Detail ↗</a>
 </nav>
 
 <div class="dots">
@@ -347,9 +360,10 @@
   <div class="scroll-hint reveal-load" style="--d:520ms;"><span>&#8595;</span> Scrollen</div>
 </section>
 
-<section id="lab" class="light">
-  <div class="eyebrow reveal">Builds</div>
-  <h2 class="reveal" style="--d:80ms;">Was gerade läuft.</h2>
+<section id="projekte" class="light">
+  <div class="eyebrow reveal">Meine Projekte</div>
+  <h2 class="reveal" style="--d:80ms;">Was ich gebaut habe.</h2>
+  <a class="all-link reveal" style="--d:120ms;" href="projekte.html">Alle Projekte im Detail ↗</a>
   <div class="builds-list reveal-group">
 
     <div class="build-row">
@@ -358,7 +372,10 @@
         <div class="build-name">SET</div>
         <div class="build-headline">Einfacher Trainings-Tracker.</div>
         <div class="build-text">Ich habe keine App gefunden, die genau mein Training loggt. Also habe ich eine gebaut.</div>
-        <a class="embed-link" href="demos/set/index.html" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
+        <div class="link-row">
+          <a class="embed-link" href="demos/set/index.html" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
+          <a class="embed-link" href="projekte.html#set">Case Study →</a>
+        </div>
       </div>
       <div class="build-embed">
         <div class="phone-frame">
@@ -375,7 +392,10 @@
         <div class="build-name">MOL</div>
         <div class="build-headline">Musik-Player, wie ich ihn wollte.</div>
         <div class="build-text">Kein Musik-Interface hat sich richtig angefühlt. Also habe ich mir mein eigenes gebaut.</div>
-        <a class="embed-link" href="demos/mol/index.html" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
+        <div class="link-row">
+          <a class="embed-link" href="demos/mol/index.html" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
+          <a class="embed-link" href="projekte.html#mol">Case Study →</a>
+        </div>
       </div>
       <div class="build-embed">
         <div class="phone-frame">
@@ -392,7 +412,10 @@
         <div class="build-name">meizoCRM</div>
         <div class="build-headline">Sales Pipeline für Meizo.</div>
         <div class="build-text">Ich brauchte ein CRM, das genau zu meinem Vertriebsprozess passt. Also habe ich eins gebaut.</div>
-        <a class="embed-link" href="demos/crm/index.html" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
+        <div class="link-row">
+          <a class="embed-link" href="demos/crm/index.html" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
+          <a class="embed-link" href="projekte.html#crm">Case Study →</a>
+        </div>
       </div>
       <div class="build-embed">
         <div class="browser-frame">
