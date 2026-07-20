@@ -256,6 +256,17 @@
     .video-grid--wide{grid-template-columns:1fr;}
   }
 
+  /* interaktives Mockup (iframe) — volle Seite, kein Zuschneiden, eigenes Scrollen innen */
+  .demo-embed{
+    margin-top:2.4rem;border-radius:12px;overflow:hidden;
+    border:0.5px solid var(--line-dark);
+    height:min(760px,80vh);
+    max-width:1000px;
+  }
+  .demo-embed iframe{width:100%;height:100%;border:none;display:block;background:#f5f5f5;}
+  .demo-note{margin-top:0.9rem;font-size:11px;line-height:1.5;opacity:0.5;max-width:520px;}
+  @media (max-width:640px){ .demo-embed{height:64vh;} }
+
   /* browser frame (CRM) */
   .browser-frame{
     width:100%;max-width:600px;
@@ -414,9 +425,14 @@
         <div class="build-headline">Sales Pipeline für Meizo.</div>
         <div class="build-text">Ich brauchte ein CRM, das genau zu meinem Vertriebsprozess passt. Also habe ich eins gebaut.</div>
         <div class="link-row">
+          <a class="embed-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
           <a class="embed-link" href="projekte.html#crm">Case Study →</a>
         </div>
       </div>
+      <div class="demo-embed">
+        <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
+      </div>
+      <p class="demo-note">Nachbau mit Demo-Daten, kein Backend — Login oben als Setter oder Admin, frei durchklickbar.</p>
     </div>
 
     <div class="build-row">
