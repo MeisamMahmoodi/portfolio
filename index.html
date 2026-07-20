@@ -304,6 +304,31 @@
   .worklog-item h3{font-size:16px;font-weight:700;margin-bottom:0.6rem;}
   .worklog-item p{font-size:13px;line-height:1.65;opacity:0.7;}
 
+  /* offer / Zusammenarbeit */
+  .offer-sub{
+    font-size:15px;line-height:1.65;opacity:0.65;
+    margin-top:1.6rem;max-width:520px;
+  }
+  .offer-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:2.4rem;
+    margin-top:3rem;
+    max-width:820px;
+  }
+  .offer-item{transition:transform .4s var(--ease);}
+  .offer-item:hover{transform:translateX(4px);}
+  .offer-item .num{font-size:11px;opacity:0.45;margin-bottom:0.7rem;transition:opacity .3s;}
+  .offer-item:hover .num{opacity:0.9;}
+  .offer-item h3{font-size:16px;font-weight:700;margin-bottom:0.6rem;}
+  .offer-item p{font-size:13px;line-height:1.65;opacity:0.7;}
+  .offer-note{
+    margin-top:2.6rem;font-size:13px;opacity:0.6;
+    max-width:480px;line-height:1.6;
+  }
+  .offer-note a{color:inherit;padding-bottom:1px;border-bottom:1px solid currentColor;opacity:0.85;transition:opacity .3s var(--ease);}
+  .offer-note a:hover{opacity:1;}
+
   .close{
     align-items:center;
     text-align:center;
@@ -324,6 +349,7 @@
 
   @media (max-width:820px){
     .worklog{grid-template-columns:1fr;}
+    .offer-grid{grid-template-columns:1fr;}
     nav{gap:1.2rem;}
     nav a{display:none;}
   }
@@ -335,6 +361,7 @@
   <div class="mark">M</div>
   <a href="#projekte">Projekte</a>
   <a href="#approach">Approach</a>
+  <a href="#angebot">Angebot</a>
   <a href="projekte.html">Alle im Detail ↗</a>
 </nav>
 
@@ -344,7 +371,8 @@
   <div class="dot" data-i="1"></div>
   <div class="dot" data-i="2"></div>
   <div class="dot" data-i="3"></div>
-  <span>04</span>
+  <div class="dot" data-i="4"></div>
+  <span>05</span>
 </div>
 
 <section id="start" class="dark">
@@ -501,6 +529,40 @@
   </div>
 </section>
 
+<section id="angebot" class="light">
+  <div class="eyebrow reveal">Zusammenarbeit</div>
+  <h2 class="reveal" style="--d:80ms;">Sowas baue ich auch für andere.</h2>
+  <div class="offer-sub reveal" style="--d:120ms;">Die Projekte oben sind für mich selbst entstanden. Aus demselben Antrieb — ein Problem sehen und es sauber lösen — baue ich auch für andere. Grob gesagt:</div>
+  <div class="offer-grid reveal-group">
+    <div class="offer-item">
+      <div class="num">01</div>
+      <h3>Apps</h3>
+      <p>Web- und mobile Anwendungen, von der ersten Idee bis zur installierbaren PWA.</p>
+    </div>
+    <div class="offer-item">
+      <div class="num">02</div>
+      <h3>Automatisierungen</h3>
+      <p>Wiederkehrende Arbeit rausnehmen — Scripts und KI-Workflows statt Copy-Paste.</p>
+    </div>
+    <div class="offer-item">
+      <div class="num">03</div>
+      <h3>Datenbanken & Backends</h3>
+      <p>Saubere Datenmodelle, Auth, APIs — das Fundament, auf dem alles andere steht.</p>
+    </div>
+    <div class="offer-item">
+      <div class="num">04</div>
+      <h3>SaaS & Plattformen</h3>
+      <p>Mandantenfähige Software mit Billing, wie Meizo — von einem Nutzer bis zu vielen Firmen.</p>
+    </div>
+    <div class="offer-item">
+      <div class="num">05</div>
+      <h3>Und alles dazwischen</h3>
+      <p>Wenn's mit Software zu tun hat, sprich mich einfach an.</p>
+    </div>
+  </div>
+  <div class="offer-note reveal" style="--d:260ms;">Preise bespreche ich individuell, je nach Umfang — schreib mir einfach: <a href="mailto:meisam@meizo.de">meisam@meizo.de</a></div>
+</section>
+
 <section class="light close">
   <div class="name reveal">Meisam</div>
   <div class="foot reveal" style="--d:100ms;">Wenn du eine Idee hast, bei der ich helfen soll, oder einfach über Technik quatschen willst: <a href="mailto:meisam@meizo.de">meisam@meizo.de</a></div>
@@ -570,7 +632,7 @@
     }
     tick();
 
-    const hoverTargets = 'a, button, .dot, .browser-frame, .worklog-item, video';
+    const hoverTargets = 'a, button, .dot, .browser-frame, .worklog-item, .offer-item, video';
     document.addEventListener('mouseover', (e)=>{
       if(e.target.closest(hoverTargets)) cursor.classList.add('hover');
     });
