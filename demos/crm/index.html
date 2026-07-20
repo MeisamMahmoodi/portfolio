@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>meizoCRM — Demo</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --surface-hover: #fafafa;
+  --border: #e8e8e8;
+  --border-light: #f0f0f0;
+  --text: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --text-faint: #cccccc;
+  --accent: #1a1a1a;
+  --accent-subtle: #f5f5f5;
+  --radius: 8px;
+  --radius-sm: 6px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, textarea, select { font-family: inherit; font-size: inherit; }
+table { border-collapse: collapse; width: 100%; }
+::selection { background: #1a1a1a; color: #fff; }
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent) !important; box-shadow: 0 0 0 3px rgba(26,26,26,0.08); }
+
+.hidden { display: none !important; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.25s ease; }
+
+@keyframes leadFlyAway {
+  0%   { opacity: 1; transform: translateX(0)     rotate(0deg)  scale(1);    }
+  70%  { opacity: 1; transform: translateX(34px)  rotate(3deg)  scale(0.98); }
+  100% { opacity: 0; transform: translateX(120vw) rotate(12deg) scale(0.9);  }
+}
+.lead-fly-away { animation: leadFlyAway 360ms ease-in forwards; transform-origin: center; }
+
+@keyframes subtlePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+  50% { box-shadow: 0 0 0 4px rgba(22,163,74,0.12); }
+}
+.pulse { animation: subtlePulse 2s ease-in-out infinite; }
+
+/* ── Demo chrome (not part of real app — marks this as a mockup) ── */
+.demo-bar {
+  background: #111; color: #fff; font-size: 11.5px; padding: 7px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  position: sticky; top: 0; z-index: 200; font-weight: 500;
+}
+.demo-bar span { opacity: 0.75; }
+.demo-bar button { color: #fff; border: 1px solid rgba(255,255,255,0.25); border-radius: 6px; padding: 3px 10px; font-size: 11px; }
+.demo-bar button:hover { border-color: rgba(255,255,255,0.6); }
+
+/* ── Card / button / form primitives ── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; box-shadow: var(--shadow-sm); }
+.lbl { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display:block; }
+.sub { font-size: 12px; color: var(--text-muted); }
+.bdg { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 11px; font-weight: 500; }
+
+.btn { padding: 8px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 700; cursor: pointer; border: none; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); font-weight: 600; }
+.btn-ghost { background: none; color: var(--text-secondary); font-weight: 600; }
+.btn-green { background: #16a34a; color: #fff; }
+.input { padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); width: 100%; font-size: 13px; }
+.select { padding: 7px 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 13px; cursor: pointer; }
+
+/* ── Login ── */
+#view-login { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0a0a0a; padding: 24px; }
+.login-box { width: 340px; }
+.login-logo { width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg,#16a34a,#065f46); font-size: 26px; font-weight: 800; color: #fff; }
+.login-title { font-size: 22px; font-weight: 600; color: #fff; letter-spacing: -0.02em; text-align: center; }
+.login-sub { font-size: 13px; color: #666; margin-top: 6px; text-align: center; }
+.login-card { background: #141414; border-radius: 16px; border: 1px solid #222; padding: 24px; margin-top: 32px; }
+.login-demo-btn { width: 100%; padding: 12px 16px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: 1px solid #333; margin-bottom: 10px; text-align: left; display:flex; align-items:center; gap:10px; }
+.login-demo-btn b { display:block; }
+.login-demo-btn span { display:block; font-size:11.5px; color:#888; font-weight:400; margin-top:1px; }
+.login-demo-btn.setter { background: #fff; color: #0a0a0a; }
+.login-demo-btn.admin { background: #1a1a1a; color: #fff; }
+.login-demo-btn .dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.login-demo-btn.setter .dot{ background:#16a34a; }
+.login-demo-btn.admin .dot{ background:#378ADD; }
+
+/* ── Top nav (setter app) ── */
+.crm-nav { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 29px; z-index: 60; }
+.crm-nav-inner { max-width: 1320px; margin: 0 auto; padding: 0 20px; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+.crm-brand { display: flex; align-items: center; gap: 10px; }
+.crm-brand-logo { width: 28px; height: 28px; border-radius: 7px; background: linear-gradient(135deg,#16a34a,#065f46); }
+.crm-brand-name { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+.crm-navlinks { display: flex; gap: 4px; align-items: center; }
+.crm-navlink { padding: 8px 16px; border-radius: var(--radius); font-size: 13px; font-weight: 500; color: var(--text-secondary); }
+.crm-navlink.active { color: #fff; background: var(--accent); }
+.crm-navdivider { width: 1px; height: 20px; background: var(--border); margin: 0 8px; }
+.crm-navuser { font-size: 12px; color: var(--text-muted); }
+.crm-navlogout { font-size: 12px; color: var(--text-muted); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; margin-left: 4px; }
+
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; padding: 9px 22px; border-radius: 100px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-md); white-space: nowrap; z-index: 300; }
+.toast.success { background: #111; }
+.toast.gold { background: #d97706; }
+
+.status-badge { font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: 100px; white-space: nowrap; display:inline-block; }
+.status-badge.open { color: var(--text-muted); background: var(--accent-subtle); }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>🔒 Mockup mit Demo-Daten — keine echten Kundendaten, kein Backend. Änderungen verschwinden beim Neuladen.</span>
+  <button id="demo-reset-btn">Zurücksetzen</button>
+</div>
+
+<!-- ══════════════ LOGIN ══════════════ -->
+<div id="view-login">
+  <div class="login-box">
+    <div class="login-logo">M</div>
+    <div class="login-title">meizoCRM</div>
+    <div class="login-sub">Sales Pipeline</div>
+    <div class="login-card">
+      <button class="login-demo-btn setter" id="login-setter-btn">
+        <span class="dot"></span>
+        <span><b>Als Setter einloggen</b><span>Giorgi Beridze — Dashboard, Leads, Anrufen</span></span>
+      </button>
+      <button class="login-demo-btn admin" id="login-admin-btn">
+        <span class="dot"></span>
+        <span><b>Als Admin einloggen</b><span>Team, Performance, alle Leads verwalten</span></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SETTER APP ══════════════ -->
+<div id="app" class="hidden">
+  <nav class="crm-nav">
+    <div class="crm-nav-inner">
+      <div class="crm-brand"><div class="crm-brand-logo"></div><span class="crm-brand-name">meizoCRM</span></div>
+      <div class="crm-navlinks">
+        <a href="#" class="crm-navlink" data-view="dashboard">Dashboard</a>
+        <a href="#" class="crm-navlink" data-view="leads">Leads</a>
+        <a href="#" class="crm-navlink" data-view="kanban">Kanban</a>
+        <a href="#" class="crm-navlink" data-view="dialer">Anrufen</a>
+        <a href="#" class="crm-navlink" data-view="email">E-Mails</a>
+        <div class="crm-navdivider"></div>
+        <span class="crm-navuser" id="nav-username"></span>
+        <button class="crm-navlogout" id="logout-btn">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="view-dashboard"></div>
+  <div id="view-leads" class="hidden"></div>
+  <div id="view-kanban" class="hidden"></div>
+  <div id="view-dialer" class="hidden"></div>
+  <div id="view-email" class="hidden"></div>
+</div>
+
+<!-- ══════════════ ADMIN APP ══════════════ -->
+<div id="view-admin" class="hidden"></div>
+
+<div id="toast-root"></div>
+
+<script>
+'use strict';
+
+/* ═══════════════════════════ Konstanten & Design-Daten (aus echter App) ═══════════════════════════ */
+
+const DAILY_GOAL = 30;
+
+const STATUS_META = {
+  'KI':             { label: 'Kein Interesse',      color: '#991b1b', bg: '#fee2e2', autoAdvance: true  },
+  'NDG':            { label: 'Nicht Durchgekommen', color: '#374151', bg: '#f3f4f6', autoAdvance: true  },
+  'AP NE':          { label: 'AP Nicht Erreicht',   color: '#92400e', bg: '#fef3c7', autoAdvance: false },
+  'Nur Email':      { label: 'Nur E-Mail',           color: '#1e40af', bg: '#dbeafe', autoAdvance: true  },
+  'Info per Email': { label: 'Info per E-Mail',      color: '#5b21b6', bg: '#ede9fe', autoAdvance: false },
+  'Closing Termin': { label: 'Closing Termin',       color: '#065f46', bg: '#d1fae5', autoAdvance: false },
+};
+const BUILT_IN_STATUS_VALUES = ['KI', 'NDG', 'AP NE', 'Nur Email', 'Info per Email', 'Closing Termin'];
+const DEAD_STATUSES = ['KI', 'Closing Termin'];
+const STATUS_COLORS = [
+  { color: '#1e40af', bg: '#dbeafe' }, { color: '#065f46', bg: '#d1fae5' },
+  { color: '#92400e', bg: '#fef3c7' }, { color: '#5b21b6', bg: '#ede9fe' },
+  { color: '#991b1b', bg: '#fee2e2' }, { color: '#0f766e', bg: '#ccfbf1' },
+  { color: '#9f1239', bg: '#ffe4e6' },
+];
+
+const KANBAN_COLUMNS = [
+  { id: '',               label: 'Offen',               color: '#6b7280', bg: '#f3f4f6' },
+  { id: 'NDG',             label: 'Nicht Durchgekommen', color: '#374151', bg: '#f3f4f6' },
+  { id: 'AP NE',           label: 'AP Nicht Erreicht',   color: '#92400e', bg: '#fef3c7' },
+  { id: 'Info per Email',  label: 'Info per E-Mail',     color: '#5b21b6', bg: '#ede9fe' },
+  { id: 'Nur Email',       label: 'Nur E-Mail',          color: '#1e40af', bg: '#dbeafe' },
+  { id: 'Closing Termin',  label: 'Closing Termin',      color: '#065f46', bg: '#d1fae5' },
+  { id: 'KI',              label: 'Kein Interesse',      color: '#991b1b', bg: '#fee2e2' },
+];
+
+/* ═══════════════════════════ Datums-Helpers (identisch zur echten App) ═══════════════════════════ */
+
+function dateKey(d = new Date()) {
+  const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function parseDateKey(key) { const [y,m,d] = key.split('-').map(Number); return new Date(y,(m||1)-1,d||1); }
+function addDays(date, days) { const n = new Date(date); n.setDate(n.getDate()+days); return n; }
+function isWeekend(date) { const day = date.getDay(); return day===0||day===6; }
+function previousBusinessDate(date) { let c = addDays(date,-1); while(isWeekend(c)) c = addDays(c,-1); return c; }
+function formatDate(d) { if(!d) return '—'; const [y,m,day] = d.slice(0,10).split('-'); return `${day}.${m}.${y}`; }
+
+function dailyCountsFromLeads(leads) {
+  return leads.reduce((acc,l) => { const k=(l.calledAt||'').slice(0,10); if(k) acc[k]=(acc[k]||0)+1; return acc; }, {});
+}
+function computeBusinessStreak(counts, target=DAILY_GOAL, now=new Date()) {
+  let cursor = parseDateKey(dateKey(now));
+  if (isWeekend(cursor)) cursor = previousBusinessDate(cursor);
+  else if ((counts[dateKey(cursor)]||0) < target) cursor = previousBusinessDate(cursor);
+  let streak = 0;
+  while (true) {
+    if (isWeekend(cursor)) { cursor = addDays(cursor,-1); continue; }
+    if ((counts[dateKey(cursor)]||0) < target) break;
+    streak += 1; cursor = addDays(cursor,-1);
+  }
+  return streak;
+}
+function getLast7WorkDays() {
+  const days = []; let cursor = new Date();
+  while (days.length < 7) { if (!isWeekend(cursor)) days.unshift(dateKey(cursor)); cursor = addDays(cursor,-1); }
+  return days;
+}
+function getStatusOptions(customStatuses) {
+  return [...BUILT_IN_STATUS_VALUES.map(v => ({ value:v, ...STATUS_META[v] })), ...customStatuses];
+}
+function getStatusMeta(status, customStatuses=[]) {
+  if (!status) return null;
+  return customStatuses.find(s=>s.value===status) || STATUS_META[status] || { label: status, color:'#374151', bg:'#f3f4f6', autoAdvance:false };
+}
+function isValidWebsite(w) {
+  const v = (w||'').trim(); if (!v || /\s/.test(v)) return false;
+  return /^[a-z0-9-]+(\.[a-z0-9-]+)+\.[a-z]{2,}$/i.test(v.replace(/^https?:\/\//i,'').split('/')[0]);
+}
+function websiteHref(w) { return w.startsWith('http') ? w : `https://${w}`; }
+function escapeHtml(s) { return (s??'').toString().replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* ═══════════════════════════ Demo-Datengenerator ═══════════════════════════ */
+
+const FIRM_TYPES = ['Zahnarztpraxis','Frisör','Autohaus','Fitnessstudio','Physiotherapie','Kanzlei','Steuerberatung','Bäckerei','Café','Hotel','Möbelhaus','Elektro','Sanitär','Architekturbüro','Bauunternehmen','IT-Service','Reinigungsservice','Consulting','Praxis Dr.','Restaurant'];
+const SURNAMES = ['Müller','Schmidt','Wagner','Becker','Hoffmann','Schulz','Koch','Richter','Klein','Wolf','Neumann','Schwarz','Zimmermann','Braun','Krüger','Hartmann','Lange','Werner','Krause','Meier'];
+const CITIES = ['München','Augsburg','Ingolstadt','Rosenheim','Landshut','Freising','Fürstenfeldbruck','Dachau'];
+const NOTES_POOL = [
+  'Interessiert, meldet sich nach Rücksprache mit Geschäftsführer.', 'Wollte Unterlagen per E-Mail, folgt Demo nächste Woche.',
+  'Kein Bedarf aktuell, evtl. in 3 Monaten wieder anrufen.', 'Sehr offen, direkt Termin für Live-Demo vereinbart.',
+  'Sekretärin verbindet nicht durch, mehrfach versucht.', 'Nutzt aktuell Excel, Interesse an Umstieg vorhanden.',
+  'Preis war Thema, folgt Angebot per Mail.', 'Chef ist nur vormittags erreichbar.',
+  '', '', '',
+];
+
+function pick(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
+function randPhone() { return `0${pick(['89','170','176','151','160'])} ${Math.floor(1000000+Math.random()*8999999)}`; }
+function randCompanyName() { return `${pick(FIRM_TYPES)} ${pick(SURNAMES)}`; }
+function randId(prefix) { return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2,9)}`; }
+
+let SEQ = 0;
+function makeLead(overrides) {
+  SEQ++;
+  return Object.assign({
+    id: `lead_${SEQ}_${Math.random().toString(36).slice(2,7)}`,
+    name: randCompanyName(),
+    phone: randPhone(),
+    website: '',
+    owner: pick(SURNAMES),
+    status: '',
+    callNote: '',
+    wiedervorlage: '',
+    calledAt: '',
+    createdAt: dateKey(),
+    assignedTo: '',
+    listId: '',
+    callCount: 0,
+  }, overrides);
+}
+
+function buildSeedData() {
+  const leads = [];
+  const today = new Date();
+  const businessDaysBack = [];
+  { let c = new Date(today); let n = 0; while (businessDaysBack.length < 10) { if (!isWeekend(c)) businessDaysBack.push(dateKey(c)); c = addDays(c,-1); } }
+  // businessDaysBack[0] = today, [1] = yesterday (business), etc.
+
+  // ── Historie: letzte 5 Werktage über Tagesziel (30) → Streak, heute in Arbeit ──
+  const dayTargets = [22, 33, 31, 35, 30, 32, 38]; // [0]=heute(in Arbeit), [1..6] Verlauf davor
+  businessDaysBack.slice(0,7).forEach((day, i) => {
+    const count = dayTargets[i];
+    for (let j=0;j<count;j++) {
+      const statusRoll = Math.random();
+      let status = '';
+      if (statusRoll < 0.30) status = 'NDG';
+      else if (statusRoll < 0.45) status = 'AP NE';
+      else if (statusRoll < 0.58) status = 'Nur Email';
+      else if (statusRoll < 0.66) status = 'Info per Email';
+      else if (statusRoll < 0.72) status = 'Closing Termin';
+      else if (statusRoll < 0.80) status = 'KI';
+      // sonst: Status leer aber schon angerufen (retry-fähig)
+      const hh = String(7 + Math.floor(Math.random()*10)).padStart(2,'0');
+      const mm = String(Math.floor(Math.random()*60)).padStart(2,'0');
+      leads.push(makeLead({
+        status,
+        calledAt: `${day}T${hh}:${mm}:00.000Z`,
+        callCount: 1 + (Math.random() < 0.2 ? 1 : 0),
+        callNote: pick(NOTES_POOL),
+        website: Math.random() < 0.6 ? `${randCompanyName().toLowerCase().replace(/[^a-z0-9]+/g,'-')}.de` : '',
+      }));
+    }
+  });
+  // calledAt braucht Format YYYY-MM-DD am Anfang für dailyCountsFromLeads (slice(0,10)) — passt bereits.
+
+  // ── Wiedervorlagen: überfällig, heute fällig, zukünftig ──
+  for (let i=0;i<6;i++) leads.push(makeLead({ status:'AP NE', wiedervorlage: dateKey(addDays(today,-Math.ceil(Math.random()*4))), callNote: pick(NOTES_POOL), calledAt: dateKey(addDays(today,-5)), callCount:1 }));
+  for (let i=0;i<4;i++) leads.push(makeLead({ status:'NDG', wiedervorlage: dateKey(today), callNote: pick(NOTES_POOL), calledAt: dateKey(addDays(today,-2)), callCount:1 }));
+  for (let i=0;i<5;i++) leads.push(makeLead({ status:'Info per Email', wiedervorlage: dateKey(addDays(today,1+Math.floor(Math.random()*6))), callNote: pick(NOTES_POOL), calledAt: dateKey(addDays(today,-3)), callCount:1 }));
+
+  // ── Offene Cold-Leads (noch nie angerufen) — Arbeitsvorrat für Dialer/Kanban ──
+  for (let i=0;i<38;i++) leads.push(makeLead({ website: Math.random()<0.5 ? `${randCompanyName().toLowerCase().replace(/[^a-z0-9]+/g,'-')}.de` : '' }));
+
+  return leads;
+}
+
+/* ═══════════════════════════ Globaler State (nur im Speicher, kein Backend) ═══════════════════════════ */
+
+const USERS = [
+  { id: 'u_admin',  username: 'meisam', role: 'admin',          created_at: '2026-01-12' },
+  { id: 'u_giorgi', username: 'giorgi', role: 'setter-closer',  created_at: '2026-01-15' },
+  { id: 'u_ben',    username: 'ben',    role: 'setter',         created_at: '2026-02-03' },
+  { id: 'u_nina',   username: 'nina',   role: 'setter',         created_at: '2026-03-20' },
+];
+
+const LISTS = [
+  { id: 'list_1', name: 'München Altstadt Q2', imported_by: 'meisam', total_leads: 64, duplicates_skipped: 3, created_at: '2026-04-02' },
+  { id: 'list_2', name: 'Handwerksbetriebe Süd', imported_by: 'giorgi', total_leads: 41, duplicates_skipped: 0, created_at: '2026-05-14' },
+  { id: 'list_3', name: 'Gastro Umkreis 20km', imported_by: 'meisam', total_leads: 28, duplicates_skipped: 5, created_at: '2026-06-01' },
+];
+
+const STATE = {
+  session: null,           // { userId, username, role }
+  leads: [],
+  customStatuses: [],
+  activity: [],
+  view: 'dashboard',
+  dialer: { queueMode: 'all', callIdx: 0, selectedStatus: null, editNote: undefined, editWv: undefined },
+  leadsUi: { quickFilter: 'all', search: '', sortKey: 'wiedervorlage', sortDir: 'asc', editingId: null, showNewLead: false, showStatusManager: false },
+  adminUi: { tab: 'overview', sidebarOpen: true, filterUser: '', filterStatus: '', filterList: '', selectedLeads: new Set() },
+  emailUi: { tab: 'bestaetigung', gmail: false },
+  flowStreak: 0,
+  lastCallAt: 0,
+};
+
+function resetState() {
+  SEQ = 0;
+  STATE.leads = buildSeedData();
+  STATE.customStatuses = [];
+  STATE.activity = buildSeedActivity(STATE.leads);
+  STATE.dialer = { queueMode: 'all', callIdx: 0, selectedStatus: null, editNote: undefined, editWv: undefined };
+  STATE.leadsUi = { quickFilter: 'all', search: '', sortKey: 'wiedervorlage', sortDir: 'asc', editingId: null, showNewLead: false, showStatusManager: false };
+  STATE.adminUi = { tab: 'overview', sidebarOpen: true, filterUser: '', filterStatus: '', filterList: '', selectedLeads: new Set() };
+  STATE.emailUi = { tab: 'bestaetigung', gmail: false };
+  STATE.flowStreak = 0;
+  STATE.lastCallAt = 0;
+}
+
+function buildSeedActivity(leads) {
+  const called = leads.filter(l => l.calledAt).sort((a,b) => a.calledAt < b.calledAt ? 1 : -1).slice(0, 60);
+  return called.map(l => {
+    const user = pick(USERS.filter(u => u.role !== 'admin'));
+    return {
+      id: randId('act'),
+      username: user.username,
+      user_id: user.id,
+      action: 'call',
+      lead_name: l.name,
+      detail: STATUS_META[l.status]?.label || l.status || 'Kontaktiert',
+      created_at: l.calledAt,
+    };
+  });
+}
+
+function showToast(msg, type) {
+  const root = document.getElementById('toast-root');
+  const el = document.createElement('div');
+  el.className = 'toast fade-in' + (type ? ' ' + type : '');
+  el.textContent = msg;
+  root.innerHTML = '';
+  root.appendChild(el);
+  setTimeout(() => { if (el.parentNode) el.remove(); }, 2500);
+}
+
+/* ═══════════════════════════ Router / Auth ═══════════════════════════ */
+
+function login(role) {
+  const user = role === 'admin' ? USERS.find(u=>u.role==='admin') : USERS.find(u=>u.id==='u_giorgi');
+  STATE.session = { userId: user.id, username: user.username, role: user.role };
+  document.getElementById('view-login').classList.add('hidden');
+  if (role === 'admin') {
+    document.getElementById('app').classList.add('hidden');
+    document.getElementById('view-admin').classList.remove('hidden');
+    renderAdmin();
+  } else {
+    document.getElementById('view-admin').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    document.getElementById('nav-username').textContent = user.username;
+    navigateTo('dashboard');
+  }
+}
+
+function logout() {
+  STATE.session = null;
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('view-admin').classList.add('hidden');
+  document.getElementById('view-login').classList.remove('hidden');
+}
+
+function navigateTo(view) {
+  STATE.view = view;
+  ['dashboard','leads','kanban','dialer','email'].forEach(v => {
+    document.getElementById('view-'+v).classList.toggle('hidden', v !== view);
+  });
+  document.querySelectorAll('.crm-navlink').forEach(a => a.classList.toggle('active', a.dataset.view === view));
+  if (view === 'dashboard') renderDashboard();
+  if (view === 'leads') renderLeads();
+  if (view === 'kanban') renderKanban();
+  if (view === 'dialer') renderDialer();
+  if (view === 'email') renderEmail();
+}
+
+/* ═══════════════════════════ Dashboard ═══════════════════════════ */
+
+function fireConfetti(canvas, gold) {
+  const ctx = canvas.getContext('2d'); if (!ctx) return;
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const colors = gold ? ['#fbbf24','#f59e0b','#fcd34d','#fff'] : ['#16a34a','#22c55e','#38bdf8','#f97316','#fbbf24'];
+  const ps = Array.from({length:120}, () => ({
+    x: canvas.width/2, y: canvas.height*.3,
+    vx: (Math.random()-.5)*14, vy: (Math.random()-.85)*13,
+    g: .22+Math.random()*.12, r: Math.random()*360,
+    spin: (Math.random()-.5)*18, size: 5+Math.random()*8,
+    life: 1, color: colors[Math.floor(Math.random()*colors.length)],
+  }));
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height); let alive = false;
+    ps.forEach(p => {
+      p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.r+=p.spin; p.life-=.013;
+      if (p.life<=0) return; alive = true;
+      ctx.save(); ctx.globalAlpha = Math.max(p.life,0);
+      ctx.translate(p.x,p.y); ctx.rotate(p.r*Math.PI/180);
+      ctx.fillStyle = p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.65);
+      ctx.restore();
+    });
+    if (alive) requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+let _dashboardGoalFired = false, _dashboardRecordFired = false;
+
+function renderDashboard() {
+  const leads = STATE.leads;
+  const now = new Date();
+  const today = dateKey(now);
+  const counts = dailyCountsFromLeads(leads);
+  const todayCount = counts[today] || 0;
+  const streak = computeBusinessStreak(counts, DAILY_GOAL, now);
+  const last7 = getLast7WorkDays();
+  const weekTotal = last7.reduce((s,d) => s + (counts[d]||0), 0);
+  const allTimeRecord = Math.max(0, ...Object.values(counts));
+  const yesterday = dateKey(previousBusinessDate(now));
+  const yTotal = counts[yesterday];
+  const ghost = yTotal ? Math.round(yTotal * Math.min((now.getHours()*60+now.getMinutes())/(9*60), 1)) : null;
+  const statusOptions = getStatusOptions(STATE.customStatuses);
+  const todayLeads = leads.filter(l => (l.calledAt||'').slice(0,10) === today);
+  const statusBreakdown = statusOptions.map(s => ({...s, count: todayLeads.filter(l=>l.status===s.value).length})).filter(s=>s.count>0);
+  const openCount = leads.filter(l => !l.status).length;
+  const wvDueCount = leads.filter(l => l.wiedervorlage && l.wiedervorlage <= today).length;
+  const momentum = last7.slice(-5).map(d => (counts[d]||0) > 0);
+  const pct = Math.min((todayCount/DAILY_GOAL)*100, 100);
+  const goalReached = todayCount >= DAILY_GOAL;
+  const hyperdrive = todayCount > allTimeRecord && allTimeRecord > 0;
+  const totalCalled = leads.filter(l=>l.calledAt).length;
+  const closingTotal = leads.filter(l=>l.status==='Closing Termin').length;
+  const closingToday = todayLeads.filter(l=>l.status==='Closing Termin').length;
+  const conversion = totalCalled>0 ? ((closingTotal/totalCalled)*100).toFixed(1) : '0';
+  const isFlowActive = Date.now() - STATE.lastCallAt < 10*60*1000;
+
+  const el = document.getElementById('view-dashboard');
+  el.innerHTML = `
+    <canvas id="dash-confetti" style="position:fixed;top:0;left:0;z-index:100;pointer-events:none;"></canvas>
+    <div style="min-height:100vh;background:var(--bg);padding-bottom:100px;">
+    <div style="max-width:960px;margin:0 auto;padding:24px 20px;">
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;">
+        <div class="card" style="border-left:3px solid ${goalReached?'#22c55e':'#378ADD'};border-radius:0 var(--radius-lg) var(--radius-lg) 0;">
+          <span class="lbl">Heute</span>
+          <div style="font-size:32px;font-weight:500;line-height:1;color:${goalReached?'#16a34a':'var(--text)'};">${todayCount} <span style="font-size:18px;color:var(--text-muted);font-weight:400;">/ ${DAILY_GOAL}</span></div>
+          <div style="margin-top:10px;background:var(--bg);border-radius:99px;height:8px;overflow:hidden;"><div style="height:100%;border-radius:99px;background:${goalReached?'#16a34a':'#378ADD'};width:${pct}%;transition:width .4s;"></div></div>
+          <div class="sub" style="margin-top:5px;">${goalReached?'✓ Ziel erreicht!':`noch ${DAILY_GOAL-todayCount} Calls`}</div>
+        </div>
+        <div class="card" style="${hyperdrive?'border:1px solid #f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15);':''}">
+          <span class="lbl">Rekord</span>
+          <div style="font-size:32px;font-weight:500;color:#d97706;">${allTimeRecord}</div>
+          ${hyperdrive ? `<div class="sub" style="color:#d97706;margin-top:6px;">🏆 Neuer Rekord!</div>` : `<div class="sub" style="margin-top:6px;">noch ${Math.max(0,allTimeRecord-todayCount+1)} bis Rekord</div>`}
+        </div>
+        <div class="card">
+          <span class="lbl">Conversion</span>
+          <div style="font-size:32px;font-weight:500;color:${Number(conversion)>5?'#16a34a':'var(--text)'};">${conversion}%</div>
+          <div class="sub" style="margin-top:6px;">${closingTotal} Closings · ${totalCalled} Calls gesamt</div>
+        </div>
+        <div class="card">
+          <span class="lbl">Flow 🔥</span>
+          <div style="font-size:32px;font-weight:500;color:${isFlowActive?'#d97706':'var(--text-muted)'};">${isFlowActive?STATE.flowStreak:'–'}</div>
+          <div class="sub" style="margin-top:6px;">${isFlowActive?'Calls am Laufen':'Kein aktiver Flow'}</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <div><span class="lbl" style="margin-bottom:2px;">Wochenverlauf</span><div style="font-size:13px;color:var(--text-secondary);">Calls pro Tag — Ziel ${DAILY_GOAL}</div></div>
+            ${weekTotal>0 ? `<span class="bdg" style="background:#d1fae5;color:#065f46;">${weekTotal} diese Woche</span>` : ''}
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:8px;height:80px;">
+            ${last7.map(d => {
+              const c = counts[d]||0; const isToday = d===today; const hit = c>=DAILY_GOAL;
+              const barH = Math.max(4, Math.min(c/DAILY_GOAL,1)*72);
+              const dayName = new Date(d+'T12:00:00').toLocaleDateString('de-DE',{weekday:'short'});
+              return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                <div style="font-size:11px;font-weight:600;color:${hit?'#16a34a':isToday?'#378ADD':'var(--text-muted)'};">${c||''}</div>
+                <div style="width:100%;display:flex;align-items:flex-end;height:72px;"><div style="width:100%;height:${barH}px;background:${hit?'#16a34a':isToday?'#378ADD':'var(--border)'};border-radius:4px 4px 0 0;transition:height .3s;"></div></div>
+                <div style="font-size:11px;color:${isToday?'var(--text)':'var(--text-muted)'};font-weight:${isToday?600:400};">${dayName}</div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+        <div class="card">
+          <span class="lbl" style="margin-bottom:12px;">Heute nach Status</span>
+          ${statusBreakdown.length===0 ? `<div style="font-size:13px;color:var(--text-faint);">Noch keine Calls heute.</div>` :
+            statusBreakdown.map(s => `<div style="margin-bottom:8px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--text-secondary);">${s.label}</span><span style="font-size:12px;font-weight:600;color:${s.color};">${s.count}</span></div>
+              <div style="background:var(--bg);border-radius:99px;height:5px;overflow:hidden;"><div style="height:100%;border-radius:99px;background:${s.color};width:${Math.round((s.count/Math.max(todayCount,1))*100)}%;"></div></div>
+            </div>`).join('')}
+          <div style="border-top:1px solid var(--border-light);margin-top:12px;padding-top:10px;">
+            <div style="display:flex;justify-content:space-between;"><span style="font-size:12px;color:var(--text-muted);">Closing heute</span><span style="font-size:12px;font-weight:700;color:#16a34a;">${closingToday}</span></div>
+            ${wvDueCount>0 ? `<div style="display:flex;justify-content:space-between;margin-top:6px;"><span style="font-size:12px;color:#d97706;">Wdv. fällig</span><span style="font-size:12px;font-weight:600;color:#d97706;">${wvDueCount}</span></div>` : ''}
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
+        <div class="card">
+          <span class="lbl">Tages-Streak</span>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:6px;">
+            <div style="width:52px;height:52px;border-radius:50%;border:3px solid ${streak>0?'#f59e0b':'var(--border)'};display:flex;align-items:center;justify-content:center;flex-direction:column;flex-shrink:0;">
+              <span style="font-size:18px;line-height:1;">🔥</span><span style="font-size:13px;font-weight:600;color:${streak>0?'#d97706':'var(--text-muted)'};line-height:1.2;">${streak}</span>
+            </div>
+            <div><div style="font-size:14px;font-weight:500;">${streak===0?'Noch kein Streak':`${streak} Tag${streak>1?'e':''} in Folge`}</div><div class="sub" style="margin-top:3px;">Sa + So zählen nicht</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="lbl">Momentum (letzte 5 Tage)</span>
+          <div style="display:flex;gap:6px;margin-top:10px;">${momentum.map(a => `<div style="flex:1;height:20px;border-radius:4px;background:${a?'#16a34a':'var(--bg)'};border:1px solid ${a?'#16a34a':'var(--border)'};"></div>`).join('')}</div>
+          <div class="sub" style="margin-top:8px;">${momentum.filter(Boolean).length}/5 Tage aktiv</div>
+        </div>
+        <div class="card">
+          <span class="lbl">Ghost-Mode</span>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:6px;">
+            <span style="font-size:26px;font-weight:500;">${todayCount}</span><span style="font-size:13px;color:var(--text-secondary);">jetzt</span>
+            ${ghost!==null ? `<span style="font-size:13px;color:var(--text-faint);">vs.</span><span style="font-size:22px;font-weight:500;color:var(--text-secondary);">${ghost}</span><span style="font-size:13px;color:var(--text-faint);">gestern</span>` : ''}
+          </div>
+          ${ghost!==null ? `<span class="bdg" style="margin-top:6px;display:inline-block;background:${todayCount>=ghost?'#d1fae5':'#fee2e2'};color:${todayCount>=ghost?'#065f46':'#991b1b'};">${todayCount>=ghost?`+${todayCount-ghost} vor Gestern`:`${ghost-todayCount} hinter Gestern`}</span>` : ''}
+        </div>
+      </div>
+
+    </div>
+
+    <div style="position:fixed;bottom:0;left:0;right:0;padding:12px 20px;background:var(--surface);border-top:1px solid var(--border);">
+      <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+        <div>
+          <div style="font-size:13px;font-weight:500;">Bereit für die nächsten Calls?</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">${openCount>0?`${openCount} offene Leads warten`:'Alle Leads abgearbeitet 🎉'}${wvDueCount>0?` · ${wvDueCount} Wdv. fällig`:''}</div>
+        </div>
+        <button class="btn btn-green" style="padding:12px 32px;border-radius:var(--radius-lg);font-size:15px;" id="dash-cta-dialer">Anrufen starten →</button>
+      </div>
+    </div>
+    </div>
+  `;
+  el.querySelector('#dash-cta-dialer').addEventListener('click', () => { navigateTo('dialer'); });
+
+  if (goalReached && !_dashboardGoalFired) {
+    _dashboardGoalFired = true;
+    if (hyperdrive && !_dashboardRecordFired) { _dashboardRecordFired = true; fireConfetti(document.getElementById('dash-confetti'), true); }
+    else fireConfetti(document.getElementById('dash-confetti'), false);
+  }
+}
+
+/* ═══════════════════════════ Leads ═══════════════════════════ */
+
+function statusBadgeHtml(status, customStatuses) {
+  if (!status) return `<span class="status-badge open">Offen</span>`;
+  const m = getStatusMeta(status, customStatuses);
+  return `<span class="status-badge" style="color:${m.color};background:${m.bg};">${m.label}</span>`;
+}
+
+function getWvRelative(wv) {
+  if (!wv) return '';
+  const today = dateKey();
+  if (wv === today) return 'Heute';
+  if (wv < today) { const d = Math.round((new Date(today)-new Date(wv))/86400000); return `vor ${d} Tag${d===1?'':'en'}`; }
+  const d = Math.round((new Date(wv)-new Date(today))/86400000);
+  if (d===1) return 'Morgen';
+  return new Date(wv).toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});
+}
+function wvUrgency(wv) { if(!wv) return 'none'; const t=dateKey(); if(wv<t) return 'overdue'; if(wv===t) return 'today'; return 'future'; }
+
+function exportCSV(leads) {
+  const headers = ['Name','Telefon','Website','Inhaber','Status','Wiedervorlage','Notiz','Angerufen am'];
+  const rows = leads.map(l => [l.name,l.phone,l.website,l.owner,l.status,l.wiedervorlage,l.callNote,l.calledAt].map(v => `"${(v??'').toString().replace(/"/g,'""')}"`).join(','));
+  const blob = new Blob(['﻿'+[headers.join(','), ...rows].join('\n')], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `meizo-crm-export-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+function renderLeads() {
+  const ui = STATE.leadsUi;
+  const leads = STATE.leads;
+  const today = dateKey();
+  const statusOptions = getStatusOptions(STATE.customStatuses);
+
+  let filtered = leads.filter(l => {
+    if (ui.quickFilter==='today') return l.wiedervorlage && l.wiedervorlage<=today;
+    if (ui.quickFilter==='never') return !l.calledAt && !l.status;
+    if (ui.quickFilter!=='all') return l.status===ui.quickFilter;
+    return true;
+  });
+  const q = ui.search.toLowerCase();
+  if (q) filtered = filtered.filter(l => [l.name,l.phone,l.website,l.owner,l.callNote].some(v => (v||'').toLowerCase().includes(q)));
+  filtered = filtered.slice().sort((a,b) => {
+    let av=a[ui.sortKey]||'', bv=b[ui.sortKey]||'';
+    if (ui.sortKey==='wiedervorlage') { if(!av&&!bv) return 0; if(!av) return 1; if(!bv) return -1; }
+    if (av<bv) return ui.sortDir==='asc'?-1:1;
+    if (av>bv) return ui.sortDir==='asc'?1:-1;
+    return 0;
+  });
+
+  const useSections = ui.sortKey==='wiedervorlage' && ui.sortDir==='asc' && ui.quickFilter==='all' && !ui.search;
+  const todayDueCount = leads.filter(l=>l.wiedervorlage && l.wiedervorlage<=today).length;
+  const neverCount = leads.filter(l=>!l.calledAt && !l.status).length;
+  const openCount = leads.filter(l=>!l.status).length;
+  const countByStatus = s => leads.filter(l=>l.status===s).length;
+
+  function rowHtml(lead) {
+    const isE = ui.editingId === lead.id;
+    const urgency = wvUrgency(lead.wiedervorlage);
+    const rowBg = !isE && (urgency==='overdue'||urgency==='today') ? 'background:rgba(251,191,36,0.06);' : '';
+    return `<tr data-id="${lead.id}" style="${isE?'background:#f8fafc;':rowBg}">
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);min-width:200px;">
+        ${isValidWebsite(lead.website)
+          ? `<a href="${websiteHref(lead.website)}" target="_blank" rel="noopener"><span style="font-weight:600;color:var(--text);">${escapeHtml(lead.name)}</span><span style="display:block;font-size:11px;color:var(--text-faint);margin-top:1px;text-decoration:underline;">${escapeHtml(lead.website.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,''))}</span></a>`
+          : `<span style="font-weight:600;">${escapeHtml(lead.name)}</span>`}
+      </td>
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);">${lead.phone?`<span style="font-weight:500;font-size:13px;">${lead.phone}</span>`:'<span style="color:var(--text-faint);">—</span>'}</td>
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);"><span style="color:var(--text-secondary);font-size:13px;">${lead.owner||'—'}</span></td>
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);">${statusBadgeHtml(lead.status, STATE.customStatuses)}</td>
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);white-space:nowrap;">
+        ${lead.wiedervorlage ? `<span style="font-size:12px;font-weight:${urgency!=='future'?600:400};color:${urgency==='overdue'?'#dc2626':urgency==='today'?'#d97706':'var(--text-secondary)'};">${urgency==='overdue'?'⚠ ':''}${getWvRelative(lead.wiedervorlage)}</span>` : `<span style="color:var(--text-faint);font-size:13px;">—</span>`}
+      </td>
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);max-width:240px;">
+        <span style="font-size:12px;color:var(--text-secondary);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escapeHtml(lead.callNote)}">${lead.callNote?escapeHtml(lead.callNote):'<span style=\"color:var(--text-faint)\">—</span>'}</span>
+      </td>
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);white-space:nowrap;"><span style="font-size:12px;color:var(--text-muted);">${lead.calledAt?formatDate(lead.calledAt):'—'}</span></td>
+      <td style="padding:10px 14px;border-bottom:1px solid var(--border-light);white-space:nowrap;">
+        <div style="display:flex;gap:4px;opacity:.65;">
+          <button class="lead-edit-btn" data-id="${lead.id}" style="width:26px;height:26px;border-radius:6px;font-size:13px;">✎</button>
+          <button class="lead-del-btn" data-id="${lead.id}" style="width:26px;height:26px;border-radius:6px;font-size:13px;color:#ef4444;">×</button>
+        </div>
+      </td>
+    </tr>`;
+  }
+  function sectionHeader(label, count, icon) {
+    return `<tr><td colspan="8" style="padding:6px 14px;font-size:11px;font-weight:600;color:var(--text-muted);background:var(--bg);border-bottom:1px solid var(--border-light);text-transform:uppercase;letter-spacing:0.04em;">${icon?icon+' ':''}${label} <span style="font-weight:400;opacity:.7;">(${count})</span></td></tr>`;
+  }
+
+  let tbody = '';
+  if (useSections) {
+    const overdue = filtered.filter(l=>l.wiedervorlage && l.wiedervorlage<today);
+    const todayL = filtered.filter(l=>l.wiedervorlage===today);
+    const open = filtered.filter(l=>!l.wiedervorlage && !l.status);
+    const worked = filtered.filter(l=>!l.wiedervorlage && l.status);
+    const future = filtered.filter(l=>l.wiedervorlage && l.wiedervorlage>today);
+    if (overdue.length||todayL.length) tbody += sectionHeader('Wiedervorlage fällig', overdue.length+todayL.length, '⚠') + overdue.map(rowHtml).join('') + todayL.map(rowHtml).join('');
+    if (open.length) tbody += sectionHeader('Offen — noch nie angerufen', open.length) + open.map(rowHtml).join('');
+    if (worked.length) tbody += sectionHeader('Bearbeitet', worked.length) + worked.map(rowHtml).join('');
+    if (future.length) tbody += sectionHeader('Zukünftige Wiedervorlagen', future.length) + future.map(rowHtml).join('');
+  } else {
+    tbody = filtered.map(rowHtml).join('');
+  }
+
+  const chip = (label,count,active,filterVal,urgent,color) => `<button class="lead-filter-chip" data-filter="${filterVal}" style="padding:5px 12px;border-radius:99px;font-size:12px;font-weight:500;background:${active?(urgent?'#dc2626':(color||'var(--accent)')):'var(--surface)'};color:${active?'#fff':'var(--text-secondary)'};border:1px solid ${active?'transparent':'var(--border)'};white-space:nowrap;">${label} <span style="opacity:.75;">${count}</span></button>`;
+
+  const el = document.getElementById('view-leads');
+  el.innerHTML = `
+  <div style="max-width:1320px;margin:0 auto;padding:20px 24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary" id="leads-new-btn">+ Lead hinzufügen</button>
+        <button class="btn btn-secondary" id="leads-statusmgr-btn">Status verwalten</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+        ${leads.length>0 ? `<button class="btn btn-ghost" id="leads-export-btn">Export CSV</button>` : ''}
+        <label class="btn btn-primary" style="display:inline-block;">CSV importieren<input type="file" id="leads-import-input" accept=".csv" hidden></label>
+      </div>
+    </div>
+
+    <div id="leads-new-panel" class="card fade-in ${ui.showNewLead?'':'hidden'}" style="margin-bottom:18px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;">
+        <label><span class="lbl">Name</span><input class="input" id="nl-name" placeholder="Firma"></label>
+        <label><span class="lbl">Telefon</span><input class="input" id="nl-phone" placeholder="089 1234567"></label>
+        <label><span class="lbl">Website</span><input class="input" id="nl-website" placeholder="firma.de"></label>
+        <label><span class="lbl">Inhaber</span><input class="input" id="nl-owner" placeholder="Name"></label>
+        <label><span class="lbl">Status</span><select class="input" id="nl-status"><option value="">Offen</option>${statusOptions.map(s=>`<option value="${s.value}">${s.label}</option>`).join('')}</select></label>
+        <label><span class="lbl">Wiedervorlage</span><input class="input" type="date" id="nl-wv"></label>
+        <div style="grid-column:1/-1;"><label><span class="lbl">Notiz</span><textarea class="input" id="nl-note" rows="2"></textarea></label></div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;">
+        <button class="btn btn-secondary" id="leads-new-cancel">Abbrechen</button>
+        <button class="btn btn-primary" id="leads-new-save">Lead speichern</button>
+      </div>
+    </div>
+
+    <div id="leads-statusmgr-panel" class="card fade-in ${ui.showStatusManager?'':'hidden'}" style="margin-bottom:18px;">
+      <div style="display:grid;grid-template-columns:minmax(180px,1fr) auto auto;gap:10px;align-items:end;">
+        <div><span class="lbl">Neuer Status</span><input class="input" id="sm-name" placeholder="z.B. Demo vereinbart"></div>
+        <div><span class="lbl">Farbe</span><div id="sm-colors" style="display:flex;gap:6px;align-items:center;min-height:36px;">${STATUS_COLORS.map((sw,i)=>`<button class="sm-color-swatch" data-i="${i}" style="width:28px;height:28px;border-radius:99px;background:${sw.bg};border:${i===0?'2px solid '+sw.color:'1px solid var(--border)'};"><span style="display:block;width:12px;height:12px;border-radius:99px;margin:0 auto;background:${sw.color};"></span></button>`).join('')}</div></div>
+        <button class="btn btn-primary" id="sm-add" style="height:36px;">Erstellen</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--border-light);margin-top:16px;padding-top:16px;" id="sm-list">
+        ${STATE.customStatuses.length===0 ? `<span style="font-size:13px;color:var(--text-muted);">Noch keine eigenen Status.</span>` :
+          STATE.customStatuses.map(s=>`<div style="display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:999px;padding:3px 5px 3px 3px;">${statusBadgeHtml(s.value, STATE.customStatuses)}<button class="sm-del-btn" data-value="${s.value}" style="color:#ef4444;width:20px;height:20px;">×</button></div>`).join('')}
+      </div>
+    </div>
+
+    ${leads.length>0 ? `<div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;flex:1;">
+        ${chip('Alle', leads.length, ui.quickFilter==='all', 'all')}
+        ${todayDueCount>0?chip('Heute fällig', todayDueCount, ui.quickFilter==='today', 'today', true):''}
+        ${chip('Offen', openCount, ui.quickFilter==='', '')}
+        ${statusOptions.map(s=>chip(s.label, countByStatus(s.value), ui.quickFilter===s.value, s.value, false, s.color)).join('')}
+        ${neverCount>0?chip('Nie angerufen', neverCount, ui.quickFilter==='never', 'never'):''}
+      </div>
+      <input class="input" id="leads-search" style="width:180px;" placeholder="Suchen..." value="${escapeHtml(ui.search)}">
+      <select class="input" id="leads-sort" style="width:auto;">
+        <option value="wiedervorlage_asc" ${ui.sortKey==='wiedervorlage'&&ui.sortDir==='asc'?'selected':''}>Wiedervorlage zuerst</option>
+        <option value="calledAt_desc" ${ui.sortKey==='calledAt'&&ui.sortDir==='desc'?'selected':''}>Zuletzt angerufen</option>
+        <option value="name_asc" ${ui.sortKey==='name'&&ui.sortDir==='asc'?'selected':''}>Name A→Z</option>
+      </select>
+      ${openCount>0?`<button class="btn btn-green" id="leads-cta-dialer">Anrufen starten (${openCount})</button>`:''}
+    </div>` : ''}
+
+    <div class="card fade-in" style="overflow:auto;padding:0;">
+      <table>
+        <thead><tr>
+          ${['Firma & Website','Telefon','Inhaber','Status','Wdv.','Notiz','Angerufen an',''].map(h=>`<th style="padding:9px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);background:var(--bg);border-bottom:1px solid var(--border);white-space:nowrap;text-transform:uppercase;">${h}</th>`).join('')}
+        </tr></thead>
+        <tbody>${tbody || `<tr><td colspan="8" style="text-align:center;padding:2.5rem;color:var(--text-muted);font-size:13px;">Keine Ergebnisse</td></tr>`}</tbody>
+      </table>
+    </div>
+  </div>`;
+
+  // Wire up events
+  el.querySelector('#leads-new-btn')?.addEventListener('click', () => { ui.showNewLead = !ui.showNewLead; ui.showStatusManager=false; renderLeads(); });
+  el.querySelector('#leads-statusmgr-btn')?.addEventListener('click', () => { ui.showStatusManager = !ui.showStatusManager; ui.showNewLead=false; renderLeads(); });
+  el.querySelector('#leads-new-cancel')?.addEventListener('click', () => { ui.showNewLead=false; renderLeads(); });
+  el.querySelector('#leads-new-save')?.addEventListener('click', () => {
+    const name = el.querySelector('#nl-name').value.trim();
+    if (!name) { showToast('Name fehlt'); return; }
+    STATE.leads.unshift(makeLead({
+      name, phone: el.querySelector('#nl-phone').value, website: el.querySelector('#nl-website').value,
+      owner: el.querySelector('#nl-owner').value, status: el.querySelector('#nl-status').value,
+      wiedervorlage: el.querySelector('#nl-wv').value, callNote: el.querySelector('#nl-note').value,
+    }));
+    ui.showNewLead = false; showToast('Lead hinzugefügt'); renderLeads();
+  });
+  el.querySelector('#leads-export-btn')?.addEventListener('click', () => exportCSV(leads));
+  el.querySelector('#leads-import-input')?.addEventListener('change', e => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const text = ev.target.result;
+      const lines = text.replace(/^﻿/,'').trim().split('\n').filter(l=>l.trim());
+      if (lines.length<2) { showToast('Keine Daten'); return; }
+      const sep = lines[0].includes(';') ? ';' : ',';
+      const header = lines[0].split(sep).map(h=>h.toLowerCase().replace(/['"]/g,'').trim());
+      const col = keys => header.findIndex(h => keys.some(k=>h.includes(k)));
+      const iName=col(['name','firma','company']), iPhone=col(['tel','phone','nummer']), iWeb=col(['web','site','url']), iOwner=col(['inhaber','owner']);
+      let n = 0;
+      lines.slice(1).forEach(line => {
+        const cols = line.split(sep).map(c=>c.replace(/^["']|["']$/g,'').trim());
+        const nm = iName>=0?cols[iName]:cols[0]; if (!nm) return;
+        STATE.leads.push(makeLead({ name:nm, phone: iPhone>=0?cols[iPhone]:'', website: iWeb>=0?cols[iWeb]:'', owner: iOwner>=0?cols[iOwner]:'' }));
+        n++;
+      });
+      showToast(`${n} Leads importiert`); renderLeads();
+    };
+    reader.readAsText(file, 'UTF-8'); e.target.value = '';
+  });
+  el.querySelector('#leads-search')?.addEventListener('input', e => { ui.search = e.target.value; renderLeads(); });
+  el.querySelector('#leads-sort')?.addEventListener('change', e => { const [k,d]=e.target.value.split('_'); ui.sortKey=k; ui.sortDir=d; renderLeads(); });
+  el.querySelector('#leads-cta-dialer')?.addEventListener('click', () => navigateTo('dialer'));
+  el.querySelectorAll('.lead-filter-chip').forEach(btn => btn.addEventListener('click', () => {
+    const v = btn.dataset.filter; ui.quickFilter = (ui.quickFilter===v) ? 'all' : v; renderLeads();
+  }));
+  el.querySelectorAll('.lead-del-btn').forEach(btn => btn.addEventListener('click', () => {
+    if (!confirm('Löschen?')) return;
+    STATE.leads = STATE.leads.filter(l=>l.id!==btn.dataset.id); renderLeads();
+  }));
+  el.querySelectorAll('.lead-edit-btn').forEach(btn => btn.addEventListener('click', () => openLeadEditor(btn.dataset.id)));
+  el.querySelector('#sm-add')?.addEventListener('click', () => {
+    const name = el.querySelector('#sm-name').value.trim(); if (!name) return;
+    const activeSwatch = el.querySelector('.sm-color-swatch[style*="2px solid"]') || el.querySelector('.sm-color-swatch');
+    const i = Number(activeSwatch.dataset.i);
+    const sw = STATUS_COLORS[i % STATUS_COLORS.length];
+    STATE.customStatuses.push({ value:name, label:name, color:sw.color, bg:sw.bg, autoAdvance:false });
+    showToast('Status hinzugefügt'); renderLeads();
+  });
+  el.querySelectorAll('.sm-del-btn').forEach(btn => btn.addEventListener('click', () => {
+    STATE.customStatuses = STATE.customStatuses.filter(s=>s.value!==btn.dataset.value); renderLeads();
+  }));
+  el.querySelectorAll('.sm-color-swatch').forEach(btn => btn.addEventListener('click', () => {
+    el.querySelectorAll('.sm-color-swatch').forEach(b=>b.style.border='1px solid var(--border)');
+    btn.style.border = '2px solid ' + STATUS_COLORS[Number(btn.dataset.i)].color;
+  }));
+}
+
+function openLeadEditor(id) {
+  const lead = STATE.leads.find(l=>l.id===id); if (!lead) return;
+  const statusOptions = getStatusOptions(STATE.customStatuses);
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;';
+  wrap.innerHTML = `<div class="card fade-in" style="max-width:480px;width:100%;background:#fff;">
+    <div class="lbl" style="margin-bottom:14px;">Lead bearbeiten</div>
+    <div style="display:grid;gap:10px;">
+      <label><span class="lbl">Name</span><input class="input" id="ed-name" value="${escapeHtml(lead.name)}"></label>
+      <label><span class="lbl">Telefon</span><input class="input" id="ed-phone" value="${escapeHtml(lead.phone)}"></label>
+      <label><span class="lbl">Website</span><input class="input" id="ed-website" value="${escapeHtml(lead.website)}"></label>
+      <label><span class="lbl">Status</span><select class="input" id="ed-status"><option value="">Offen</option>${statusOptions.map(s=>`<option value="${s.value}" ${lead.status===s.value?'selected':''}>${s.label}</option>`).join('')}</select></label>
+      <label><span class="lbl">Wiedervorlage</span><input class="input" type="date" id="ed-wv" value="${lead.wiedervorlage||''}"></label>
+      <label><span class="lbl">Notiz</span><textarea class="input" id="ed-note" rows="3">${escapeHtml(lead.callNote)}</textarea></label>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;">
+      <button class="btn btn-secondary" id="ed-cancel">Abbrechen</button>
+      <button class="btn btn-primary" id="ed-save">Speichern</button>
+    </div>
+  </div>`;
+  document.body.appendChild(wrap);
+  wrap.querySelector('#ed-cancel').addEventListener('click', () => wrap.remove());
+  wrap.addEventListener('click', e => { if (e.target===wrap) wrap.remove(); });
+  wrap.querySelector('#ed-save').addEventListener('click', () => {
+    lead.name = wrap.querySelector('#ed-name').value;
+    lead.phone = wrap.querySelector('#ed-phone').value;
+    lead.website = wrap.querySelector('#ed-website').value;
+    lead.status = wrap.querySelector('#ed-status').value;
+    lead.wiedervorlage = wrap.querySelector('#ed-wv').value;
+    lead.callNote = wrap.querySelector('#ed-note').value;
+    wrap.remove(); showToast('Gespeichert'); renderLeads();
+  });
+}
+
+/* ═══════════════════════════ Kanban ═══════════════════════════ */
+
+function renderKanban() {
+  const search = renderKanban._search || '';
+  const leads = search ? STATE.leads.filter(l => l.name.toLowerCase().includes(search.toLowerCase()) || l.phone.includes(search)) : STATE.leads;
+  const today = dateKey();
+  const allColumns = [...KANBAN_COLUMNS, ...STATE.customStatuses.map(s=>({id:s.value,label:s.label,color:s.color,bg:s.bg}))];
+
+  function cardHtml(lead) {
+    const isWdv = !!(lead.wiedervorlage && lead.wiedervorlage<=today);
+    return `<div class="kanban-card" draggable="true" data-id="${lead.id}" style="background:var(--surface);border:1px solid ${isWdv?'#fbbf24':'var(--border)'};border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:grab;box-shadow:var(--shadow-sm);">
+      <div style="font-weight:600;font-size:13px;margin-bottom:4px;">${escapeHtml(lead.name)}</div>
+      ${lead.owner?`<div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">${escapeHtml(lead.owner)}</div>`:''}
+      ${lead.phone?`<div style="font-size:12px;color:#378ADD;margin-bottom:4px;">${lead.phone}</div>`:''}
+      ${lead.callNote?`<div style="font-size:11px;color:var(--text-secondary);background:var(--bg);border-radius:6px;padding:4px 7px;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escapeHtml(lead.callNote)}">${escapeHtml(lead.callNote)}</div>`:''}
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;">
+        ${lead.callCount>0?`<span style="font-size:10px;color:var(--text-muted);background:var(--bg);border:1px solid var(--border);border-radius:99px;padding:1px 6px;">📞 ${lead.callCount}×</span>`:''}
+        ${isWdv?`<span style="font-size:10px;color:#92400e;background:#fef3c7;border-radius:99px;padding:1px 6px;">WDV fällig</span>`:''}
+      </div>
+    </div>`;
+  }
+
+  const el = document.getElementById('view-kanban');
+  el.innerHTML = `
+    <div style="min-height:100vh;background:var(--bg);">
+      <div style="background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:16px;">
+        <button class="btn btn-secondary" id="kanban-back-btn" style="padding:6px 12px;">← Dashboard</button>
+        <div style="font-weight:700;font-size:16px;">Kanban</div>
+        <input class="input" id="kanban-search" placeholder="Suchen…" style="width:200px;margin-left:auto;" value="${escapeHtml(search)}">
+        <div style="font-size:12px;color:var(--text-muted);">${leads.length} Leads</div>
+      </div>
+      <div style="display:flex;gap:12px;padding:20px;overflow-x:auto;min-height:calc(100vh - 57px);align-items:flex-start;">
+        ${allColumns.map(col => {
+          const colLeads = leads.filter(l => (l.status||'')===col.id);
+          const wvCount = colLeads.filter(l=>l.wiedervorlage && l.wiedervorlage<=today).length;
+          return `<div class="kanban-col" data-col-id="${col.id}" style="width:240px;flex-shrink:0;background:var(--bg);border:2px solid transparent;border-radius:12px;min-height:200px;transition:all .15s;">
+            <div style="padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:${col.color};flex-shrink:0;"></div>
+              <span style="font-size:13px;font-weight:700;flex:1;">${col.label}</span>
+              <span style="font-size:12px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:99px;padding:1px 7px;">${colLeads.length}</span>
+              ${wvCount>0?`<span style="font-size:11px;color:#d97706;background:#fef3c7;border-radius:99px;padding:1px 6px;">${wvCount}</span>`:''}
+            </div>
+            <div style="padding:0 8px 8px;min-height:60px;">
+              ${colLeads.map(cardHtml).join('') || `<div style="text-align:center;padding:20px 12px;font-size:12px;color:var(--text-faint);border:2px dashed var(--border);border-radius:8px;">Hierher ziehen</div>`}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+
+  el.querySelector('#kanban-back-btn').addEventListener('click', () => navigateTo('dashboard'));
+  el.querySelector('#kanban-search').addEventListener('input', e => { renderKanban._search = e.target.value; renderKanban(); });
+
+  let draggingId = null;
+  el.querySelectorAll('.kanban-card').forEach(card => {
+    card.addEventListener('dragstart', e => { draggingId = card.dataset.id; e.dataTransfer.setData('text/plain', card.dataset.id); card.style.opacity = '0.4'; });
+    card.addEventListener('dragend', () => { card.style.opacity = '1'; });
+  });
+  el.querySelectorAll('.kanban-col').forEach(col => {
+    col.addEventListener('dragover', e => { e.preventDefault(); col.style.background='rgba(22,163,74,0.05)'; col.style.borderColor='#16a34a'; });
+    col.addEventListener('dragleave', () => { col.style.background='var(--bg)'; col.style.borderColor='transparent'; });
+    col.addEventListener('drop', e => {
+      e.preventDefault(); col.style.background='var(--bg)'; col.style.borderColor='transparent';
+      const id = e.dataTransfer.getData('text/plain') || draggingId;
+      const lead = STATE.leads.find(l=>l.id===id); if (!lead) return;
+      lead.status = col.dataset.colId;
+      renderKanban();
+    });
+  });
+}
+
+/* ═══════════════════════════ Dialer ═══════════════════════════ */
+
+const QUEUE_MODES = [
+  { id:'all',   label:'Alles',         desc:'WDV → Kalt → Retry' },
+  { id:'wdv',   label:'WDV fällig',    desc:'Nur überfällige Wiedervorlagen' },
+  { id:'cold',  label:'Nie angerufen', desc:'Nur Cold Calls' },
+  { id:'ndg',   label:'NDG / AP NE',   desc:'Nicht durchgekommen' },
+  { id:'retry', label:'Retry',         desc:'Alle bereits kontaktierten' },
+];
+
+function buildDialerQueue(leads, mode, today) {
+  const alive = leads.filter(l => !DEAD_STATUSES.includes(l.status));
+  switch (mode) {
+    case 'wdv':   return alive.filter(l=>l.wiedervorlage && l.wiedervorlage<=today).sort((a,b)=>a.wiedervorlage.localeCompare(b.wiedervorlage));
+    case 'cold':  return alive.filter(l=>!l.calledAt && !l.status);
+    case 'ndg':   return alive.filter(l=>l.status==='NDG'||l.status==='AP NE');
+    case 'retry': return alive.filter(l=>l.calledAt||l.status);
+    default: {
+      const wdv = alive.filter(l=>l.wiedervorlage && l.wiedervorlage<=today).sort((a,b)=>a.wiedervorlage.localeCompare(b.wiedervorlage));
+      const cold = alive.filter(l=>!l.calledAt && !l.status);
+      const retry = alive.filter(l=>!(l.wiedervorlage && l.wiedervorlage<=today) && (l.calledAt||l.status));
+      return [...wdv, ...cold, ...retry];
+    }
+  }
+}
+function autoWdv(status) {
+  const d = new Date();
+  const add = days => { d.setDate(d.getDate()+days); return dateKey(d); };
+  if (status==='NDG') return add(2);
+  if (status==='AP NE') return add(1);
+  if (status==='Info per Email') return add(3);
+  if (status==='KI') return add(30);
+  return '';
+}
+
+function renderDialer() {
+  const d = STATE.dialer;
+  const today = dateKey();
+  const callLeads = buildDialerQueue(STATE.leads, d.queueMode, today);
+  const currentLead = callLeads[d.callIdx];
+  const statusOptions = getStatusOptions(STATE.customStatuses);
+  const todayCount = dailyCountsFromLeads(STATE.leads)[today] || 0;
+  const wvOverdue = STATE.leads.filter(l=>l.wiedervorlage && l.wiedervorlage<today && !DEAD_STATUSES.includes(l.status)).length;
+  const wvToday = STATE.leads.filter(l=>l.wiedervorlage===today && !DEAD_STATUSES.includes(l.status)).length;
+  const coldCount = STATE.leads.filter(l=>!l.calledAt && !l.status).length;
+  const ndgCount = STATE.leads.filter(l=>l.status==='NDG'||l.status==='AP NE').length;
+  const currentMode = QUEUE_MODES.find(m=>m.id===d.queueMode);
+
+  const el = document.getElementById('view-dialer');
+
+  if (!currentLead) {
+    el.innerHTML = `<div style="min-height:100vh;background:#fff;display:flex;align-items:center;justify-content:center;padding:24px;">
+      <canvas id="dialer-confetti" style="position:fixed;inset:0;z-index:100;pointer-events:none;"></canvas>
+      <div style="text-align:center;max-width:400px;">
+        <div style="width:56px;height:56px;background:#dcfce7;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">✓</div>
+        <div style="font-size:22px;font-weight:700;margin-bottom:6px;">Queue leer</div>
+        <div style="color:#999;font-size:14px;margin-bottom:28px;">${todayCount} Calls heute · Flow ${STATE.flowStreak}</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+          ${coldCount>0 && d.queueMode!=='cold' ? `<button class="dialer-switch-mode" data-mode="cold" style="padding:12px 16px;background:#eff6ff;color:#1e40af;border-radius:10px;border:1px solid #bfdbfe;font-size:13px;font-weight:600;">${coldCount} Cold Calls verfügbar →</button>` : ''}
+          ${(wvOverdue+wvToday)>0 && d.queueMode!=='wdv' ? `<button class="dialer-switch-mode" data-mode="wdv" style="padding:12px 16px;background:#fef3c7;color:#92400e;border-radius:10px;border:1px solid #fcd34d;font-size:13px;font-weight:600;">${wvOverdue+wvToday} Wiedervorlagen fällig →</button>` : ''}
+          ${ndgCount>0 && d.queueMode!=='ndg' ? `<button class="dialer-switch-mode" data-mode="ndg" style="padding:12px 16px;background:#f5f5f5;color:#333;border-radius:10px;border:1px solid #e5e5e5;font-size:13px;font-weight:600;">${ndgCount} NDG / AP NE →</button>` : ''}
+        </div>
+        <button class="btn" id="dialer-empty-back" style="padding:11px 24px;background:#111;color:#fff;border-radius:10px;font-size:13px;font-weight:600;">← Dashboard</button>
+      </div>
+    </div>`;
+    el.querySelector('#dialer-empty-back').addEventListener('click', () => navigateTo('dashboard'));
+    el.querySelectorAll('.dialer-switch-mode').forEach(b => b.addEventListener('click', () => { d.queueMode=b.dataset.mode; d.callIdx=0; renderDialer(); }));
+    return;
+  }
+
+  const isWdv = !!(currentLead.wiedervorlage && currentLead.wiedervorlage<=today);
+  const isCold = !currentLead.calledAt && !currentLead.status;
+  const sel = d.selectedStatus;
+
+  el.innerHTML = `
+    <div style="min-height:100vh;background:#f7f7f6;padding-bottom:48px;">
+      <canvas id="dialer-confetti" style="position:fixed;inset:0;z-index:100;pointer-events:none;"></canvas>
+      <div style="max-width:500px;margin:0 auto;padding:20px 16px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+          <button id="dialer-back-btn" style="display:flex;align-items:center;gap:5px;font-size:13px;color:#999;">‹ Dashboard</button>
+          <div style="display:flex;gap:22px;align-items:center;">
+            <div style="text-align:center;"><div style="font-size:10px;font-weight:600;color:#bbb;text-transform:uppercase;">Heute</div><div style="font-size:19px;font-weight:700;color:${todayCount>=DAILY_GOAL?'#16a34a':'#111'};">${todayCount}</div></div>
+            ${STATE.flowStreak>0?`<div style="text-align:center;"><div style="font-size:10px;font-weight:600;color:#bbb;text-transform:uppercase;">Flow</div><div style="font-size:19px;font-weight:700;color:#d97706;">${STATE.flowStreak}</div></div>`:''}
+            <div style="text-align:right;"><div style="font-size:10px;font-weight:600;color:#bbb;text-transform:uppercase;">Queue</div><div style="font-size:19px;font-weight:700;">${d.callIdx+1}<span style="font-size:13px;font-weight:400;color:#bbb;"> / ${callLeads.length}</span></div></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;font-weight:600;color:#bbb;text-transform:uppercase;">Fortschritt heute</span><span style="font-size:11px;color:#bbb;">${todayCount} / ${DAILY_GOAL} Calls</span></div>
+          <div style="height:3px;background:#e8e8e5;border-radius:99px;overflow:hidden;"><div style="height:100%;background:${todayCount>=DAILY_GOAL?'#16a34a':'#111'};border-radius:99px;width:${Math.min((todayCount/DAILY_GOAL)*100,100)}%;transition:width .4s;"></div></div>
+        </div>
+
+        <div style="position:relative;margin-bottom:12px;">
+          <button id="dialer-mode-toggle" style="display:flex;align-items:center;gap:10px;padding:9px 14px;background:#fff;border:1px solid #e8e8e5;border-radius:10px;font-size:13px;font-weight:600;width:100%;box-shadow:0 1px 2px rgba(0,0,0,0.04);">
+            <span style="flex:1;text-align:left;color:#111;">${currentMode.label}</span>
+            <span style="font-size:11px;color:#bbb;">${wvOverdue+wvToday} WDV · ${coldCount} kalt ▾</span>
+          </button>
+          <div id="dialer-mode-list" class="hidden" style="position:absolute;top:100%;left:0;right:0;z-index:50;background:#fff;border:1px solid #e8e8e5;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.1);margin-top:4px;overflow:hidden;">
+            ${QUEUE_MODES.map(m => `<button class="dialer-switch-mode" data-mode="${m.id}" style="display:flex;align-items:center;gap:12px;padding:11px 14px;width:100%;background:${d.queueMode===m.id?'#f7f7f6':'transparent'};border:none;border-bottom:1px solid #f0f0ee;font-size:13px;text-align:left;">
+              <div style="flex:1;"><div style="font-weight:${d.queueMode===m.id?700:500};">${m.label}</div><div style="font-size:11px;color:#999;margin-top:1px;">${m.desc}</div></div>${d.queueMode===m.id?'<span style="color:#16a34a;">✓</span>':''}
+            </button>`).join('')}
+          </div>
+        </div>
+
+        ${isWdv?`<div style="background:#fef9ec;border:1px solid #fcd34d;border-radius:8px;padding:7px 13px;margin-bottom:10px;font-size:12px;color:#92400e;font-weight:600;">● Wiedervorlage ${currentLead.wiedervorlage<today?`überfällig seit ${formatDate(currentLead.wiedervorlage)}`:'fällig heute'}</div>`:''}
+        ${isCold?`<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:7px 13px;margin-bottom:10px;font-size:12px;color:#1e40af;font-weight:600;">● Cold Call — noch nie angerufen</div>`:''}
+
+        <div id="dialer-card" class="card" style="padding:20px;margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:12px;">
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:20px;font-weight:700;color:#111;line-height:1.2;">${escapeHtml(currentLead.name)}</div>
+              ${currentLead.owner?`<div style="font-size:13px;color:#777;margin-top:5px;">${escapeHtml(currentLead.owner)}</div>`:''}
+              ${isValidWebsite(currentLead.website)?`<a href="${websiteHref(currentLead.website)}" target="_blank" rel="noopener" style="font-size:12px;color:#2563eb;margin-top:4px;display:inline-block;">${currentLead.website.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')} ↗</a>`:''}
+            </div>
+            ${currentLead.calledAt?`<div style="background:#f7f7f6;border:1px solid #e8e8e5;border-radius:8px;padding:8px 12px;text-align:right;flex-shrink:0;">
+              <div style="font-size:9px;font-weight:700;color:#bbb;text-transform:uppercase;">Letzter Kontakt</div>
+              <div style="font-size:13px;font-weight:600;color:#333;margin-top:2px;">${formatDate(currentLead.calledAt)}</div>
+              ${currentLead.status?`<div style="font-size:11px;color:#999;margin-top:1px;">${STATUS_META[currentLead.status]?.label||currentLead.status}</div>`:''}
+            </div>`:''}
+          </div>
+
+          ${currentLead.phone ? `<div id="dialer-call-btn" class="${isCold?'pulse':''}" style="display:flex;align-items:center;gap:14px;background:#16a34a;border-radius:10px;padding:15px 17px;width:100%;">
+            <div style="width:38px;height:38px;background:rgba(255,255,255,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📞</div>
+            <div style="font-size:17px;font-weight:600;color:#fff;flex:1;">${currentLead.phone}</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.65);font-weight:500;">Anrufen ›</div>
+          </div>` : `<div style="background:#f5f5f5;border:1px solid #e8e8e5;border-radius:10px;padding:15px 17px;text-align:center;"><span style="color:#bbb;font-size:13px;">Keine Telefonnummer</span></div>`}
+
+          ${currentLead.callNote?`<div style="margin-top:12px;background:#f7f7f6;border-radius:8px;padding:10px 13px;border:1px solid #f0f0ee;">
+            <div style="font-size:9px;font-weight:700;color:#bbb;text-transform:uppercase;margin-bottom:4px;">Letzte Notiz</div>
+            <div style="font-size:13px;color:#555;line-height:1.55;">${escapeHtml(currentLead.callNote)}</div>
+          </div>`:''}
+        </div>
+
+        <div style="background:#fff;border:1px solid #e8e8e5;border-radius:10px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,0.04);">
+          <textarea id="dialer-note" placeholder="Notiz tippen…" rows="2" style="width:100%;padding:13px 15px;border:none;background:transparent;font-size:13px;color:#111;resize:none;">${escapeHtml(currentLead.callNote||'')}</textarea>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;">Ergebnis wählen</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;" id="dialer-status-grid">
+          ${statusOptions.map((s,i) => {
+            const isSel = sel === s.value; const isDead = DEAD_STATUSES.includes(s.value); const isGold = s.value==='Closing Termin';
+            return `<button class="dialer-status-btn" data-value="${s.value}" style="padding:10px 12px;border-radius:10px;background:${isSel?(isGold?'#fef9ec':'#f0fdf4'):'#fff'};color:${isSel?(isGold?'#78350f':'#14532d'):(isDead?'#aaa':'#444')};border:${isSel?'1.5px solid '+(isGold?'#fcd34d':'#86efac'):'1px solid #e8e8e5'};font-size:13px;font-weight:${isSel?600:500};text-align:left;display:flex;align-items:center;gap:8px;opacity:${isDead&&!isSel?0.55:1};">
+              <span style="font-size:10px;font-weight:700;color:${isSel?(isGold?'#d97706':'#16a34a'):'#ccc'};min-width:14px;">${i+1}</span>
+              <div style="width:6px;height:6px;border-radius:50%;flex-shrink:0;background:${isSel?(isGold?'#d97706':'#16a34a'):'#ddd'};"></div>
+              <span style="flex:1;">${s.label}</span>${isGold&&!isSel?'<span style="color:#d97706;">✦</span>':''}${isSel?'<span>✓</span>':''}
+            </button>`;
+          }).join('')}
+        </div>
+
+        ${sel && !DEAD_STATUSES.includes(sel) ? `<div style="margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+          <span style="font-size:11px;font-weight:600;color:#bbb;">WDV:</span>
+          ${[['Morgen',1],['3 Tage',3],['1 Woche',7],['2 Wochen',14]].map(([label,days])=>{
+            const dd = new Date(); dd.setDate(dd.getDate()+days); const val = dateKey(dd);
+            const active = d.editWv===val;
+            return `<button class="dialer-wv-pick" data-val="${val}" style="padding:5px 11px;font-size:11px;border-radius:99px;border:${active?'1.5px solid #111':'1px solid #e8e8e5'};background:${active?'#111':'#fff'};color:${active?'#fff':'#555'};font-weight:600;">${label}</button>`;
+          }).join('')}
+        </div>` : ''}
+
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:8px;">
+          <button id="dialer-skip-btn" style="padding:14px;border-radius:10px;background:#fff;color:#777;border:1px solid #e8e8e5;font-size:13px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.04);">Überspringen</button>
+          <button id="dialer-confirm-btn" ${!sel?'disabled':''} style="padding:14px;border-radius:10px;font-size:14px;font-weight:700;background:${sel?(sel==='Closing Termin'?'#d97706':'#111'):'#f0f0ee'};color:${sel?'#fff':'#bbb'};">${sel==='Closing Termin'?'✦ Closing Termin':'Bestätigen & weiter'}</button>
+        </div>
+      </div>
+    </div>`;
+
+  el.querySelector('#dialer-back-btn').addEventListener('click', () => navigateTo('dashboard'));
+  el.querySelector('#dialer-mode-toggle').addEventListener('click', () => el.querySelector('#dialer-mode-list').classList.toggle('hidden'));
+  el.querySelectorAll('.dialer-switch-mode').forEach(b => b.addEventListener('click', () => { d.queueMode=b.dataset.mode; d.callIdx=0; d.selectedStatus=null; showToast(QUEUE_MODES.find(m=>m.id===b.dataset.mode).label); renderDialer(); }));
+  el.querySelector('#dialer-call-btn')?.addEventListener('click', () => {
+    currentLead.calledAt = new Date().toISOString();
+    STATE.activity.unshift({ id: randId('act'), username: STATE.session.username, action:'call', lead_name: currentLead.name, detail:'Anruf gestartet', created_at: currentLead.calledAt });
+    showToast('Anruf gestartet — Ergebnis wählen');
+  });
+  el.querySelector('#dialer-note').addEventListener('input', e => { d.editNote = e.target.value; });
+  el.querySelectorAll('.dialer-status-btn').forEach(b => b.addEventListener('click', () => { d.selectedStatus = (d.selectedStatus===b.dataset.value)?null:b.dataset.value; renderDialer(); }));
+  el.querySelectorAll('.dialer-wv-pick').forEach(b => b.addEventListener('click', () => { d.editWv = (d.editWv===b.dataset.val)?undefined:b.dataset.val; renderDialer(); }));
+  el.querySelector('#dialer-skip-btn').addEventListener('click', () => {
+    const card = el.querySelector('#dialer-card');
+    card.classList.add('lead-fly-away');
+    setTimeout(() => { d.callIdx++; d.selectedStatus=null; d.editNote=undefined; d.editWv=undefined; renderDialer(); }, 200);
+  });
+  el.querySelector('#dialer-confirm-btn').addEventListener('click', () => {
+    if (!d.selectedStatus) return;
+    const status = d.selectedStatus;
+    let wv = d.editWv !== undefined ? d.editWv : currentLead.wiedervorlage;
+    if (d.editWv === undefined && !DEAD_STATUSES.includes(status)) { const auto = autoWdv(status); if (auto) wv = auto; }
+    if (DEAD_STATUSES.includes(status)) wv = '';
+    currentLead.status = status;
+    currentLead.wiedervorlage = wv;
+    currentLead.callNote = d.editNote !== undefined ? d.editNote : currentLead.callNote;
+    currentLead.calledAt = new Date().toISOString();
+    currentLead.callCount = (currentLead.callCount||0) + 1;
+    STATE.activity.unshift({ id: randId('act'), username: STATE.session.username, action:'call', lead_name: currentLead.name, detail: STATUS_META[status]?.label||status, created_at: currentLead.calledAt });
+    STATE.flowStreak++; STATE.lastCallAt = Date.now();
+
+    const isClosing = status === 'Closing Termin';
+    showToast(isClosing ? 'Closing Termin gesetzt' : (STATUS_META[status]?.label||status), isClosing?'gold':'success');
+
+    const card = el.querySelector('#dialer-card');
+    card.classList.add('lead-fly-away');
+    setTimeout(() => {
+      d.callIdx++; d.selectedStatus=null; d.editNote=undefined; d.editWv=undefined;
+      renderDialer();
+      const newCount = dailyCountsFromLeads(STATE.leads)[dateKey()] || 0;
+      if (newCount >= DAILY_GOAL) fireConfetti(document.getElementById('dialer-confetti'), false);
+      if (isClosing) fireConfetti(document.getElementById('dialer-confetti'), true);
+    }, 340);
+  });
+}
+
+/* ═══════════════════════════ Email ═══════════════════════════ */
+
+const EMAIL_HDR = `<div style="background:#000;padding:16px 24px;"><div style="height:40px;width:40px;border-radius:10px;background:linear-gradient(135deg,#16a34a,#065f46);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;">M</div></div>`;
+const EMAIL_FTR = `<div style="background:#f7f7f7;padding:14px 28px;display:flex;justify-content:space-between;font-size:11px;color:#aaa;border-top:1px solid #eee;"><span>&copy; 2026 Meizo</span><span>M&uuml;nchen, Deutschland</span></div>`;
+function EMAIL_SIG(name) { return `<div style="margin-top:20px;padding-top:16px;border-top:1px solid #eee;"><p style="font-weight:600;font-size:14px;margin:0;">${escapeHtml(name)}</p><p style="font-size:12px;color:#999;margin:2px 0 0;">Meizo &middot; meizo.de</p></div>`; }
+const EMAIL_NOTIZ = `Bitte halten Sie f&uuml;r unser Gespr&auml;ch folgende Informationen bereit:<br><br>&ndash; Die Namen Ihrer 3 wichtigsten Objekte (z.B. B&uuml;rogeb&auml;ude, Wohnanlage)<br>&ndash; Die Namen von 3 Ihrer Mitarbeiter inkl. Handynummer<br><br>Das erm&ouml;glicht mir, Ihnen Meizo direkt im Gespr&auml;ch live einzurichten &ndash; Sie sehen sofort, wie es f&uuml;r Ihr Unternehmen aussieht.`;
+const ANREDEN = ['Sehr geehrter Herr','Sehr geehrte Frau','Sehr geehrte Damen und Herren'];
+
+const EMAIL_TABS = [
+  { id:'bestaetigung', label:'📅 Gesprächsbestätigung' },
+  { id:'zugangsdaten', label:'🔑 Zugangsdaten' },
+  { id:'info', label:'📄 Info-Mail' },
+];
+const EMAIL_FIELDS = {
+  bestaetigung: [['Anrede','select'],['Nachname','text','Mustermann'],['Datum','text','20. Juni 2026'],['Uhrzeit','text','14:00 Uhr'],['Zoom-Link','text','https://zoom.us/j/...'],['Absender Name','text','Giorgi Beridze'],['An (E-Mail des Kunden)','email','kunde@firma.de']],
+  zugangsdaten: [['Anrede','select'],['Nachname','text','Mustermann'],['Login E-Mail des Kunden','email','mustermann@firma.de'],['Passwort','text','Meizo2026!'],['Absender Name','text','Giorgi Beridze'],['An (E-Mail des Kunden)','email','kunde@firma.de']],
+  info: [['Anrede','select'],['Nachname','text','Mustermann'],["Ihr Name (nach 'Mit freundlichen Grüßen')",'text','z.B. Giorgi Beridze'],['An (E-Mail des Kunden)','email','kunde@firma.de']],
+};
+const emailFieldState = { bestaetigung:{}, zugangsdaten:{}, info:{} };
+['bestaetigung','zugangsdaten','info'].forEach(tab => { EMAIL_FIELDS[tab].forEach(([label]) => { emailFieldState[tab][label] = label==='Anrede' ? ANREDEN[0] : ''; }); });
+
+function emailHtmlFor(tab) {
+  const f = emailFieldState[tab];
+  if (tab === 'bestaetigung') return `<div style="font-family:-apple-system,sans-serif;max-width:600px;">${EMAIL_HDR}<div style="background:#fff;padding:32px 28px;font-size:14px;line-height:1.75;color:#222;"><p style="font-size:11px;color:#aaa;letter-spacing:.5px;text-transform:uppercase;margin:0 0 20px;">Gespr&auml;chsbest&auml;tigung</p><p style="margin:0 0 10px;">${escapeHtml(f['Anrede'])} <strong>${escapeHtml(f['Nachname']||'...')}</strong>,</p><p style="margin:0 0 10px;">wir freuen uns, Ihnen zu best&auml;tigen, dass unser Gespr&auml;ch am <strong>${escapeHtml(f['Datum']||'...')}</strong> um <strong>${escapeHtml(f['Uhrzeit']||'...')}</strong> stattfinden wird.</p><p style="margin:0 0 10px;">Hier ist Ihr Link zum Meeting:</p><a href="${escapeHtml(f['Zoom-Link'])}" style="display:inline-block;margin:8px 0 18px;background:#111;color:#fff;padding:11px 22px;border-radius:7px;text-decoration:none;font-size:13px;font-weight:600;">Zoom-Meeting beitreten</a><div style="margin:16px 0;padding:16px 20px;background:#f9f9f9;border-radius:8px;border-left:3px solid #111;font-size:13px;color:#444;line-height:1.8;">${EMAIL_NOTIZ}</div><p style="margin:10px 0 0;">Falls Sie Fragen haben, stehen wir Ihnen gerne zur Verf&uuml;gung.</p>${EMAIL_SIG(f['Absender Name']||'...')}</div>${EMAIL_FTR}</div>`;
+  if (tab === 'zugangsdaten') return `<div style="font-family:-apple-system,sans-serif;max-width:600px;">${EMAIL_HDR}<div style="background:#fff;padding:32px 28px;font-size:14px;line-height:1.75;color:#222;"><p style="font-size:11px;color:#aaa;letter-spacing:.5px;text-transform:uppercase;margin:0 0 20px;">Ihre Zugangsdaten</p><p style="margin:0 0 10px;">${escapeHtml(f['Anrede'])} <strong>${escapeHtml(f['Nachname']||'...')}</strong>,</p><p style="margin:0 0 10px;">vielen Dank f&uuml;r Ihr Vertrauen. Hier sind Ihre pers&ouml;nlichen Zugangsdaten f&uuml;r <strong>meizo.de</strong>:</p><div style="margin:20px 0;background:#f7f7f7;border-radius:8px;border:1px solid #eee;overflow:hidden;"><div style="padding:12px 22px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;"><span style="font-size:12px;color:#888;">E-Mail</span><span style="font-size:14px;font-weight:600;color:#111;">${escapeHtml(f['Login E-Mail des Kunden']||'...')}</span></div><div style="padding:12px 22px;display:flex;justify-content:space-between;"><span style="font-size:12px;color:#888;">Passwort</span><span style="font-size:14px;font-weight:600;color:#111;">${escapeHtml(f['Passwort']||'...')}</span></div></div><a href="https://meizo.de" style="display:inline-block;margin:8px 0 18px;background:#111;color:#fff;padding:11px 22px;border-radius:7px;text-decoration:none;font-size:13px;font-weight:600;">Jetzt einloggen &rarr;</a><p style="color:#555;font-size:13px;margin:0 0 8px;">Sie k&ouml;nnen Ihr Passwort nach dem ersten Login jederzeit &auml;ndern.</p><p style="margin:10px 0 0;color:#555;font-size:13px;">Bei Fragen stehen wir Ihnen gerne zur Verf&uuml;gung.</p>${EMAIL_SIG(f['Absender Name']||'...')}</div>${EMAIL_FTR}</div>`;
+  return `<div style="font-family:-apple-system,sans-serif;max-width:600px;">${EMAIL_HDR}<div style="background:#fff;padding:32px 28px;font-size:14px;line-height:1.75;color:#222;"><p style="font-size:11px;color:#aaa;letter-spacing:.5px;text-transform:uppercase;margin:0 0 20px;">Infomaterial</p><p style="margin:0 0 10px;">${escapeHtml(f['Anrede'])} <strong>${escapeHtml(f['Nachname']||'...')}</strong>,</p><p style="margin:0 0 10px;">vielen Dank f&uuml;r das angenehme Telefonat.</p><p style="margin:0 0 10px;">Wie versprochen, finden Sie im Anhang unsere Informationsbr&ouml;sch&uuml;re. Einen ersten visuellen Eindruck unserer Software erhalten Sie zudem direkt auf unserer Website: <a href="https://meizo.de" style="color:#111;font-weight:600;">meizo.de</a></p><p style="margin:0 0 10px;">Da gedruckte Infos aber nie ein Live-Erlebnis ersetzen: Lassen Sie uns kurz f&uuml;r 10&ndash;15 Minuten in einem Zoom-Meeting zusammenkommen. Ich zeige Ihnen die Software direkt von innen, damit Sie sofort sehen, welchen konkreten Mehrwert sie f&uuml;r Ihren Alltag bietet.</p><p style="margin:0 0 10px;">Als Bonus richten wir Ihnen im Anschluss gerne einen kostenlosen, einmonatigen Testzugang ein &ndash; v&ouml;llig unverbindlich.</p><p style="margin:0 0 20px;">Passt es Ihnen n&auml;chste Woche <strong>Dienstag um 10:00 Uhr</strong> oder <strong>Donnerstag um 14:00 Uhr</strong> f&uuml;r einen kurzen Blick &uuml;ber die Software?</p><p style="margin:0 0 4px;">Mit freundlichen Gr&uuml;&szlig;en</p>${EMAIL_SIG(f['Ihr Name (nach \'Mit freundlichen Grüßen\')']||'...')}</div>${EMAIL_FTR}</div>`;
+}
+
+function renderEmail() {
+  const ui = STATE.emailUi;
+  const tab = ui.tab;
+  const fields = EMAIL_FIELDS[tab];
+  const el = document.getElementById('view-email');
+  el.innerHTML = `
+  <div style="min-height:100vh;background:var(--bg);padding-bottom:60px;">
+    <div style="max-width:1200px;margin:0 auto;padding:24px 20px;">
+      <div class="card" style="margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;">
+        <span style="font-size:14px;color:${ui.gmail?'#16a34a':'var(--text-muted)'};">${ui.gmail?'✓ Gmail verbunden':'Nicht verbunden – bitte Gmail verbinden'}</span>
+        ${ui.gmail ? `<button class="btn btn-secondary" id="email-gmail-toggle">Abmelden</button>` : `<button class="btn btn-primary" id="email-gmail-toggle">Mit Gmail verbinden</button>`}
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:24px;">
+        ${EMAIL_TABS.map(t => `<button class="email-tab-btn" data-tab="${t.id}" style="padding:9px 20px;border-radius:8px;font-size:14px;font-weight:500;background:${tab===t.id?'var(--text)':'var(--surface)'};color:${tab===t.id?'var(--bg)':'var(--text-secondary)'};border:${tab===t.id?'none':'1px solid var(--border)'};">${t.label}</button>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div class="card" style="padding:24px;">
+          <span class="lbl" style="margin-bottom:18px;">Felder ausfüllen</span>
+          <div id="email-fields">
+            ${fields.map(([label,type,placeholder]) => `<div style="margin-bottom:12px;">
+              <span class="lbl">${label}</span>
+              ${type==='select'
+                ? `<select class="input" data-field="${label}">${ANREDEN.map(a=>`<option ${emailFieldState[tab][label]===a?'selected':''}>${a}</option>`).join('')}</select>`
+                : `<input class="input" data-field="${label}" type="${type}" placeholder="${placeholder||''}" value="${escapeHtml(emailFieldState[tab][label]||'')}">`}
+            </div>`).join('')}
+          </div>
+          <button class="btn btn-primary" id="email-send-btn" style="width:100%;margin-top:8px;">✉ Via Gmail senden</button>
+          <div id="email-status" style="margin-top:12px;font-size:13px;text-align:center;"></div>
+        </div>
+        <div class="card" style="padding:24px;">
+          <span class="lbl" style="margin-bottom:18px;">Vorschau</span>
+          <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;font-size:13px;" id="email-preview">${emailHtmlFor(tab)}</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+  el.querySelector('#email-gmail-toggle').addEventListener('click', () => { ui.gmail = !ui.gmail; if(ui.gmail) showToast('✓ Gmail verbunden (Demo)'); renderEmail(); });
+  el.querySelectorAll('.email-tab-btn').forEach(b => b.addEventListener('click', () => { ui.tab = b.dataset.tab; renderEmail(); }));
+  el.querySelectorAll('#email-fields [data-field]').forEach(inp => inp.addEventListener('input', () => {
+    emailFieldState[tab][inp.dataset.field] = inp.value;
+    el.querySelector('#email-preview').innerHTML = emailHtmlFor(tab);
+  }));
+  el.querySelector('#email-send-btn').addEventListener('click', () => {
+    const status = el.querySelector('#email-status');
+    if (!ui.gmail) { status.style.color = '#dc2626'; status.textContent = 'Bitte zuerst Gmail verbinden'; setTimeout(()=>status.textContent='',3000); return; }
+    const to = emailFieldState[tab]['An (E-Mail des Kunden)'];
+    if (!to) { status.style.color = '#dc2626'; status.textContent = 'Empfänger-E-Mail fehlt'; setTimeout(()=>status.textContent='',3000); return; }
+    status.style.color = '#16a34a'; status.textContent = '✓ E-Mail gesendet (Demo — nichts wurde wirklich verschickt)';
+    setTimeout(()=>status.textContent='',4000);
+  });
+}
+
+/* ═══════════════════════════ Admin ═══════════════════════════ */
+
+const ADMIN_TABS = [
+  { id:'overview', label:'Übersicht', icon:'▦' },
+  { id:'performance', label:'Performance', icon:'📈' },
+  { id:'leads', label:'Leads', icon:'👥' },
+  { id:'lists', label:'Listen', icon:'☰' },
+  { id:'users', label:'Benutzer', icon:'◍' },
+  { id:'activity', label:'Aktivität', icon:'▤' },
+];
+const ADMIN_STATUS_LABELS = { 'KI':'Kein Interesse','NDG':'Nicht Durchgekommen','AP NE':'AP Nicht Erreicht','Nur Email':'Nur E-Mail','Info per Email':'Info per E-Mail','Closing Termin':'Closing Termin' };
+
+function adminLogout() { logout(); }
+
+function renderAdmin() {
+  const ui = STATE.adminUi;
+  const leads = STATE.leads;
+  const today = dateKey();
+  const totalCallsToday = STATE.activity.filter(a => a.created_at.slice(0,10)===today && a.action==='call').length;
+  const closingCount = leads.filter(l=>l.status==='Closing Termin').length;
+  const unassigned = leads.length; // Demo: Leads sind nicht Settern zugewiesen bis Admin sie zuweist
+  const settersOnly = USERS.filter(u=>u.role!=='admin');
+
+  // Leaderboard heute — aus Activity abgeleitet
+  const todayStatsMap = {};
+  STATE.activity.filter(a=>a.action==='call' && a.created_at.slice(0,10)===today).forEach(a => { todayStatsMap[a.username] = (todayStatsMap[a.username]||0)+1; });
+  const todayStats = Object.entries(todayStatsMap).map(([username,call_count])=>({username,call_count})).sort((a,b)=>b.call_count-a.call_count);
+
+  const statusCounts = leads.reduce((acc,l) => { const s = l.status||'Offen'; acc[s]=(acc[s]||0)+1; return acc; }, {});
+
+  const filteredLeads = leads.filter(l => {
+    if (ui.filterUser==='__unassigned__' && l.assignedTo) return false;
+    if (ui.filterUser && ui.filterUser!=='__unassigned__' && l.assignedTo!==ui.filterUser) return false;
+    if (ui.filterStatus && l.status!==ui.filterStatus) return false;
+    if (ui.filterList && l.listId!==ui.filterList) return false;
+    return true;
+  });
+
+  const card = 'background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;';
+  const lblS = 'font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;';
+  const th = 'padding:8px 12px;text-align:left;font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;';
+  const td = 'padding:10px 12px;text-align:left;font-size:13px;border-bottom:1px solid var(--border-light);';
+
+  function tabContent() {
+    if (ui.tab === 'overview') return `
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:20px;">Übersicht</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
+        ${[['Calls heute gesamt', totalCallsToday, '#16a34a'],['Closing Termine', closingCount, '#d97706'],['Aktive Setter', settersOnly.length, '#378ADD'],['Leads gesamt', leads.length, 'var(--text)']]
+          .map(([label,value,color]) => `<div style="${card}"><div style="${lblS}">${label}</div><div style="font-size:36px;font-weight:500;color:${color};">${value}</div></div>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="${card}">
+          <div style="${lblS};margin-bottom:16px;">Status-Verteilung</div>
+          ${Object.entries(statusCounts).sort((a,b)=>b[1]-a[1]).map(([status,count]) => `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:13px;">${ADMIN_STATUS_LABELS[status]||status||'Offen'}</span>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:80px;height:6px;background:var(--bg);border-radius:99px;overflow:hidden;"><div style="height:100%;background:#16a34a;border-radius:99px;width:${(count/leads.length)*100}%;"></div></div><span style="font-size:13px;font-weight:600;min-width:28px;text-align:right;">${count}</span></div>
+          </div>`).join('')}
+        </div>
+        <div style="${card}">
+          <div style="${lblS};margin-bottom:16px;">🏆 Leaderboard — Heute</div>
+          ${todayStats.length===0 ? `<div style="font-size:13px;color:var(--text-muted);">Noch keine Calls heute.</div>` :
+            todayStats.map((s,i) => `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:${i===0?'#fbbf24':i===1?'#9ca3af':'#cd7c2f'};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;">${i+1}</div>
+              <div style="flex:1;"><div style="font-size:14px;font-weight:600;">${s.username}</div><div style="background:var(--bg);border-radius:99px;height:6px;margin-top:4px;overflow:hidden;"><div style="height:100%;background:#16a34a;border-radius:99px;width:${Math.min((s.call_count/Math.max(...todayStats.map(x=>x.call_count)))*100,100)}%;"></div></div></div>
+              <div style="font-size:20px;font-weight:700;color:#16a34a;">${s.call_count}</div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+
+    if (ui.tab === 'performance') {
+      return `<h2 style="font-size:20px;font-weight:700;margin-bottom:20px;">Performance</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:24px;">
+        ${settersOnly.map(u => {
+          const uActivity = STATE.activity.filter(a=>a.username===u.username && a.action==='call');
+          const uToday = uActivity.filter(a=>a.created_at.slice(0,10)===today);
+          const closings = uActivity.filter(a=>a.detail==='Closing Termin').length;
+          return `<div style="${card}">
+            <div style="font-size:15px;font-weight:700;margin-bottom:12px;">${u.username} <span style="font-size:11px;color:var(--text-muted);font-weight:400;">(${u.role})</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+              <div style="background:var(--bg);border-radius:10px;padding:10px 12px;"><div style="${lblS}">Heute</div><div style="font-size:24px;font-weight:700;color:#16a34a;">${uToday.length}</div></div>
+              <div style="background:var(--bg);border-radius:10px;padding:10px 12px;"><div style="${lblS}">Calls gesamt</div><div style="font-size:24px;font-weight:700;">${uActivity.length}</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--text-muted);border-top:1px solid var(--border-light);padding-top:10px;">${closings} Closings · ${uActivity.length>0?((closings/uActivity.length)*100).toFixed(1):0}% CR</div>
+          </div>`;
+        }).join('')}
+      </div>`;
+    }
+
+    if (ui.tab === 'leads') return `
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:20px;">Leads (${leads.length})</h2>
+      <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;">
+        <select class="select" id="admin-filter-user"><option value="">Alle Setter</option><option value="__unassigned__" ${ui.filterUser==='__unassigned__'?'selected':''}>Unzugewiesen</option>${settersOnly.map(u=>`<option value="${u.id}" ${ui.filterUser===u.id?'selected':''}>${u.username}</option>`).join('')}</select>
+        <select class="select" id="admin-filter-status"><option value="">Alle Status</option>${BUILT_IN_STATUS_VALUES.map(s=>`<option value="${s}" ${ui.filterStatus===s?'selected':''}>${ADMIN_STATUS_LABELS[s]}</option>`).join('')}</select>
+        <select class="select" id="admin-filter-list"><option value="">Alle Listen</option>${LISTS.map(l=>`<option value="${l.id}" ${ui.filterList===l.id?'selected':''}>${l.name}</option>`).join('')}</select>
+        <span style="font-size:12px;color:var(--text-muted);margin-left:auto;">${filteredLeads.length} Leads</span>
+        <button class="btn btn-secondary" id="admin-export-csv">⬇ CSV Export</button>
+      </div>
+      <div style="${card};padding:0;overflow:auto;">
+        <table><thead><tr style="background:var(--bg);">${['Name','Status','Calls','Letzter Kontakt','Setter'].map(h=>`<th style="${th}">${h}</th>`).join('')}</tr></thead>
+        <tbody>${filteredLeads.slice(0,200).map(l => {
+          const assignedUser = USERS.find(u=>u.id===l.assignedTo);
+          return `<tr><td style="${td};font-weight:500;">${escapeHtml(l.name)}</td><td style="${td}">${l.status?`<span style="font-size:11px;padding:2px 7px;border-radius:99px;background:var(--bg);border:1px solid var(--border);">${ADMIN_STATUS_LABELS[l.status]||l.status}</span>`:`<span style="color:var(--text-faint);font-size:12px;">Offen</span>`}</td><td style="${td};font-weight:${l.callCount>0?700:400};">${l.callCount||0}</td><td style="${td}">${l.calledAt?formatDate(l.calledAt):'—'}</td><td style="${td};color:${assignedUser?'var(--text)':'#dc2626'};">${assignedUser?assignedUser.username:'Unzugewiesen'}</td></tr>`;
+        }).join('') || `<tr><td colspan="5" style="${td};text-align:center;color:var(--text-muted);padding:32px;">Keine Leads gefunden</td></tr>`}</tbody></table>
+      </div>`;
+
+    if (ui.tab === 'lists') return `
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:20px;">Listen & Import</h2>
+      <div style="${card};margin-bottom:16px;">
+        <div style="${lblS};margin-bottom:12px;">Neue Liste importieren</div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <input class="input" id="admin-list-name" placeholder="Listen-Name (z.B. München Juni 2026)" style="flex:1;min-width:200px;">
+          <label class="btn btn-green" style="display:inline-block;">📂 CSV importieren<input type="file" id="admin-list-import" accept=".csv" hidden></label>
+        </div>
+        <div id="admin-import-status" style="margin-top:10px;font-size:13px;"></div>
+      </div>
+      <div style="${card}">
+        <div style="${lblS};margin-bottom:16px;">Alle Listen (${LISTS.length})</div>
+        ${LISTS.map(l => `<div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border-light);">
+          <div style="flex:1;"><div style="font-size:14px;font-weight:600;">${l.name}</div><div style="font-size:11px;color:var(--text-muted);margin-top:3px;">Importiert am ${new Date(l.created_at).toLocaleDateString('de-DE')} von ${l.imported_by}</div></div>
+          <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:#16a34a;">${l.total_leads}</div><div style="font-size:10px;color:var(--text-muted);">Leads</div></div>
+          ${l.duplicates_skipped>0?`<div style="text-align:center;"><div style="font-size:16px;font-weight:700;color:#d97706;">${l.duplicates_skipped}</div><div style="font-size:10px;color:var(--text-muted);">Duplikate</div></div>`:''}
+        </div>`).join('')}
+      </div>`;
+
+    if (ui.tab === 'users') return `
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:20px;">Benutzer</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div style="${card}">
+          <div style="${lblS};margin-bottom:16px;">Neuen Benutzer erstellen</div>
+          <div style="margin-bottom:12px;"><label style="${lblS}">Benutzername</label><input class="input" id="admin-new-username" placeholder="z.B. lena" style="margin-top:4px;"></div>
+          <div style="margin-bottom:12px;"><label style="${lblS}">Passwort</label><input class="input" type="password" id="admin-new-password" placeholder="••••••••" style="margin-top:4px;"></div>
+          <div style="margin-bottom:16px;"><label style="${lblS}">Rolle</label><select class="input" id="admin-new-role" style="margin-top:4px;"><option value="setter">Setter</option><option value="setter-closer">Setter-Closer</option></select></div>
+          <button class="btn btn-green" id="admin-create-user" style="width:100%;padding:10px;">Benutzer erstellen</button>
+        </div>
+        <div style="${card}">
+          <div style="${lblS};margin-bottom:16px;">Aktive Benutzer (${USERS.length})</div>
+          <div id="admin-user-list">${USERS.map(u => `<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border-light);">
+            <div><div style="font-size:14px;font-weight:600;">${u.username}</div><div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${u.role} · seit ${new Date(u.created_at).toLocaleDateString('de-DE')}</div></div>
+            <div style="display:flex;gap:8px;align-items:center;"><span style="font-size:11px;padding:2px 8px;border-radius:99px;background:${u.role==='setter-closer'?'#d1fae5':u.role==='admin'?'#dbeafe':'#ede9fe'};color:${u.role==='setter-closer'?'#065f46':u.role==='admin'?'#1e40af':'#5b21b6'};">${u.role}</span>${u.role!=='admin'?`<button class="admin-del-user" data-id="${u.id}" style="font-size:11px;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;padding:3px 8px;">Löschen</button>`:''}</div>
+          </div>`).join('')}</div>
+        </div>
+      </div>`;
+
+    if (ui.tab === 'activity') return `
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:20px;">Aktivitätslog</h2>
+      <div style="${card}"><div style="max-height:700px;overflow-y:auto;">
+        <table><thead><tr style="background:var(--bg);">${['Zeit','Benutzer','Aktion','Lead','Detail'].map(h=>`<th style="${th}">${h}</th>`).join('')}</tr></thead>
+        <tbody>${STATE.activity.slice(0,150).map(a => `<tr><td style="${td};color:var(--text-muted);white-space:nowrap;">${new Date(a.created_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}<span style="font-size:10px;display:block;">${new Date(a.created_at).toLocaleDateString('de-DE')}</span></td><td style="${td};font-weight:600;">${a.username}</td><td style="${td}"><span style="font-size:11px;padding:2px 7px;border-radius:99px;background:${a.action==='call'?'#d1fae5':'var(--bg)'};color:${a.action==='call'?'#065f46':'var(--text-muted)'};border:1px solid var(--border);">${a.action}</span></td><td style="${td}">${a.lead_name||'—'}</td><td style="${td};color:var(--text-muted);">${a.detail||'—'}</td></tr>`).join('')}</tbody></table>
+      </div></div>`;
+  }
+
+  const el = document.getElementById('view-admin');
+  el.innerHTML = `
+  <div style="display:flex;min-height:100vh;background:var(--bg);">
+    <div style="width:${ui.sidebarOpen?220:56}px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);transition:width .2s;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="padding:16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);">
+        <button id="admin-sidebar-toggle" style="color:var(--text-muted);padding:4px;">☰</button>
+        ${ui.sidebarOpen?`<span style="font-weight:700;font-size:15px;color:#16a34a;white-space:nowrap;">Meizo Admin</span>`:''}
+      </div>
+      ${ADMIN_TABS.map(t => `<button class="admin-tab-btn" data-tab="${t.id}" style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:${ui.tab===t.id?'rgba(22,163,74,0.08)':'none'};border-left:3px solid ${ui.tab===t.id?'#16a34a':'transparent'};color:${ui.tab===t.id?'#16a34a':'var(--text-secondary)'};font-size:14px;font-weight:${ui.tab===t.id?600:400};width:100%;text-align:left;white-space:nowrap;">
+        <span style="flex-shrink:0;">${t.icon}</span>${ui.sidebarOpen?t.label:''}
+      </button>`).join('')}
+      <div style="margin-top:auto;padding:12px 16px;border-top:1px solid var(--border);">
+        ${ui.sidebarOpen?`<div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">${STATE.session?.username||''}</div>`:''}
+        <button id="admin-logout-btn" style="font-size:12px;color:var(--text-muted);border:1px solid var(--border);border-radius:6px;padding:5px 10px;width:${ui.sidebarOpen?'100%':'auto'};">${ui.sidebarOpen?'Logout':'↩'}</button>
+      </div>
+    </div>
+    <div style="flex:1;overflow:auto;padding:24px;">${tabContent()}</div>
+  </div>`;
+
+  el.querySelector('#admin-sidebar-toggle').addEventListener('click', () => { ui.sidebarOpen=!ui.sidebarOpen; renderAdmin(); });
+  el.querySelector('#admin-logout-btn').addEventListener('click', adminLogout);
+  el.querySelectorAll('.admin-tab-btn').forEach(b => b.addEventListener('click', () => { ui.tab=b.dataset.tab; renderAdmin(); }));
+  el.querySelector('#admin-export-csv')?.addEventListener('click', () => exportCSV(filteredLeads));
+  el.querySelector('#admin-filter-user')?.addEventListener('change', e => { ui.filterUser=e.target.value; renderAdmin(); });
+  el.querySelector('#admin-filter-status')?.addEventListener('change', e => { ui.filterStatus=e.target.value; renderAdmin(); });
+  el.querySelector('#admin-filter-list')?.addEventListener('change', e => { ui.filterList=e.target.value; renderAdmin(); });
+  el.querySelector('#admin-create-user')?.addEventListener('click', () => {
+    const username = el.querySelector('#admin-new-username').value.trim();
+    const password = el.querySelector('#admin-new-password').value;
+    const role = el.querySelector('#admin-new-role').value;
+    if (!username || !password) { showToast('Alle Felder ausfüllen'); return; }
+    USERS.push({ id: randId('u'), username, role, created_at: dateKey() });
+    showToast(`✓ ${username} erstellt`); renderAdmin();
+  });
+  el.querySelectorAll('.admin-del-user').forEach(b => b.addEventListener('click', () => {
+    const u = USERS.find(x=>x.id===b.dataset.id);
+    if (!confirm(`${u.username} wirklich löschen?`)) return;
+    const idx = USERS.findIndex(x=>x.id===b.dataset.id); USERS.splice(idx,1);
+    renderAdmin();
+  }));
+  el.querySelector('#admin-list-import')?.addEventListener('change', e => {
+    const file = e.target.files[0]; if (!file) return;
+    const status = el.querySelector('#admin-import-status');
+    status.textContent = 'Importiere…'; status.style.color = '#1e40af';
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const lines = ev.target.result.replace(/^﻿/,'').trim().split('\n').filter(l=>l.trim());
+      const sep = lines[0]?.includes(';') ? ';' : ',';
+      let n = 0;
+      lines.slice(1).forEach(line => { const cols = line.split(sep); if (cols[0]) { STATE.leads.push(makeLead({ name: cols[0].replace(/["']/g,'').trim() })); n++; } });
+      status.textContent = `✓ ${n} Leads importiert`; status.style.color = '#16a34a';
+      showToast(`${n} Leads importiert`);
+    };
+    reader.readAsText(file, 'UTF-8');
+  });
+}
+
+/* ═══════════════════════════ Bootstrap ═══════════════════════════ */
+
+document.getElementById('login-setter-btn').addEventListener('click', () => login('setter'));
+document.getElementById('login-admin-btn').addEventListener('click', () => login('admin'));
+document.getElementById('logout-btn').addEventListener('click', logout);
+document.getElementById('demo-reset-btn').addEventListener('click', () => {
+  resetState();
+  if (STATE.session) {
+    if (STATE.session.role === 'admin') renderAdmin(); else navigateTo(STATE.view);
+  }
+  showToast('Demo-Daten zurückgesetzt');
+});
+document.querySelectorAll('.crm-navlink').forEach(a => a.addEventListener('click', e => { e.preventDefault(); navigateTo(a.dataset.view); }));
+document.addEventListener('click', e => {
+  // Dialer-Mode-Dropdown schließen bei Klick außerhalb
+  const list = document.getElementById('dialer-mode-list');
+  if (list && !list.classList.contains('hidden')) {
+    const toggle = document.getElementById('dialer-mode-toggle');
+    if (!list.contains(e.target) && e.target !== toggle) list.classList.add('hidden');
+  }
+});
+
+resetState();
+</script>
+</body>
+</html>
