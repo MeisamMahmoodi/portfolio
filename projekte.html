@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Projekte – Meisam</title>
 <style>
   :root{
@@ -124,9 +125,21 @@
     margin-top:2.6rem;border-radius:14px;overflow:hidden;
     border:0.5px solid var(--line-dark);
     height:min(880px,88vh);
+    position:relative;
   }
   .dark .demo-embed{border-color:var(--line-light);}
   .demo-embed iframe{width:100%;height:100%;border:none;display:block;background:#f5f5f5;}
+  .demo-overlay{
+    position:absolute;inset:0;z-index:2;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .demo-overlay span{
+    font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+    color:#fff;background:rgba(10,10,10,0.78);padding:0.7rem 1.2rem;border-radius:99px;
+    opacity:0;transition:opacity .3s var(--ease);pointer-events:none;
+  }
+  .demo-embed:hover .demo-overlay span{opacity:1;}
+  .demo-overlay.is-dismissed{display:none;}
 
   /* video grid — plain clips, no device chrome */
   .video-grid{
@@ -184,7 +197,7 @@
 <body>
 
 <nav>
-  <a class="mark" href="index.html">M</a>
+  <a class="mark" href="index.html"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6L12 14L20 6V18"/></svg></a>
   <a class="navlink" href="#set">SET</a>
   <a class="navlink" href="#mol">MOL</a>
   <a class="navlink" href="#crm">meizoCRM</a>
@@ -239,19 +252,19 @@
 
   <div class="video-grid reveal" style="--d:340ms;">
     <div class="video-item">
-      <video src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Training</strong>Sätze mit Gewicht & Wiederholungen loggen.</div>
     </div>
     <div class="video-item">
-      <video src="videos/set/dashboard.mp4" poster="videos/set/dashboard-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/set/dashboard.mp4" poster="videos/set/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Dashboard</strong>Fortschritt, Rekorde und Trainingstage im Blick.</div>
     </div>
     <div class="video-item">
-      <video src="videos/set/ernaehrung.mp4" poster="videos/set/ernaehrung-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/set/ernaehrung.mp4" poster="videos/set/ernaehrung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Ernährung</strong>Mahlzeit per KI-Freitext schätzen lassen.</div>
     </div>
     <div class="video-item">
-      <video src="videos/set/gewicht.mp4" poster="videos/set/gewicht-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/set/gewicht.mp4" poster="videos/set/gewicht-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Gewicht</strong>Körpergewicht eintragen, Trend verfolgen.</div>
     </div>
   </div>
@@ -294,6 +307,7 @@
   <div class="proj-links reveal" style="--d:300ms;">
     <a class="proj-link" href="https://mol-omega.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
   </div>
+  <p class="demo-note reveal" style="--d:320ms;">Zum Testen der Live-Demo ist ein Spotify-Premium-Account nötig (Voraussetzung des Web Playback SDK). Ohne Premium zeigt das Video unten die volle Funktionalität mit echtem Ton.</p>
 
   <div class="video-grid video-grid--single reveal" style="--d:340ms;">
     <div class="video-item">
@@ -346,6 +360,7 @@
   </div>
 
   <div class="demo-embed reveal" style="--d:340ms;">
+    <div class="demo-overlay"><span>Klicken zum Interagieren</span></div>
     <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
   </div>
   <p class="demo-note reveal" style="--d:380ms;">Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.</p>
@@ -364,7 +379,7 @@
     </div>
     <div class="reveal" style="--d:200ms;">
       <h3>Lösung</h3>
-      <p>Eine mandantenfähige SaaS-Plattform mit drei Oberflächen in einem System: Dashboard für den Inhaber, eigene App für die Mitarbeiter, Verwaltung für mich als Plattform-Betreiber. Inzwischen längst nicht mehr nur für den eigenen Betrieb — mit Stripe-Abrechnung, automatischem Seat-Sync und Platz für weitere Firmen.</p>
+      <p>Eine mandantenfähige SaaS-Plattform mit vier Oberflächen in einem System: Dashboard für den Inhaber, eigene App für die Mitarbeiter, ein Kunden-Portal ohne Login und Verwaltung für mich als Plattform-Betreiber. Inzwischen längst nicht mehr nur für den eigenen Betrieb — mit Stripe-Abrechnung, automatischem Seat-Sync und Platz für weitere Firmen.</p>
     </div>
   </div>
 
@@ -394,19 +409,19 @@
 
   <div class="video-grid video-grid--wide reveal" style="--d:340ms;">
     <div class="video-item">
-      <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
     </div>
     <div class="video-item">
-      <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
     </div>
     <div class="video-item">
-      <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
     </div>
     <div class="video-item">
-      <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" controls playsinline preload="metadata"></video>
+      <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-caption"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
     </div>
   </div>
@@ -414,8 +429,13 @@
 </div>
 
 <div class="close dark">
-  <div class="name reveal">Meisam</div>
-  <div class="foot reveal" style="--d:100ms;"><a href="index.html">← Zurück zur Startseite</a> · <a href="mailto:meisam@meizo.de">meisam@meizo.de</a></div>
+  <div class="name reveal">Sowas will ich auch.</div>
+  <div class="foot reveal" style="--d:80ms;margin-top:0.6rem;">Schreib mir kurz, worum's geht — ich melde mich zeitnah zurück.</div>
+  <div class="proj-links reveal" style="--d:140ms;justify-content:center;margin-top:1.8rem;">
+    <a class="proj-link" href="mailto:meisam@meizo.de">meisam@meizo.de ↗</a>
+    <a class="proj-link" href="https://wa.me/4917661860432" target="_blank" rel="noopener">WhatsApp ↗</a>
+  </div>
+  <div class="foot reveal" style="--d:180ms;margin-top:2.2rem;"><a href="index.html">← Zurück zur Startseite</a></div>
 </div>
 
 <script>
@@ -447,6 +467,9 @@
     document.addEventListener('mouseout', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.remove('hover'); });
     document.addEventListener('mouseleave', ()=>cursor.classList.remove('show'));
   }
+  document.querySelectorAll('.demo-overlay').forEach(overlay=>{
+    overlay.addEventListener('click', ()=>overlay.classList.add('is-dismissed'));
+  });
 </script>
 
 </body>
