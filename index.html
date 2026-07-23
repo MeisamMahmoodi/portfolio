@@ -107,6 +107,20 @@
   nav a:hover{opacity:1;}
   nav a:hover::after{width:100%;}
 
+  .lang-switch{
+    display:flex;align-items:center;gap:0;
+    border:1px solid rgba(255,255,255,0.4);border-radius:99px;
+    padding:3px;background:none;cursor:pointer;margin-left:auto;
+  }
+  .lang-switch .lang-opt{
+    font-size:11px;font-weight:700;letter-spacing:0.05em;
+    padding:0.3rem 0.65rem;border-radius:99px;color:#fff;opacity:0.5;
+    transition:opacity .3s var(--ease), background .3s var(--ease);
+  }
+  .lang-switch .lang-opt.active{opacity:1;background:rgba(255,255,255,0.18);}
+  .lang-switch:hover .lang-opt{opacity:0.85;}
+  .lang-switch:hover .lang-opt.active{opacity:1;}
+
   .dots{
     position:fixed;
     right:2.4rem;top:50%;
@@ -388,10 +402,14 @@
 
 <nav>
   <div class="mark"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6L12 14L20 6V18"/></svg></div>
-  <a href="#projekte">Projekte</a>
-  <a href="#approach">Prinzipien</a>
-  <a href="#angebot">Angebot</a>
-  <a href="projekte.html">Alle im Detail ↗</a>
+  <a href="#projekte" data-i18n="nav-projekte">Projekte</a>
+  <a href="#approach" data-i18n="nav-prinzipien">Prinzipien</a>
+  <a href="#angebot" data-i18n="nav-angebot">Angebot</a>
+  <a href="projekte.html" data-i18n="nav-alle">Alle im Detail ↗</a>
+  <button class="lang-switch" type="button" aria-label="Sprache wechseln / Switch language">
+    <span class="lang-opt active" data-lang="de">DE</span>
+    <span class="lang-opt" data-lang="en">EN</span>
+  </button>
 </nav>
 
 <div class="dots">
@@ -407,31 +425,31 @@
   <div class="hero-grid">
     <div>
       <div class="eyebrow reveal-load" style="--d:0ms;">Portfolio</div>
-      <div class="hero-name">
+      <div class="hero-name" data-i18n="hero-name">
         <span class="word-wrap"><span class="word" style="--d:60ms;">Hi,</span></span>
         <span class="word-wrap"><span class="word" style="--d:110ms;">ich</span></span>
         <span class="word-wrap"><span class="word" style="--d:160ms;">bin</span></span>
         <span class="word-wrap"><span class="word" style="--d:210ms;">Meisam.</span></span>
       </div>
-      <div class="hero-sub reveal-load" style="--d:320ms;">Fehlt mir eine App, bau ich sie mir selbst. Ein paar Beispiele davon findest du hier.</div>
+      <div class="hero-sub reveal-load" style="--d:320ms;" data-i18n="hero-sub">Fehlt mir eine App, bau ich sie mir selbst. Ein paar Beispiele davon findest du hier.</div>
     </div>
     <img class="hero-photo" src="profilBild-crop.png" alt="Meisam">
   </div>
-  <div class="scroll-hint reveal-load" style="--d:520ms;"><span>&#8595;</span> Scrollen</div>
+  <div class="scroll-hint reveal-load" style="--d:520ms;" data-i18n="scroll-hint"><span>&#8595;</span> Scrollen</div>
 </section>
 
 <section id="projekte" class="light">
-  <div class="eyebrow reveal">Meine Projekte</div>
-  <h2 class="reveal" style="--d:80ms;">Was ich gebaut habe.</h2>
-  <a class="all-link reveal" style="--d:120ms;" href="projekte.html">Alle Projekte im Detail ↗</a>
+  <div class="eyebrow reveal" data-i18n="projekte-eyebrow">Meine Projekte</div>
+  <h2 class="reveal" style="--d:80ms;" data-i18n="projekte-h2">Was ich gebaut habe.</h2>
+  <a class="all-link reveal" style="--d:120ms;" href="projekte.html" data-i18n="projekte-alllink">Alle Projekte im Detail ↗</a>
   <div class="builds-list reveal-group">
 
     <div class="build-row">
       <div class="build-info">
         <div class="build-tag">Gym</div>
         <div class="build-name">SET</div>
-        <div class="build-headline">Einfacher Trainings-Tracker.</div>
-        <div class="build-text">Keine Trainings-App hat genau das gemacht, was ich wollte. Also hab ich sie selbst gebaut.</div>
+        <div class="build-headline" data-i18n="set-headline">Einfacher Trainings-Tracker.</div>
+        <div class="build-text" data-i18n="set-text">Keine Trainings-App hat genau das gemacht, was ich wollte. Also hab ich sie selbst gebaut.</div>
         <div class="link-row">
           <a class="embed-link" href="projekte.html#set">Case Study →</a>
         </div>
@@ -439,29 +457,29 @@
       <div class="video-grid">
         <div class="video-item">
           <video src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Training</strong>Sätze mit Gewicht & Wiederholungen loggen.</div>
+          <div class="video-caption" data-i18n="set-cap-training"><strong>Training</strong>Sätze mit Gewicht & Wiederholungen loggen.</div>
         </div>
         <div class="video-item">
           <video src="videos/set/dashboard.mp4" poster="videos/set/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Dashboard</strong>Fortschritt, Rekorde und Trainingstage im Blick.</div>
+          <div class="video-caption" data-i18n="set-cap-dashboard"><strong>Dashboard</strong>Fortschritt, Rekorde und Trainingstage im Blick.</div>
         </div>
         <div class="video-item">
           <video src="videos/set/ernaehrung.mp4" poster="videos/set/ernaehrung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Ernährung</strong>Mahlzeit per KI-Freitext schätzen lassen.</div>
+          <div class="video-caption" data-i18n="set-cap-ernaehrung"><strong>Ernährung</strong>Mahlzeit per KI-Freitext schätzen lassen.</div>
         </div>
         <div class="video-item">
           <video src="videos/set/gewicht.mp4" poster="videos/set/gewicht-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Gewicht</strong>Körpergewicht eintragen, Trend verfolgen.</div>
+          <div class="video-caption" data-i18n="set-cap-gewicht"><strong>Gewicht</strong>Körpergewicht eintragen, Trend verfolgen.</div>
         </div>
       </div>
     </div>
 
     <div class="build-row">
       <div class="build-info">
-        <div class="build-tag">Musik</div>
+        <div class="build-tag" data-i18n="mol-tag">Musik</div>
         <div class="build-name">MOL</div>
-        <div class="build-headline">Musik-Player, wie ich ihn wollte.</div>
-        <div class="build-text">Kein Musik-Player hat sich richtig angefühlt, also hab ich mir meinen eigenen gebaut.</div>
+        <div class="build-headline" data-i18n="mol-headline">Musik-Player, wie ich ihn wollte.</div>
+        <div class="build-text" data-i18n="mol-text">Kein Musik-Player hat sich richtig angefühlt, also hab ich mir meinen eigenen gebaut.</div>
         <div class="link-row">
           <a class="embed-link" href="projekte.html#mol">Case Study →</a>
         </div>
@@ -469,7 +487,7 @@
       <div class="video-grid video-grid--single">
         <div class="video-item">
           <video src="videos/mol/mol.mp4" poster="videos/mol/mol-poster.jpg" controls playsinline preload="metadata"></video>
-          <div class="video-caption"><strong>Kompletter Durchlauf</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
+          <div class="video-caption" data-i18n="mol-cap"><strong>Kompletter Durchlauf</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
         </div>
       </div>
     </div>
@@ -478,26 +496,26 @@
       <div class="build-info">
         <div class="build-tag">CRM</div>
         <div class="build-name">meizoCRM</div>
-        <div class="build-headline">Sales Pipeline für Meizo.</div>
-        <div class="build-text">Für unsere Kaltakquise gab's kein CRM, das zum Ablauf passte. Also hab ich eins gebaut.</div>
+        <div class="build-headline" data-i18n="crm-headline">Sales Pipeline für Meizo.</div>
+        <div class="build-text" data-i18n="crm-text">Für unsere Kaltakquise gab's kein CRM, das zum Ablauf passte. Also hab ich eins gebaut.</div>
         <div class="link-row">
-          <a class="embed-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
+          <a class="embed-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener" data-i18n="crm-livelink">Live im Einsatz ↗</a>
           <a class="embed-link" href="projekte.html#crm">Case Study →</a>
         </div>
       </div>
       <div class="demo-embed">
-        <div class="demo-overlay"><span>Klicken zum Interagieren</span></div>
+        <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
         <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
       </div>
-      <p class="demo-note">Nachbau mit Demo-Daten, kein Backend — Login oben als Setter oder Admin, frei durchklickbar.</p>
+      <p class="demo-note" data-i18n="crm-demonote">Nachbau mit Demo-Daten, kein Backend — Login oben als Setter oder Admin, frei durchklickbar.</p>
     </div>
 
     <div class="build-row">
       <div class="build-info">
         <div class="build-tag">SaaS</div>
         <div class="build-name">Meizo</div>
-        <div class="build-headline">Software für ein ganzes Reinigungs-Business.</div>
-        <div class="build-text">Ich hab selbst ein Reinigungs-Business betrieben und nie die passende Software dafür gefunden. Also hab ich sie gebaut, mittlerweile mit eigenem Stripe-Billing für mehrere Firmen.</div>
+        <div class="build-headline" data-i18n="meizo-headline">Software für ein ganzes Reinigungs-Business.</div>
+        <div class="build-text" data-i18n="meizo-text">Ich hab selbst ein Reinigungs-Business betrieben und nie die passende Software dafür gefunden. Also hab ich sie gebaut, mittlerweile mit eigenem Stripe-Billing für mehrere Firmen.</div>
         <div class="link-row">
           <a class="embed-link" href="https://meizo.de" target="_blank" rel="noopener">meizo.de ↗</a>
           <a class="embed-link" href="projekte.html#meizo">Case Study →</a>
@@ -506,19 +524,19 @@
       <div class="video-grid video-grid--wide">
         <div class="video-item">
           <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
+          <div class="video-caption" data-i18n="meizo-cap-einsaetze"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
         </div>
         <div class="video-item">
           <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
+          <div class="video-caption" data-i18n="meizo-cap-krankmeldung"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
         </div>
         <div class="video-item">
           <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
+          <div class="video-caption" data-i18n="meizo-cap-checkin"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
         </div>
         <div class="video-item">
           <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
+          <div class="video-caption" data-i18n="meizo-cap-abrechnung"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
         </div>
       </div>
     </div>
@@ -527,64 +545,64 @@
 </section>
 
 <section id="approach" class="dark">
-  <div class="eyebrow reveal">Prinzipien</div>
-  <h2 class="reveal" style="--d:80ms;">Wie ich baue.</h2>
+  <div class="eyebrow reveal" data-i18n="prinzipien-eyebrow">Prinzipien</div>
+  <h2 class="reveal" style="--d:80ms;" data-i18n="prinzipien-h2">Wie ich baue.</h2>
   <div class="worklog reveal-group">
     <div class="worklog-item">
       <div class="num">01</div>
-      <h3>Eigenbedarf</h3>
-      <p>Ich will meine Kalorien tracken oder mein Training loggen. Dann schau ich mir an, was es gibt: meistens kostenpflichtig, überladen oder ohne die eine Funktion, die ich brauche. Also baue ich mir meine eigene App.</p>
+      <h3 data-i18n="p1-h3">Eigenbedarf</h3>
+      <p data-i18n="p1-p">Ich will meine Kalorien tracken oder mein Training loggen. Dann schau ich mir an, was es gibt: meistens kostenpflichtig, überladen oder ohne die eine Funktion, die ich brauche. Also baue ich mir meine eigene App.</p>
     </div>
     <div class="worklog-item">
       <div class="num">02</div>
-      <h3>Erst machen, dann können</h3>
-      <p>Ich hab keinen Plan, ich hab Lust. Was ich nicht kann, lerne ich, während ich's baue.</p>
+      <h3 data-i18n="p2-h3">Erst machen, dann können</h3>
+      <p data-i18n="p2-p">Ich hab keinen Plan, ich hab Lust. Was ich nicht kann, lerne ich, während ich's baue.</p>
     </div>
     <div class="worklog-item">
       <div class="num">03</div>
-      <h3>Mit KI arbeiten</h3>
-      <p>Ich schreibe nicht jede Zeile Code von Hand. Ich nutze KI, um schneller von der Idee zum Prototypen zu kommen.</p>
+      <h3 data-i18n="p3-h3">Mit KI arbeiten</h3>
+      <p data-i18n="p3-p">Ich schreibe nicht jede Zeile Code von Hand. Ich nutze KI, um schneller von der Idee zum Prototypen zu kommen.</p>
     </div>
     <div class="worklog-item">
       <div class="num">04</div>
-      <h3>Ideen kombinieren</h3>
-      <p>Ich kopiere keine Lösungen. Ich nehme, was mir bei Pinterest oder in anderen Apps gefällt, und baue daraus etwas, das für mich funktioniert.</p>
+      <h3 data-i18n="p4-h3">Ideen kombinieren</h3>
+      <p data-i18n="p4-p">Ich kopiere keine Lösungen. Ich nehme, was mir bei Pinterest oder in anderen Apps gefällt, und baue daraus etwas, das für mich funktioniert.</p>
     </div>
     <div class="worklog-item">
       <div class="num">05</div>
-      <h3>Disziplin</h3>
-      <p>Ob Trading oder Coden: Emotionen raus, Daten rein. Sonst wird es nichts.</p>
+      <h3 data-i18n="p5-h3">Disziplin</h3>
+      <p data-i18n="p5-p">Ob Trading oder Coden: Emotionen raus, Daten rein. Sonst wird es nichts.</p>
     </div>
   </div>
 </section>
 
 <section id="angebot" class="light">
-  <div class="eyebrow reveal">Zusammenarbeit</div>
-  <h2 class="reveal" style="--d:80ms;">Das baue ich auch für andere.</h2>
-  <div class="offer-sub reveal" style="--d:120ms;">Die Projekte oben sind für mich selbst entstanden. Aus demselben Antrieb baue ich auch für andere:</div>
+  <div class="eyebrow reveal" data-i18n="angebot-eyebrow">Zusammenarbeit</div>
+  <h2 class="reveal" style="--d:80ms;" data-i18n="angebot-h2">Das baue ich auch für andere.</h2>
+  <div class="offer-sub reveal" style="--d:120ms;" data-i18n="angebot-sub">Die Projekte oben sind für mich selbst entstanden. Aus demselben Antrieb baue ich auch für andere:</div>
   <div class="offer-grid reveal-group">
     <div class="offer-item">
       <div class="num">01</div>
       <h3>Apps</h3>
-      <p>Web- und mobile Anwendungen, von der ersten Idee bis zur installierbaren PWA.</p>
+      <p data-i18n="o1-p">Web- und mobile Anwendungen, von der ersten Idee bis zur installierbaren PWA.</p>
     </div>
     <div class="offer-item">
       <div class="num">02</div>
-      <h3>Automatisierungen</h3>
-      <p>Wiederkehrende Arbeit rausnehmen: Scripts und KI-Workflows statt Copy-Paste.</p>
+      <h3 data-i18n="o2-h3">Automatisierungen</h3>
+      <p data-i18n="o2-p">Wiederkehrende Arbeit rausnehmen: Scripts und KI-Workflows statt Copy-Paste.</p>
     </div>
     <div class="offer-item">
       <div class="num">03</div>
-      <h3>Datenbanken & Backends</h3>
-      <p>Saubere Datenmodelle, Auth, APIs. Das Fundament, auf dem alles andere steht.</p>
+      <h3 data-i18n="o3-h3">Datenbanken & Backends</h3>
+      <p data-i18n="o3-p">Saubere Datenmodelle, Auth, APIs. Das Fundament, auf dem alles andere steht.</p>
     </div>
     <div class="offer-item">
       <div class="num">04</div>
-      <h3>SaaS & Plattformen</h3>
-      <p>Mandantenfähige Software mit Billing, wie Meizo. Von einem Nutzer bis zu vielen Firmen.</p>
+      <h3 data-i18n="o4-h3">SaaS & Plattformen</h3>
+      <p data-i18n="o4-p">Mandantenfähige Software mit Billing, wie Meizo. Von einem Nutzer bis zu vielen Firmen.</p>
     </div>
   </div>
-  <div class="offer-note reveal" style="--d:260ms;">Preise bespreche ich individuell je nach Umfang. Passt dein Vorhaben nicht genau in die Liste oben, schreib mir trotzdem:</div>
+  <div class="offer-note reveal" style="--d:260ms;" data-i18n="angebot-note">Preise bespreche ich individuell je nach Umfang. Passt dein Vorhaben nicht genau in die Liste oben, schreib mir trotzdem:</div>
   <div class="link-row reveal" style="--d:300ms;">
     <a class="embed-link" href="mailto:meisam@meizo.de">meisam@meizo.de</a>
     <a class="embed-link" href="https://wa.me/4917661860432" target="_blank" rel="noopener">WhatsApp ↗</a>
@@ -592,7 +610,10 @@
   </div>
 </section>
 
+<script src="i18n.js"></script>
 <script>
+  initI18n(I18N_INDEX);
+
   const sections = document.querySelectorAll('section');
   const dots = document.querySelectorAll('.dot');
   const sectionObserver = new IntersectionObserver((entries)=>{
@@ -656,7 +677,7 @@
     }
     tick();
 
-    const hoverTargets = 'a, button, .dot, .browser-frame, .worklog-item, .offer-item, video';
+    const hoverTargets = 'a, button, .dot, .browser-frame, .worklog-item, .offer-item, video, .lang-opt';
     document.addEventListener('mouseover', (e)=>{
       if(e.target.closest(hoverTargets)) cursor.classList.add('hover');
     });

@@ -93,6 +93,20 @@
   nav a.navlink:hover::after{width:100%;}
   nav .back{margin-left:auto;}
 
+  .lang-switch{
+    display:flex;align-items:center;gap:0;
+    border:1px solid rgba(255,255,255,0.4);border-radius:99px;
+    padding:3px;background:none;cursor:pointer;
+  }
+  .lang-switch .lang-opt{
+    font-size:11px;font-weight:700;letter-spacing:0.05em;
+    padding:0.3rem 0.65rem;border-radius:99px;color:#fff;opacity:0.5;
+    transition:opacity .3s var(--ease), background .3s var(--ease);
+  }
+  .lang-switch .lang-opt.active{opacity:1;background:rgba(255,255,255,0.18);}
+  .lang-switch:hover .lang-opt{opacity:0.85;}
+  .lang-switch:hover .lang-opt.active{opacity:1;}
+
   .block{padding:11vh 8vw;position:relative;}
   .dark{background:var(--black);color:var(--white);}
   .light{background:var(--white);color:var(--black);}
@@ -229,7 +243,11 @@
   <a class="navlink" href="#mol">MOL</a>
   <a class="navlink" href="#crm">meizoCRM</a>
   <a class="navlink" href="#meizo">Meizo</a>
-  <a class="navlink back" href="index.html">← Startseite</a>
+  <a class="navlink back" href="index.html" data-i18n="nav-back">← Startseite</a>
+  <button class="lang-switch" type="button" aria-label="Sprache wechseln / Switch language">
+    <span class="lang-opt active" data-lang="de">DE</span>
+    <span class="lang-opt" data-lang="en">EN</span>
+  </button>
 </nav>
 
 <div class="rail">
@@ -240,37 +258,37 @@
 </div>
 
 <div class="block dark">
-  <div class="eyebrow reveal">Projekte</div>
-  <div class="intro-title reveal" style="--d:80ms;">Vier Probleme, die ich mir selbst gelöst habe.</div>
-  <div class="intro-sub reveal" style="--d:160ms;">Kein Auftrag, kein Kunde — jedes dieser Projekte ist entstanden, weil ich für ein eigenes Problem nichts Passendes gefunden habe. Hier die ausführliche Version mit Ausgangslage, Entscheidungen, Tech-Stack und einer Demo zum Ausprobieren.</div>
+  <div class="eyebrow reveal" data-i18n="intro-eyebrow">Projekte</div>
+  <div class="intro-title reveal" style="--d:80ms;" data-i18n="intro-title">Vier Probleme, die ich mir selbst gelöst habe.</div>
+  <div class="intro-sub reveal" style="--d:160ms;" data-i18n="intro-sub">Kein Auftrag, kein Kunde — jedes dieser Projekte ist entstanden, weil ich für ein eigenes Problem nichts Passendes gefunden habe. Hier die ausführliche Version mit Ausgangslage, Entscheidungen, Tech-Stack und einer Demo zum Ausprobieren.</div>
 </div>
 
 <!-- SET -->
 <div class="block light" id="set">
   <div class="proj-head reveal">
-    <span class="proj-num">01 · Fitness</span>
+    <span class="proj-num" data-i18n="set-num">01 · Fitness</span>
   </div>
   <div class="proj-name reveal" style="--d:60ms;">SET</div>
-  <div class="proj-tagline reveal" style="--d:120ms;">Ein Trainings-Tracker ohne Ballast — als installierbare App.</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="set-tagline">Ein Trainings-Tracker ohne Ballast — als installierbare App.</div>
 
   <div class="proj-copy">
     <div class="reveal" style="--d:160ms;">
-      <h3>Ausgangslage</h3>
-      <p>Ich wollte mein Training nach Splits loggen — Push/Pull/Legs, eigene Übungen, Sätze mit Gewicht und Wiederholungen. Die meisten Gym-Apps, die ich probiert habe, waren entweder Abo-pflichtig, vollgestopft mit Social-Features, die ich nie nutze, oder haben genau die eine Sache nicht gemacht, die ich brauchte: sauber zeigen, ob ich mich von Woche zu Woche steigere.</p>
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="set-ausgangslage-p">Ich wollte mein Training nach Splits loggen — Push/Pull/Legs, eigene Übungen, Sätze mit Gewicht und Wiederholungen. Die meisten Gym-Apps, die ich probiert habe, waren entweder Abo-pflichtig, vollgestopft mit Social-Features, die ich nie nutze, oder haben genau die eine Sache nicht gemacht, die ich brauchte: sauber zeigen, ob ich mich von Woche zu Woche steigere.</p>
     </div>
     <div class="reveal" style="--d:200ms;">
-      <h3>Lösung</h3>
-      <p>Eine eigene Progressive Web App — installierbar auf dem Homescreen, offlinefähig über einen Service Worker, ohne App-Store-Umweg. Splits und Übungen sind frei konfigurierbar, jeder Satz wird beim Eintippen automatisch (debounced) gespeichert. Auswertung läuft komplett über selbst gezeichnete Canvas-Charts statt einer externen Chart-Bibliothek.</p>
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="set-loesung-p">Eine eigene Progressive Web App — installierbar auf dem Homescreen, offlinefähig über einen Service Worker, ohne App-Store-Umweg. Splits und Übungen sind frei konfigurierbar, jeder Satz wird beim Eintippen automatisch (debounced) gespeichert. Auswertung läuft komplett über selbst gezeichnete Canvas-Charts statt einer externen Chart-Bibliothek.</p>
     </div>
   </div>
 
   <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p>Splits & Übungen frei anlegen, inkl. Bodyweight-Übungen</p></div>
-    <div class="feature-item"><p>Satz-Logging mit Gewicht/Wiederholungen, "letztes Training übernehmen"</p></div>
-    <div class="feature-item"><p>Volumen-Trend & persönliche Rekorde pro Übung</p></div>
-    <div class="feature-item"><p>Streak-Heatmap der letzten vier Trainingswochen</p></div>
-    <div class="feature-item"><p>Kalorien- & Makro-Tracking, Mahlzeiten per KI-Freitext geschätzt ("4 Eier mit Ketchup" → automatisch kcal)</p></div>
-    <div class="feature-item"><p>Körpergewicht-Verlauf mit 30-Tage-Trend</p></div>
+    <div class="feature-item"><p data-i18n="set-feat-1">Splits & Übungen frei anlegen, inkl. Bodyweight-Übungen</p></div>
+    <div class="feature-item"><p data-i18n="set-feat-2">Satz-Logging mit Gewicht/Wiederholungen, "letztes Training übernehmen"</p></div>
+    <div class="feature-item"><p data-i18n="set-feat-3">Volumen-Trend & persönliche Rekorde pro Übung</p></div>
+    <div class="feature-item"><p data-i18n="set-feat-4">Streak-Heatmap der letzten vier Trainingswochen</p></div>
+    <div class="feature-item"><p data-i18n="set-feat-5">Kalorien- & Makro-Tracking, Mahlzeiten per KI-Freitext geschätzt ("4 Eier mit Ketchup" → automatisch kcal)</p></div>
+    <div class="feature-item"><p data-i18n="set-feat-6">Körpergewicht-Verlauf mit 30-Tage-Trend</p></div>
   </div>
 
   <div class="stack-row reveal" style="--d:280ms;">
@@ -281,54 +299,54 @@
   </div>
 
   <div class="proj-links reveal" style="--d:300ms;">
-    <a class="proj-link" href="https://set-liard.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
+    <a class="proj-link" href="https://set-liard.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
   </div>
 
   <div class="video-grid reveal" style="--d:340ms;">
     <div class="video-item">
       <video src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Training</strong>Sätze mit Gewicht & Wiederholungen loggen.</div>
+      <div class="video-caption" data-i18n="set-cap-training"><strong>Training</strong>Sätze mit Gewicht & Wiederholungen loggen.</div>
     </div>
     <div class="video-item">
       <video src="videos/set/dashboard.mp4" poster="videos/set/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Dashboard</strong>Fortschritt, Rekorde und Trainingstage im Blick.</div>
+      <div class="video-caption" data-i18n="set-cap-dashboard"><strong>Dashboard</strong>Fortschritt, Rekorde und Trainingstage im Blick.</div>
     </div>
     <div class="video-item">
       <video src="videos/set/ernaehrung.mp4" poster="videos/set/ernaehrung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Ernährung</strong>Mahlzeit per KI-Freitext schätzen lassen.</div>
+      <div class="video-caption" data-i18n="set-cap-ernaehrung"><strong>Ernährung</strong>Mahlzeit per KI-Freitext schätzen lassen.</div>
     </div>
     <div class="video-item">
       <video src="videos/set/gewicht.mp4" poster="videos/set/gewicht-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Gewicht</strong>Körpergewicht eintragen, Trend verfolgen.</div>
+      <div class="video-caption" data-i18n="set-cap-gewicht"><strong>Gewicht</strong>Körpergewicht eintragen, Trend verfolgen.</div>
     </div>
   </div>
-  <div class="demo-note">Aufgenommen direkt in der App — kein gestelltes Mockup.</div>
+  <div class="demo-note" data-i18n="set-demonote">Aufgenommen direkt in der App — kein gestelltes Mockup.</div>
 </div>
 
 <!-- MOL -->
 <div class="block dark" id="mol">
-  <div class="proj-head reveal"><span class="proj-num">02 · Musik</span></div>
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="mol-num">02 · Musik</span></div>
   <div class="proj-name reveal" style="--d:60ms;">MOL</div>
-  <div class="proj-tagline reveal" style="--d:120ms;">Ein eigenes, minimales Interface für Spotify.</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="mol-tagline">Ein eigenes, minimales Interface für Spotify.</div>
 
   <div class="proj-copy">
     <div class="reveal" style="--d:160ms;">
-      <h3>Ausgangslage</h3>
-      <p>Ich höre Musik meistens sehr gezielt — suchen, abspielen, weiter. Die offiziellen Spotify-Clients sind für genau diesen Flow überladen. Ich wollte eine Oberfläche, die nur das kann: Suche, Playlists, Player-Steuerung, ohne alles drumherum.</p>
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="mol-ausgangslage-p">Ich höre Musik meistens sehr gezielt — suchen, abspielen, weiter. Die offiziellen Spotify-Clients sind für genau diesen Flow überladen. Ich wollte eine Oberfläche, die nur das kann: Suche, Playlists, Player-Steuerung, ohne alles drumherum.</p>
     </div>
     <div class="reveal" style="--d:200ms;">
-      <h3>Lösung</h3>
-      <p>Ein reines Frontend, das direkt gegen die Spotify Web API und das Web Playback SDK spricht. Anmeldung läuft über den OAuth-Authorization-Code-Flow mit PKCE — dadurch ist kein eigenes Backend und kein Client Secret nötig, der Login bleibt trotzdem sicher.</p>
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="mol-loesung-p">Ein reines Frontend, das direkt gegen die Spotify Web API und das Web Playback SDK spricht. Anmeldung läuft über den OAuth-Authorization-Code-Flow mit PKCE — dadurch ist kein eigenes Backend und kein Client Secret nötig, der Login bleibt trotzdem sicher.</p>
     </div>
   </div>
 
   <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p>Sicherer Login per PKCE, ganz ohne eigenen Server</p></div>
-    <div class="feature-item"><p>Songsuche direkt über die Spotify-API</p></div>
-    <div class="feature-item"><p>Personalisierte Startseite: "Zuletzt gehört", Alben & Playlists</p></div>
-    <div class="feature-item"><p>Vollflächiger Player: Cover, Fortschritt, Shuffle & Repeat</p></div>
-    <div class="feature-item"><p>Mini-Player bleibt beim Weiterstöbern aktiv</p></div>
-    <div class="feature-item"><p>Kein zusätzlicher Client — läuft komplett im Browser</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-1">Sicherer Login per PKCE, ganz ohne eigenen Server</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-2">Songsuche direkt über die Spotify-API</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-3">Personalisierte Startseite: "Zuletzt gehört", Alben & Playlists</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-4">Vollflächiger Player: Cover, Fortschritt, Shuffle & Repeat</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-5">Mini-Player bleibt beim Weiterstöbern aktiv</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-6">Kein zusätzlicher Client — läuft komplett im Browser</p></div>
   </div>
 
   <div class="stack-row reveal" style="--d:280ms;">
@@ -339,46 +357,46 @@
   </div>
 
   <div class="proj-links reveal" style="--d:300ms;">
-    <a class="proj-link" href="https://mol-omega.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
+    <a class="proj-link" href="https://mol-omega.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
   </div>
-  <p class="demo-note reveal" style="--d:320ms;">Zum Testen der Live-Demo ist ein Spotify-Premium-Account nötig (Voraussetzung des Web Playback SDK). Ohne Premium zeigt das Video unten die volle Funktionalität mit echtem Ton.</p>
+  <p class="demo-note reveal" style="--d:320ms;" data-i18n="mol-demonote1">Zum Testen der Live-Demo ist ein Spotify-Premium-Account nötig (Voraussetzung des Web Playback SDK). Ohne Premium zeigt das Video unten die volle Funktionalität mit echtem Ton.</p>
 
   <div class="video-grid video-grid--single reveal" style="--d:340ms;">
     <div class="video-item">
       <video src="videos/mol/mol.mp4" poster="videos/mol/mol-poster.jpg" controls playsinline preload="metadata"></video>
-      <div class="video-caption"><strong>Kompletter Durchlauf</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
+      <div class="video-caption" data-i18n="mol-cap"><strong>Kompletter Durchlauf</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
     </div>
   </div>
-  <div class="demo-note">Aufgenommen direkt in der App, mit Ton — kein gestelltes Mockup.</div>
+  <div class="demo-note" data-i18n="mol-demonote2">Aufgenommen direkt in der App, mit Ton — kein gestelltes Mockup.</div>
 </div>
 
 <!-- CRM -->
 <div class="block light" id="crm">
-  <div class="proj-head reveal"><span class="proj-num">03 · Sales</span></div>
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="crm-num">03 · Sales</span></div>
   <div class="proj-name reveal" style="--d:60ms;">meizoCRM</div>
-  <div class="proj-tagline reveal" style="--d:120ms;">Das Rückgrat des Vertriebsteams bei Meizo.</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="crm-tagline">Das Rückgrat des Vertriebsteams bei Meizo.</div>
 
   <div class="proj-copy">
     <div class="reveal" style="--d:160ms;">
-      <h3>Ausgangslage</h3>
-      <p>Für Kaltakquise per Telefon braucht man einen sehr konkreten Workflow: Leads importieren, anrufen, Status setzen, Wiedervorlagen nicht vergessen. Fertige CRMs waren entweder zu teuer für ein kleines Team oder zu allgemein gebaut — die typischen Telesales-Abläufe wie Wiedervorlage-Termine oder freie Pipeline-Stufen mussten wir uns dort mühsam zusammenbauen.</p>
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="crm-ausgangslage-p">Für Kaltakquise per Telefon braucht man einen sehr konkreten Workflow: Leads importieren, anrufen, Status setzen, Wiedervorlagen nicht vergessen. Fertige CRMs waren entweder zu teuer für ein kleines Team oder zu allgemein gebaut — die typischen Telesales-Abläufe wie Wiedervorlage-Termine oder freie Pipeline-Stufen mussten wir uns dort mühsam zusammenbauen.</p>
     </div>
     <div class="reveal" style="--d:200ms;">
-      <h3>Lösung</h3>
-      <p>Ein internes CRM, exakt auf diesen Ablauf zugeschnitten. Leads lassen sich per CSV importieren (mit Duplikatserkennung), die Pipeline ist ein Kanban-Board mit frei konfigurierbaren, farbcodierten Status-Spalten. Zugriff ist rollenbasiert zwischen Setter und Admin getrennt, abgesichert über eine eigene Session-Middleware.</p>
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="crm-loesung-p">Ein internes CRM, exakt auf diesen Ablauf zugeschnitten. Leads lassen sich per CSV importieren (mit Duplikatserkennung), die Pipeline ist ein Kanban-Board mit frei konfigurierbaren, farbcodierten Status-Spalten. Zugriff ist rollenbasiert zwischen Setter und Admin getrennt, abgesichert über eine eigene Session-Middleware.</p>
     </div>
   </div>
 
   <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p>Kanban-Pipeline mit Drag & Drop, auch touch-fähig</p></div>
-    <div class="feature-item"><p>Frei konfigurierbare Status-Spalten mit eigenen Farben</p></div>
-    <div class="feature-item"><p>Wiedervorlage-System für fällige Rückrufe</p></div>
-    <div class="feature-item"><p>CSV-Import mit automatischer Duplikatserkennung</p></div>
-    <div class="feature-item"><p>Rollenbasierter Zugriff: Setter vs. Admin</p></div>
-    <div class="feature-item"><p>Dialer mit Warteschlangen-Modi, Tagesziel & Streak-Gamification</p></div>
-    <div class="feature-item"><p>Team-Dashboard mit Leaderboard, Conversion & Anrufzeiten-Analyse</p></div>
-    <div class="feature-item"><p>E-Mail-Composer mit Live-Vorschau und direktem Gmail-Versand</p></div>
-    <div class="feature-item"><p>Admin-Bereich: Nutzerverwaltung, Listen-Import, Aktivitätslog</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-1">Kanban-Pipeline mit Drag & Drop, auch touch-fähig</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-2">Frei konfigurierbare Status-Spalten mit eigenen Farben</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-3">Wiedervorlage-System für fällige Rückrufe</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-4">CSV-Import mit automatischer Duplikatserkennung</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-5">Rollenbasierter Zugriff: Setter vs. Admin</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-6">Dialer mit Warteschlangen-Modi, Tagesziel & Streak-Gamification</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-7">Team-Dashboard mit Leaderboard, Conversion & Anrufzeiten-Analyse</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-8">E-Mail-Composer mit Live-Vorschau und direktem Gmail-Versand</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-9">Admin-Bereich: Nutzerverwaltung, Listen-Import, Aktivitätslog</p></div>
   </div>
 
   <div class="stack-row reveal" style="--d:280ms;">
@@ -389,44 +407,44 @@
   </div>
 
   <div class="proj-links reveal" style="--d:300ms;">
-    <a class="proj-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener">Live im Einsatz ↗</a>
-    <a class="proj-link" href="demos/crm/index.html" target="_blank" rel="noopener">Mockup in neuem Tab öffnen ↗</a>
+    <a class="proj-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
+    <a class="proj-link" href="demos/crm/index.html" target="_blank" rel="noopener" data-i18n="crm-link-mockup">Mockup in neuem Tab öffnen ↗</a>
   </div>
 
   <div class="demo-embed reveal" style="--d:340ms;">
-    <div class="demo-overlay"><span>Klicken zum Interagieren</span></div>
+    <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
     <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
   </div>
-  <p class="demo-note reveal" style="--d:380ms;">Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.</p>
+  <p class="demo-note reveal" style="--d:380ms;" data-i18n="crm-demonote">Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.</p>
 </div>
 
 <!-- MEIZO -->
 <div class="block dark" id="meizo">
-  <div class="proj-head reveal"><span class="proj-num">04 · Operations</span></div>
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="meizo-num">04 · Operations</span></div>
   <div class="proj-name reveal" style="--d:60ms;">Meizo</div>
-  <div class="proj-tagline reveal" style="--d:120ms;">Die Software, die ein ganzes Reinigungs-Business trägt.</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="meizo-tagline">Die Software, die ein ganzes Reinigungs-Business trägt.</div>
 
   <div class="proj-copy">
     <div class="reveal" style="--d:160ms;">
-      <h3>Ausgangslage</h3>
-      <p>Ich habe selbst ein Reinigungs-Business betrieben und dafür Einsatzplanung, Zeiterfassung mit Nachweis und eine saubere Lohnabrechnung gebraucht. Was am Markt existierte, war entweder generische Baustellen-Software ohne DATEV-Anbindung und Kundennachweis, oder schlicht zu teuer für den Zuschnitt eines kleinen Teams.</p>
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="meizo-ausgangslage-p">Ich habe selbst ein Reinigungs-Business betrieben und dafür Einsatzplanung, Zeiterfassung mit Nachweis und eine saubere Lohnabrechnung gebraucht. Was am Markt existierte, war entweder generische Baustellen-Software ohne DATEV-Anbindung und Kundennachweis, oder schlicht zu teuer für den Zuschnitt eines kleinen Teams.</p>
     </div>
     <div class="reveal" style="--d:200ms;">
-      <h3>Lösung</h3>
-      <p>Eine mandantenfähige SaaS-Plattform mit vier Oberflächen in einem System: Dashboard für den Inhaber, eigene App für die Mitarbeiter, ein Kunden-Portal ohne Login und Verwaltung für mich als Plattform-Betreiber. Inzwischen längst nicht mehr nur für den eigenen Betrieb — mit Stripe-Abrechnung, automatischem Seat-Sync und Platz für weitere Firmen.</p>
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="meizo-loesung-p">Eine mandantenfähige SaaS-Plattform mit vier Oberflächen in einem System: Dashboard für den Inhaber, eigene App für die Mitarbeiter, ein Kunden-Portal ohne Login und Verwaltung für mich als Plattform-Betreiber. Inzwischen längst nicht mehr nur für den eigenen Betrieb — mit Stripe-Abrechnung, automatischem Seat-Sync und Platz für weitere Firmen.</p>
     </div>
   </div>
 
   <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p>Live-Dashboard: Mitarbeiter, Einsätze und Krankmeldungen auf einen Blick</p></div>
-    <div class="feature-item"><p>Einsatzplanung per Drag & Drop, automatischer Ersatz-Dispatch bei Krankmeldung</p></div>
-    <div class="feature-item"><p>Zeiterfassung mit GPS & Foto — funktioniert auch offline</p></div>
-    <div class="feature-item"><p>Echter DATEV-Export: Soll-Ist-Stunden, Bewegungsdaten, PDF & CSV</p></div>
-    <div class="feature-item"><p>Kunden-Portal ohne Login: Nachweise, Checkliste, nächster Termin</p></div>
-    <div class="feature-item"><p>Mitarbeiter-App in 7 Sprachen mit Push-Benachrichtigungen</p></div>
-    <div class="feature-item"><p>Controlling: Umsatz, Kosten und Marge pro Objekt</p></div>
-    <div class="feature-item"><p>Plattform-Admin für mehrere Firmen gleichzeitig</p></div>
-    <div class="feature-item"><p>Stripe-Abrechnung mit automatischem Seat-Sync, installierbare PWA</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-1">Live-Dashboard: Mitarbeiter, Einsätze und Krankmeldungen auf einen Blick</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-2">Einsatzplanung per Drag & Drop, automatischer Ersatz-Dispatch bei Krankmeldung</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-3">Zeiterfassung mit GPS & Foto — funktioniert auch offline</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-4">Echter DATEV-Export: Soll-Ist-Stunden, Bewegungsdaten, PDF & CSV</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-5">Kunden-Portal ohne Login: Nachweise, Checkliste, nächster Termin</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-6">Mitarbeiter-App in 7 Sprachen mit Push-Benachrichtigungen</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-7">Controlling: Umsatz, Kosten und Marge pro Objekt</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-8">Plattform-Admin für mehrere Firmen gleichzeitig</p></div>
+    <div class="feature-item"><p data-i18n="meizo-feat-9">Stripe-Abrechnung mit automatischem Seat-Sync, installierbare PWA</p></div>
   </div>
 
   <div class="stack-row reveal" style="--d:280ms;">
@@ -438,41 +456,44 @@
   </div>
 
   <div class="proj-links reveal" style="--d:300ms;">
-    <a class="proj-link" href="https://meizo.de" target="_blank" rel="noopener">Live im Einsatz ↗</a>
+    <a class="proj-link" href="https://meizo.de" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
   </div>
 
   <div class="video-grid video-grid--wide reveal" style="--d:340ms;">
     <div class="video-item">
       <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
+      <div class="video-caption" data-i18n="meizo-cap-einsaetze"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
     </div>
     <div class="video-item">
       <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
+      <div class="video-caption" data-i18n="meizo-cap-krankmeldung"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
     </div>
     <div class="video-item">
       <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
+      <div class="video-caption" data-i18n="meizo-cap-checkin"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
     </div>
     <div class="video-item">
       <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-      <div class="video-caption"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
+      <div class="video-caption" data-i18n="meizo-cap-abrechnung"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
     </div>
   </div>
-  <p class="demo-note reveal" style="--d:380ms;">Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.</p>
+  <p class="demo-note reveal" style="--d:380ms;" data-i18n="meizo-demonote">Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.</p>
 </div>
 
 <div class="close dark">
-  <div class="name reveal">Das will ich auch.</div>
-  <div class="foot reveal" style="--d:80ms;margin-top:0.6rem;">Schreib mir kurz, worum es geht — ich melde mich schnell zurück.</div>
+  <div class="name reveal" data-i18n="close-name">Das will ich auch.</div>
+  <div class="foot reveal" style="--d:80ms;margin-top:0.6rem;" data-i18n="close-foot">Schreib mir kurz, worum es geht — ich melde mich schnell zurück.</div>
   <div class="proj-links reveal" style="--d:140ms;justify-content:center;margin-top:1.8rem;">
     <a class="proj-link" href="mailto:meisam@meizo.de">meisam@meizo.de</a>
     <a class="proj-link" href="https://wa.me/4917661860432" target="_blank" rel="noopener">WhatsApp ↗</a>
   </div>
-  <div class="foot reveal" style="--d:180ms;margin-top:2.2rem;"><a href="index.html">← Zurück zur Startseite</a></div>
+  <div class="foot reveal" style="--d:180ms;margin-top:2.2rem;"><a href="index.html" data-i18n="close-backlink">← Zurück zur Startseite</a></div>
 </div>
 
+<script src="i18n.js"></script>
 <script>
+  initI18n(I18N_PROJEKTE);
+
   const revealObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
@@ -496,7 +517,7 @@
       requestAnimationFrame(tick);
     }
     tick();
-    const hoverTargets = 'a, button, .browser-frame, video, .rail-item';
+    const hoverTargets = 'a, button, .browser-frame, video, .rail-item, .lang-opt';
     document.addEventListener('mouseover', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.add('hover'); });
     document.addEventListener('mouseout', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.remove('hover'); });
     document.addEventListener('mouseleave', ()=>cursor.classList.remove('show'));
