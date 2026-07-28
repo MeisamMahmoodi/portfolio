@@ -47,6 +47,7 @@ const I18N_INDEX = {
   'crm-headline':  { de: `Sales Pipeline für Meizo.`, en: `Sales pipeline for Meizo.` },
   'crm-text':      { de: `Für unsere Kaltakquise gab's kein CRM, das zum Ablauf passte. Also hab ich eins gebaut.`, en: `No CRM fit our cold-calling workflow. So I built one.` },
   'crm-livelink':  { de: `Live im Einsatz ↗`, en: `Live ↗` },
+  'axis-livelink': { de: `Live im Einsatz ↗`, en: `Live ↗` },
   'crm-overlay':   { de: `Klicken zum Interagieren`, en: `Click to interact` },
   'crm-demonote':  { de: `Nachbau mit Demo-Daten, kein Backend — Login oben als Setter oder Admin, frei durchklickbar.`, en: `Rebuilt with demo data, no backend — log in above as Setter or Admin, click through freely.` },
 
