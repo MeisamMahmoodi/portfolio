@@ -188,7 +188,7 @@
     margin-top:3.5rem;
     max-width:900px;
   }
-  .video-item video{
+  .video-item video, .video-item img{
     width:100%;display:block;border-radius:10px;background:#000;
     aspect-ratio:480/1040;object-fit:cover;
   }
@@ -243,6 +243,7 @@
   <a class="navlink" href="#mol">MOL</a>
   <a class="navlink" href="#crm">meizoCRM</a>
   <a class="navlink" href="#meizo">Meizo</a>
+  <a class="navlink" href="#axis">Axis</a>
   <a class="navlink back" href="index.html" data-i18n="nav-back">← Startseite</a>
   <button class="lang-switch" type="button" aria-label="Sprache wechseln / Switch language">
     <span class="lang-opt active" data-lang="de">DE</span>
@@ -255,11 +256,12 @@
   <div class="rail-item" data-target="mol"><span class="rail-label">MOL</span><span class="rail-dot"></span></div>
   <div class="rail-item" data-target="crm"><span class="rail-label">CRM</span><span class="rail-dot"></span></div>
   <div class="rail-item" data-target="meizo"><span class="rail-label">Meizo</span><span class="rail-dot"></span></div>
+  <div class="rail-item" data-target="axis"><span class="rail-label">Axis</span><span class="rail-dot"></span></div>
 </div>
 
 <div class="block dark">
   <div class="eyebrow reveal" data-i18n="intro-eyebrow">Projekte</div>
-  <div class="intro-title reveal" style="--d:80ms;" data-i18n="intro-title">Vier Probleme, die ich mir selbst gelöst habe.</div>
+  <div class="intro-title reveal" style="--d:80ms;" data-i18n="intro-title">Fünf Probleme, die ich mir selbst gelöst habe.</div>
   <div class="intro-sub reveal" style="--d:160ms;" data-i18n="intro-sub">Kein Auftrag, kein Kunde — jedes dieser Projekte ist entstanden, weil ich für ein eigenes Problem nichts Passendes gefunden habe. Hier die ausführliche Version mit Ausgangslage, Entscheidungen, Tech-Stack und einer Demo zum Ausprobieren.</div>
 </div>
 
@@ -480,6 +482,65 @@
   <p class="demo-note reveal" style="--d:380ms;" data-i18n="meizo-demonote">Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.</p>
 </div>
 
+<!-- AXIS -->
+<div class="block light" id="axis">
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="axis-num">05 · Finance</span></div>
+  <div class="proj-name reveal" style="--d:60ms;">Axis</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="axis-tagline">Ein privates Finance-Cockpit mit echter Bank-Anbindung und einem KI-Assistenten, der mitschreibt.</div>
+
+  <div class="proj-copy">
+    <div class="reveal" style="--d:160ms;">
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="axis-ausgangslage-p">Ich wollte einen ehrlichen Überblick über mein Geld — echter Kontostand, laufende Abos, offene Rechnungen, Raten — ohne zwischen Banking-App, Gmail und einer Excel-Tabelle hin- und herzuspringen. Bank-Apps zeigen nur Kontostände, keine Abos oder Rechnungen aus dem Postfach; Excel kann beides, aber nichts davon automatisch.</p>
+    </div>
+    <div class="reveal" style="--d:200ms;">
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="axis-loesung-p">Eine private PWA für mich und meine Familie: echte Kontoanbindung über Enable Banking (Open Banking/PSD2, mehrere Banken und Fintechs gleichzeitig), automatisches Mitlesen von Rechnungsmails in Gmail, und ein KI-Assistent mit Function-Calling, der Buchungen nicht nur anzeigt, sondern auch anlegt, kategorisiert und bei Unsicherheit gezielt nachfragt — die Antwort merkt er sich dauerhaft pro Empfänger.</p>
+    </div>
+  </div>
+
+  <div class="feature-grid reveal" style="--d:240ms;">
+    <div class="feature-item"><p data-i18n="axis-feat-1">Echte Kontoanbindung über Enable Banking, mehrere Banken/Fintechs gleichzeitig</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-2">Gmail-Sync liest Rechnungs- und Kaufbestätigungsmails automatisch aus</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-3">KI-Assistent mit Function-Calling: legt Buchungen und Debts selbst an, ändert und verschiebt sie</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-4">Beleg-Fotos werden direkt im Chat ausgelesen und automatisch eingetragen</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-5">Automatische Abo-Erkennung, mit expliziter Rückfrage bei Unsicherheit (z. B. Klarna/PayPal)</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-6">Drei Debt-Kategorien: Abos, Rechnungen mit freien Tags, Raten mit Fortschritts-Gauge</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-7">Proaktive Hinweise im Chat: Preiserhöhungen, fällige Rechnungen, ungewöhnliche Ausgaben</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-8">Täglicher Cron-Sync für Bank und Gmail, keine manuelle Aktualisierung nötig</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-9">Installierbare PWA, Verbindungen jederzeit trennbar in den Einstellungen</p></div>
+  </div>
+
+  <div class="stack-row reveal" style="--d:280ms;">
+    <span class="stack-pill">Next.js</span>
+    <span class="stack-pill">Supabase (Postgres + Auth)</span>
+    <span class="stack-pill">Google Gemini</span>
+    <span class="stack-pill">Enable Banking (PSD2)</span>
+    <span class="stack-pill">Gmail API</span>
+    <span class="stack-pill">Progressive Web App</span>
+  </div>
+
+  <div class="video-grid reveal" style="--d:340ms;">
+    <div class="video-item">
+      <img src="images/axis/home.svg" alt="Axis Home">
+      <div class="video-caption"><strong>Home</strong><span data-i18n="axis-cap-home">Echter Kontostand, Konten & Boxes, Transaktionen im Blick.</span></div>
+    </div>
+    <div class="video-item">
+      <img src="images/axis/debts.svg" alt="Axis Debts">
+      <div class="video-caption"><strong>Debts</strong><span data-i18n="axis-cap-debts">Abos, Rechnungen und Raten mit Fortschritts-Gauge.</span></div>
+    </div>
+    <div class="video-item">
+      <img src="images/axis/chat.svg" alt="Axis Chat">
+      <div class="video-caption"><strong>Chat</strong><span data-i18n="axis-cap-chat">KI-Assistent mit Function-Calling, liest auch Belegfotos.</span></div>
+    </div>
+    <div class="video-item">
+      <img src="images/axis/settings.svg" alt="Axis Settings">
+      <div class="video-caption"><strong>Settings</strong><span data-i18n="axis-cap-settings">Bank & Gmail verbinden, trennen, Einkommen setzen.</span></div>
+    </div>
+  </div>
+  <p class="demo-note reveal" style="--d:380ms;" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
+</div>
+
 <div class="close dark">
   <div class="name reveal" data-i18n="close-name">Das will ich auch.</div>
   <div class="foot reveal" style="--d:80ms;margin-top:0.6rem;" data-i18n="close-foot">Schreib mir kurz, worum es geht — ich melde mich schnell zurück.</div>
@@ -517,7 +578,7 @@
       requestAnimationFrame(tick);
     }
     tick();
-    const hoverTargets = 'a, button, .browser-frame, video, .rail-item, .lang-opt';
+    const hoverTargets = 'a, button, .browser-frame, video, .rail-item, .lang-opt, .video-item img';
     document.addEventListener('mouseover', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.add('hover'); });
     document.addEventListener('mouseout', (e)=>{ if(e.target.closest(hoverTargets)) cursor.classList.remove('hover'); });
     document.addEventListener('mouseleave', ()=>cursor.classList.remove('show'));

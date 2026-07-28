@@ -267,7 +267,7 @@
     margin-top:2.4rem;
     max-width:900px;
   }
-  .video-item video{
+  .video-item video, .video-item img{
     width:100%;display:block;border-radius:10px;background:#000;
     aspect-ratio:480/1040;object-fit:cover;
   }
@@ -541,6 +541,37 @@
       </div>
     </div>
 
+    <div class="build-row">
+      <div class="build-info">
+        <div class="build-tag">Finance</div>
+        <div class="build-name">Axis</div>
+        <div class="build-headline" data-i18n="axis-headline">Ein Finance-Cockpit, das meine Bank &amp; mein Postfach versteht.</div>
+        <div class="build-text" data-i18n="axis-text">Ich wollte auf einen Blick sehen, was reinkommt, was rausgeht und was bald fällig ist — ohne fünf Banking-Apps und eine Excel-Tabelle. Also hab ich mir eins gebaut, das Bank, Gmail und eine KI kombiniert.</div>
+        <div class="link-row">
+          <a class="embed-link" href="projekte.html#axis">Case Study →</a>
+        </div>
+      </div>
+      <div class="video-grid">
+        <div class="video-item">
+          <img src="images/axis/home.svg" alt="Axis Home">
+          <div class="video-caption"><strong>Home</strong><span data-i18n="axis-cap-home">Echter Kontostand, Konten & Boxes, Transaktionen im Blick.</span></div>
+        </div>
+        <div class="video-item">
+          <img src="images/axis/debts.svg" alt="Axis Debts">
+          <div class="video-caption"><strong>Debts</strong><span data-i18n="axis-cap-debts">Abos, Rechnungen und Raten mit Fortschritts-Gauge.</span></div>
+        </div>
+        <div class="video-item">
+          <img src="images/axis/chat.svg" alt="Axis Chat">
+          <div class="video-caption"><strong>Chat</strong><span data-i18n="axis-cap-chat">KI-Assistent mit Function-Calling, liest auch Belegfotos.</span></div>
+        </div>
+        <div class="video-item">
+          <img src="images/axis/settings.svg" alt="Axis Settings">
+          <div class="video-caption"><strong>Settings</strong><span data-i18n="axis-cap-settings">Bank & Gmail verbinden, trennen, Einkommen setzen.</span></div>
+        </div>
+      </div>
+      <p class="demo-note" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
+    </div>
+
   </div>
 </section>
 
@@ -677,7 +708,7 @@
     }
     tick();
 
-    const hoverTargets = 'a, button, .dot, .browser-frame, .worklog-item, .offer-item, video, .lang-opt';
+    const hoverTargets = 'a, button, .dot, .browser-frame, .worklog-item, .offer-item, video, .lang-opt, .video-item img';
     document.addEventListener('mouseover', (e)=>{
       if(e.target.closest(hoverTargets)) cursor.classList.add('hover');
     });

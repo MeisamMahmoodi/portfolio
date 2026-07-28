@@ -1,0 +1,82 @@
+<svg viewBox="0 0 480 1040" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text{font-family:'Helvetica Neue',Arial,sans-serif;}
+    .muted{fill:#9a9a9d;}
+    .secondary{fill:#6b6b6f;}
+    .success{fill:#2f9e5b;}
+  </style>
+  <rect width="480" height="1040" fill="#ffffff"/>
+
+  <text x="36" y="50" font-size="16" font-weight="600">9:41</text>
+  <g transform="translate(388,38)" fill="#111113">
+    <rect x="0" y="8" width="4" height="6" rx="1"/><rect x="6" y="5" width="4" height="9" rx="1"/>
+    <rect x="12" y="2" width="4" height="12" rx="1"/><rect x="18" y="0" width="4" height="14" rx="1"/>
+    <rect x="30" y="1" width="24" height="12" rx="3" fill="none" stroke="#111113" stroke-width="1.5"/>
+    <rect x="32.5" y="3.5" width="16" height="7" rx="1.5"/>
+  </g>
+
+  <text x="36" y="106" font-size="14" font-weight="600">Einstellungen</text>
+
+  <text x="40" y="146" font-size="12" class="secondary">Konto</text>
+  <rect x="36" y="158" width="408" height="42" rx="14" fill="#f5f5f6"/>
+  <text x="52" y="184" font-size="13" class="secondary">familie@axis.app</text>
+
+  <text x="40" y="230" font-size="12" class="secondary">Verkn&#252;pfungen</text>
+  <g transform="translate(36,242)">
+    <rect x="0" y="0" width="408" height="42" rx="12" fill="#f5f5f6"/>
+    <text x="16" y="26" font-size="13">postfach@gmail.com</text>
+    <text x="392" y="26" font-size="11" class="success" text-anchor="end">verbunden</text>
+  </g>
+  <text x="40" y="304" font-size="11" class="muted">Zuletzt synchronisiert: heute, 06:03 Uhr</text>
+
+  <text x="40" y="340" font-size="12" class="secondary">Banken &amp; Fintechs</text>
+  <g transform="translate(36,352)">
+    <rect x="0" y="0" width="408" height="42" rx="12" fill="#f5f5f6"/>
+    <text x="16" y="26" font-size="13">Sparkasse</text>
+    <text x="392" y="26" font-size="11" class="success" text-anchor="end">verbunden</text>
+  </g>
+  <text x="40" y="414" font-size="11" class="muted">Zuletzt synchronisiert: heute, 06:03 Uhr</text>
+
+  <g transform="translate(36,432)">
+    <rect x="0" y="0" width="408" height="42" rx="12" fill="#f5f5f6"/>
+    <text x="16" y="26" font-size="13">Klarna</text>
+    <text x="392" y="26" font-size="11" class="success" text-anchor="end">verbunden</text>
+  </g>
+  <text x="40" y="494" font-size="11" class="muted">Zuletzt synchronisiert: gestern, 22:10 Uhr</text>
+
+  <rect x="36" y="512" width="408" height="42" rx="12" fill="none" stroke="#e8e8e9" stroke-dasharray="5,4"/>
+  <text x="240" y="538" font-size="12" class="secondary" text-anchor="middle">+ Weiteres Konto verbinden</text>
+
+  <text x="40" y="606" font-size="11" class="muted">Kategorisiert Buchungen nach Essen/Transport/</text>
+  <text x="40" y="622" font-size="11" class="muted">Spa&#223;/etc., erkennt Abos automatisch.</text>
+
+  <text x="40" y="668" font-size="12" class="secondary">Einnahmen</text>
+  <text x="40" y="690" font-size="11" class="muted" width="380">Monatliches Netto-Einkommen (f&#252;r die</text>
+  <text x="40" y="704" font-size="11" class="muted">Verf&#252;gbar-Anzeige)</text>
+  <rect x="36" y="718" width="408" height="46" rx="14" fill="#f5f5f6"/>
+  <text x="52" y="746" font-size="14" font-weight="500">3.200,00&#8201;&#8364;</text>
+
+  <text x="40" y="800" font-size="12" class="secondary">Benachrichtigungen</text>
+  <rect x="36" y="812" width="408" height="46" rx="14" fill="#f5f5f6"/>
+  <text x="52" y="840" font-size="13">Push-Benachrichtigungen</text>
+  <text x="392" y="840" font-size="11" class="muted" text-anchor="end">kommt in Phase 4</text>
+
+  <rect x="36" y="884" width="408" height="46" rx="14" fill="none" stroke="#e8e8e9"/>
+  <text x="240" y="912" font-size="13" font-weight="500" text-anchor="middle">Abmelden</text>
+
+  <!-- bottom nav -->
+  <g transform="translate(36,960)">
+    <rect x="0" y="0" width="330" height="56" rx="28" fill="#ffffff" opacity="0.7" stroke="#ffffff"/>
+    <path d="M14 30l10-9 10 9" stroke="#6b6b6f" stroke-width="2" fill="none"/>
+    <path d="M16 29v11h16V29" stroke="#6b6b6f" stroke-width="2" fill="none"/>
+    <circle cx="72" cy="28" r="9" fill="none" stroke="#6b6b6f" stroke-width="2"/>
+    <path d="M72 23v5l3 3" stroke="#6b6b6f" stroke-width="2" fill="none"/>
+    <rect x="108" y="14" width="24" height="16" rx="4" fill="none" stroke="#6b6b6f" stroke-width="2"/>
+    <rect x="168" y="8" width="94" height="40" rx="20" fill="#111113"/>
+    <circle cx="188" cy="28" r="6" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <path d="M180 40c0-4 3.5-6 8-6s8 2 8 6" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <text x="230" y="33" font-size="12" font-weight="600" fill="#ffffff">Profil</text>
+    <circle cx="378" cy="28" r="28" fill="#111113"/>
+    <path d="M368 22v8h8M388 34v-8h-8M370 34a10 10 0 0018 4.5M386 22a10 10 0 00-18-4.5" stroke="#ffffff" stroke-width="2" fill="none"/>
+  </g>
+</svg>

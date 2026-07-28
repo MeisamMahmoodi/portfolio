@@ -1,0 +1,132 @@
+<svg viewBox="0 0 480 1040" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text{font-family:'Helvetica Neue',Arial,sans-serif;}
+    .muted{fill:#9a9a9d;}
+    .secondary{fill:#6b6b6f;}
+    .success{fill:#2f9e5b;}
+    .danger{fill:#d33f3f;}
+  </style>
+  <rect width="480" height="1040" fill="#ffffff"/>
+
+  <!-- status bar -->
+  <text x="36" y="50" font-size="16" font-weight="600">9:41</text>
+  <g transform="translate(388,38)" fill="#111113">
+    <rect x="0" y="8" width="4" height="6" rx="1"/>
+    <rect x="6" y="5" width="4" height="9" rx="1"/>
+    <rect x="12" y="2" width="4" height="12" rx="1"/>
+    <rect x="18" y="0" width="4" height="14" rx="1"/>
+    <rect x="30" y="1" width="24" height="12" rx="3" fill="none" stroke="#111113" stroke-width="1.5"/>
+    <rect x="32.5" y="3.5" width="16" height="7" rx="1.5"/>
+  </g>
+
+  <!-- balance -->
+  <g text-anchor="middle">
+    <text x="240" y="118" font-size="13" class="secondary">Total Balance</text>
+    <text x="240" y="168" font-size="44" font-weight="500" letter-spacing="-1">4.812,37&#8201;&#8364;</text>
+    <g transform="translate(240,192)">
+      <rect x="-46" y="0" width="92" height="26" rx="13" fill="#2f9e5b" opacity="0.1"/>
+      <text x="0" y="18" font-size="13" class="success" font-weight="600" text-anchor="middle">+2,4&#37;</text>
+    </g>
+    <text x="240" y="238" font-size="12" class="muted">Stand heute, 07:14 Uhr</text>
+  </g>
+
+  <!-- segmented control -->
+  <rect x="36" y="270" width="408" height="44" rx="22" fill="#f5f5f6"/>
+  <rect x="40" y="274" width="200" height="36" rx="18" fill="#111113"/>
+  <text x="140" y="297" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">Accounts</text>
+  <text x="342" y="297" font-size="13" class="secondary" text-anchor="middle">Boxes</text>
+
+  <!-- account cards -->
+  <g>
+    <rect x="36" y="332" width="150" height="90" rx="16" fill="#f5f5f6"/>
+    <text x="52" y="360" font-size="11" class="secondary">Sparkasse &#8226;&#8226;&#8226;&#8226;1234</text>
+    <text x="52" y="392" font-size="19" font-weight="600">2.340,12&#8201;&#8364;</text>
+
+    <rect x="196" y="332" width="150" height="90" rx="16" fill="#f5f5f6"/>
+    <text x="212" y="360" font-size="11" class="secondary">Klarna</text>
+    <text x="212" y="392" font-size="19" font-weight="600" class="danger">-186,40&#8201;&#8364;</text>
+
+    <rect x="356" y="332" width="150" height="90" rx="16" fill="#f5f5f6"/>
+    <text x="372" y="360" font-size="11" class="secondary">Einkommen</text>
+    <text x="372" y="392" font-size="19" font-weight="600" class="success">3.200,00&#8201;&#8364;</text>
+  </g>
+
+  <!-- transactions header -->
+  <text x="40" y="460" font-size="12" class="secondary">Transactions</text>
+  <rect x="380" y="440" width="64" height="26" rx="13" fill="none" stroke="#e8e8e9"/>
+  <text x="412" y="457" font-size="11" class="secondary" text-anchor="middle">+ Manuell</text>
+
+  <!-- transaction rows -->
+  <g font-size="14">
+    <!-- row template: circle icon, name/tag, amount/date -->
+    <g transform="translate(36,478)">
+      <circle cx="20" cy="20" r="20" fill="#f5f5f6"/>
+      <path d="M12 20h16M20 12v16" stroke="#111113" stroke-width="1.6" fill="none" transform="translate(0,0) rotate(45 20 20)"/>
+      <text x="52" y="17" font-size="14" font-weight="500">Rewe</text>
+      <text x="52" y="34" font-size="11" class="muted">Lebensmittel</text>
+      <text x="408" y="17" font-size="14" font-weight="500" class="danger" text-anchor="end">-34,82&#8201;&#8364;</text>
+      <text x="408" y="34" font-size="11" class="muted" text-anchor="end">Gestern</text>
+    </g>
+    <g transform="translate(36,538)">
+      <circle cx="20" cy="20" r="20" fill="#f5f5f6"/>
+      <path d="M14 14l12 12M26 14l-12 12" stroke="#111113" stroke-width="1.6"/>
+      <text x="52" y="17" font-size="14" font-weight="500">Netflix</text>
+      <text x="52" y="34" font-size="11" class="muted">Abo</text>
+      <text x="408" y="17" font-size="14" font-weight="500" class="danger" text-anchor="end">-17,99&#8201;&#8364;</text>
+      <text x="408" y="34" font-size="11" class="muted" text-anchor="end">03.07</text>
+    </g>
+    <g transform="translate(36,598)">
+      <circle cx="20" cy="20" r="20" fill="#f5f5f6"/>
+      <path d="M20 28V12M13 19l7-7 7 7" stroke="#2f9e5b" stroke-width="1.8" fill="none"/>
+      <text x="52" y="17" font-size="14" font-weight="500">Gehalt</text>
+      <text x="52" y="34" font-size="11" class="muted">Einkommen</text>
+      <text x="408" y="17" font-size="14" font-weight="500" class="success" text-anchor="end">+3.200,00&#8201;&#8364;</text>
+      <text x="408" y="34" font-size="11" class="muted" text-anchor="end">01.07</text>
+    </g>
+    <g transform="translate(36,658)">
+      <circle cx="20" cy="20" r="20" fill="#f5f5f6"/>
+      <rect x="11" y="13" width="18" height="14" rx="2" fill="none" stroke="#111113" stroke-width="1.5"/>
+      <text x="52" y="17" font-size="14" font-weight="500">Shell</text>
+      <text x="52" y="34" font-size="11" class="muted">Transport</text>
+      <text x="408" y="17" font-size="14" font-weight="500" class="danger" text-anchor="end">-64,10&#8201;&#8364;</text>
+      <text x="408" y="34" font-size="11" class="muted" text-anchor="end">29.06</text>
+    </g>
+  </g>
+
+  <!-- stats card -->
+  <rect x="36" y="742" width="408" height="86" rx="18" fill="#f5f5f6"/>
+  <text x="56" y="770" font-size="12" class="secondary">Diesen Monat</text>
+  <g font-size="12">
+    <circle cx="60" cy="800" r="4" fill="#111113"/>
+    <text x="70" y="804" class="secondary">Fixkosten 1.240&#8364;</text>
+    <circle cx="220" cy="800" r="4" fill="#9a9a9d"/>
+    <text x="230" y="804" class="secondary">Prognose 2.680&#8364;</text>
+  </g>
+
+  <!-- AI assistant teaser -->
+  <rect x="36" y="846" width="408" height="72" rx="18" fill="#f5f5f6"/>
+  <circle cx="76" cy="882" r="18" fill="#ffffff" stroke="#e8e8e9"/>
+  <path d="M76 869l3.2 8.9L88 881l-8.8 2.9L76 893l-3.2-9.1L64 881l8.8-3.1z" fill="#111113"/>
+  <text x="104" y="876" font-size="14" font-weight="600">AI-Assistent</text>
+  <text x="104" y="895" font-size="11" class="muted">2 R&#252;ckfragen warten auf dich</text>
+  <circle cx="404" cy="882" r="12" fill="#111113"/>
+  <text x="404" y="887" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">2</text>
+
+  <!-- bottom nav -->
+  <g transform="translate(36,960)">
+    <rect x="0" y="0" width="330" height="56" rx="28" fill="#ffffff" opacity="0.7" stroke="#ffffff"/>
+    <rect x="6" y="8" width="88" height="40" rx="20" fill="#111113"/>
+    <path d="M22 30l10-9 10 9" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <path d="M24 29v11h16V29" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <text x="58" y="33" font-size="12" font-weight="600" fill="#ffffff">Home</text>
+    <circle cx="130" cy="28" r="10" fill="none" stroke="#6b6b6f" stroke-width="2"/>
+    <path d="M130 22v6l4 4" stroke="#6b6b6f" stroke-width="2" fill="none"/>
+    <rect x="168" y="14" width="24" height="16" rx="4" fill="none" stroke="#6b6b6f" stroke-width="2"/>
+    <g transform="translate(228,16)">
+      <circle cx="12" cy="8" r="6" fill="none" stroke="#6b6b6f" stroke-width="2"/>
+      <path d="M2 28c0-7 5.4-10 10-10s10 3 10 10" stroke="#6b6b6f" stroke-width="2" fill="none"/>
+    </g>
+    <circle cx="378" cy="28" r="28" fill="#111113"/>
+    <path d="M368 22v8h8M388 34v-8h-8M370 34a10 10 0 0018 4.5M386 22a10 10 0 00-18-4.5" stroke="#ffffff" stroke-width="2" fill="none"/>
+  </g>
+</svg>

@@ -80,14 +80,22 @@ const I18N_INDEX = {
   'o4-h3': { de: `SaaS & Plattformen`, en: `SaaS & Platforms` },
   'o4-p':  { de: `Mandantenfähige Software mit Billing, wie Meizo. Von einem Nutzer bis zu vielen Firmen.`, en: `Multi-tenant software with billing, like Meizo. From one user to many companies.` },
   'o1-p':  { de: `Web- und mobile Anwendungen, von der ersten Idee bis zur installierbaren PWA.`, en: `Web and mobile applications, from first idea to installable PWA.` },
-  'angebot-note': { de: `Preise bespreche ich individuell je nach Umfang. Passt dein Vorhaben nicht genau in die Liste oben, schreib mir trotzdem:`, en: `Pricing is discussed individually based on scope. If your project doesn't fit exactly into the list above, reach out anyway:` }
+  'angebot-note': { de: `Preise bespreche ich individuell je nach Umfang. Passt dein Vorhaben nicht genau in die Liste oben, schreib mir trotzdem:`, en: `Pricing is discussed individually based on scope. If your project doesn't fit exactly into the list above, reach out anyway:` },
+
+  'axis-headline': { de: `Ein Finance-Cockpit, das meine Bank &amp; mein Postfach versteht.`, en: `A finance cockpit that understands my bank &amp; inbox.` },
+  'axis-text': { de: `Ich wollte auf einen Blick sehen, was reinkommt, was rausgeht und was bald fällig ist — ohne fünf Banking-Apps und eine Excel-Tabelle. Also hab ich mir eins gebaut, das Bank, Gmail und eine KI kombiniert.`, en: `I wanted to see at a glance what's coming in, what's going out, and what's due soon — without five banking apps and a spreadsheet. So I built one that combines my bank, Gmail, and an AI.` },
+  'axis-cap-home':     { de: `Echter Kontostand, Konten &amp; Boxes, Transaktionen im Blick.`, en: `Real balance, accounts &amp; boxes, transactions at a glance.` },
+  'axis-cap-debts':    { de: `Abos, Rechnungen und Raten mit Fortschritts-Gauge.`, en: `Subscriptions, invoices and installments with a progress gauge.` },
+  'axis-cap-chat':     { de: `KI-Assistent mit Function-Calling, liest auch Belegfotos.`, en: `AI assistant with function-calling, also reads receipt photos.` },
+  'axis-cap-settings': { de: `Bank &amp; Gmail verbinden, trennen, Einkommen setzen.`, en: `Connect or disconnect bank &amp; Gmail, set income.` },
+  'axis-demonote': { de: `Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.`, en: `Screenshots with entirely made-up balances, names and amounts — no real financial data. A private tool for me and my family, no public access.` }
 };
 
 const I18N_PROJEKTE = {
   'nav-back': { de: `← Startseite`, en: `← Home` },
 
   'intro-eyebrow': { de: `Projekte`, en: `Projects` },
-  'intro-title':   { de: `Vier Probleme, die ich mir selbst gelöst habe.`, en: `Four problems I solved for myself.` },
+  'intro-title':   { de: `Fünf Probleme, die ich mir selbst gelöst habe.`, en: `Five problems I solved for myself.` },
   'intro-sub':     { de: `Kein Auftrag, kein Kunde — jedes dieser Projekte ist entstanden, weil ich für ein eigenes Problem nichts Passendes gefunden habe. Hier die ausführliche Version mit Ausgangslage, Entscheidungen, Tech-Stack und einer Demo zum Ausprobieren.`, en: `No client, no brief — each of these projects exists because I couldn't find the right thing on the market for a problem of my own. Here's the full version: background, decisions, tech stack, and a demo to try.` },
 
   'set-num':     { de: `01 · Fitness`, en: `01 · Fitness` },
@@ -158,6 +166,25 @@ const I18N_PROJEKTE = {
   'meizo-cap-checkin':     { de: `<strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.`, en: `<strong>Time tracking</strong>GPS check-in and check-out in the employee app.` },
   'meizo-cap-abrechnung':  { de: `<strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.`, en: `<strong>Billing</strong>Ready-made CSV export with GPS-verified hours for DATEV (German payroll).` },
   'meizo-demonote': { de: `Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.`, en: `Footage from the real application — dashboard, sick-leave dispatch, employee app and billing.` },
+
+  'axis-num':     { de: `05 · Finance`, en: `05 · Finance` },
+  'axis-tagline': { de: `Ein privates Finance-Cockpit mit echter Bank-Anbindung und einem KI-Assistenten, der mitschreibt.`, en: `A private finance cockpit with real bank integration and an AI assistant that keeps records.` },
+  'axis-ausgangslage-p': { de: `Ich wollte einen ehrlichen Überblick über mein Geld — echter Kontostand, laufende Abos, offene Rechnungen, Raten — ohne zwischen Banking-App, Gmail und einer Excel-Tabelle hin- und herzuspringen. Bank-Apps zeigen nur Kontostände, keine Abos oder Rechnungen aus dem Postfach; Excel kann beides, aber nichts davon automatisch.`, en: `I wanted an honest overview of my money — real balance, running subscriptions, open invoices, installments — without jumping between a banking app, Gmail, and a spreadsheet. Banking apps only show balances, not subscriptions or invoices buried in your inbox; a spreadsheet can hold both, but none of it automatically.` },
+  'axis-loesung-p': { de: `Eine private PWA für mich und meine Familie: echte Kontoanbindung über Enable Banking (Open Banking/PSD2, mehrere Banken und Fintechs gleichzeitig), automatisches Mitlesen von Rechnungsmails in Gmail, und ein KI-Assistent mit Function-Calling, der Buchungen nicht nur anzeigt, sondern auch anlegt, kategorisiert und bei Unsicherheit gezielt nachfragt — die Antwort merkt er sich dauerhaft pro Empfänger.`, en: `A private PWA for me and my family: real account access via Enable Banking (open banking/PSD2, multiple banks and fintechs at once), automatic reading of invoice emails in Gmail, and an AI assistant with function-calling that doesn't just display transactions but creates, categorizes, and — when unsure — asks a targeted question, remembering the answer permanently per recipient.` },
+  'axis-feat-1': { de: `Echte Kontoanbindung über Enable Banking, mehrere Banken/Fintechs gleichzeitig`, en: `Real account access via Enable Banking, multiple banks/fintechs at once` },
+  'axis-feat-2': { de: `Gmail-Sync liest Rechnungs- und Kaufbestätigungsmails automatisch aus`, en: `Gmail sync automatically reads invoice and purchase-confirmation emails` },
+  'axis-feat-3': { de: `KI-Assistent mit Function-Calling: legt Buchungen und Debts selbst an, ändert und verschiebt sie`, en: `AI assistant with function-calling: creates, edits and moves transactions and debts itself` },
+  'axis-feat-4': { de: `Beleg-Fotos werden direkt im Chat ausgelesen und automatisch eingetragen`, en: `Receipt photos are read directly in chat and logged automatically` },
+  'axis-feat-5': { de: `Automatische Abo-Erkennung, mit expliziter Rückfrage bei Unsicherheit (z. B. Klarna/PayPal)`, en: `Automatic subscription detection, with an explicit follow-up question when unsure (e.g. Klarna/PayPal)` },
+  'axis-feat-6': { de: `Drei Debt-Kategorien: Abos, Rechnungen mit freien Tags, Raten mit Fortschritts-Gauge`, en: `Three debt categories: subscriptions, invoices with custom tags, installments with a progress gauge` },
+  'axis-feat-7': { de: `Proaktive Hinweise im Chat: Preiserhöhungen, fällige Rechnungen, ungewöhnliche Ausgaben`, en: `Proactive chat alerts: price increases, upcoming due dates, unusual spending` },
+  'axis-feat-8': { de: `Täglicher Cron-Sync für Bank und Gmail, keine manuelle Aktualisierung nötig`, en: `Daily cron sync for bank and Gmail, no manual refresh needed` },
+  'axis-feat-9': { de: `Installierbare PWA, Verbindungen jederzeit trennbar in den Einstellungen`, en: `Installable PWA, connections can be disconnected anytime in settings` },
+  'axis-cap-home':     { de: `Echter Kontostand, Konten &amp; Boxes, Transaktionen im Blick.`, en: `Real balance, accounts &amp; boxes, transactions at a glance.` },
+  'axis-cap-debts':    { de: `Abos, Rechnungen und Raten mit Fortschritts-Gauge.`, en: `Subscriptions, invoices and installments with a progress gauge.` },
+  'axis-cap-chat':     { de: `KI-Assistent mit Function-Calling, liest auch Belegfotos.`, en: `AI assistant with function-calling, also reads receipt photos.` },
+  'axis-cap-settings': { de: `Bank &amp; Gmail verbinden, trennen, Einkommen setzen.`, en: `Connect or disconnect bank &amp; Gmail, set income.` },
+  'axis-demonote': { de: `Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.`, en: `Screenshots with entirely made-up balances, names and amounts — no real financial data. A private tool for me and my family, no public access.` },
 
   'close-name': { de: `Das will ich auch.`, en: `I want that too.` },
   'close-foot': { de: `Schreib mir kurz, worum es geht — ich melde mich schnell zurück.`, en: `Send me a quick note about what it's about — I'll get back to you fast.` },
