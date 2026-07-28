@@ -240,11 +240,11 @@
 
 <nav>
   <a class="mark" href="index.html"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6L12 14L20 6V18"/></svg></a>
+  <a class="navlink" href="#axis">Axis</a>
+  <a class="navlink" href="#crm">meizoCRM</a>
   <a class="navlink" href="#set">SET</a>
   <a class="navlink" href="#mol">MOL</a>
-  <a class="navlink" href="#crm">meizoCRM</a>
   <a class="navlink" href="#meizo">Meizo</a>
-  <a class="navlink" href="#axis">Axis</a>
   <a class="navlink back" href="index.html" data-i18n="nav-back">← Startseite</a>
   <button class="lang-switch" type="button" aria-label="Sprache wechseln / Switch language">
     <span class="lang-opt active" data-lang="de">DE</span>
@@ -253,11 +253,11 @@
 </nav>
 
 <div class="rail">
+  <div class="rail-item" data-target="axis"><span class="rail-label">Axis</span><span class="rail-dot"></span></div>
+  <div class="rail-item" data-target="crm"><span class="rail-label">CRM</span><span class="rail-dot"></span></div>
   <div class="rail-item" data-target="set"><span class="rail-label">SET</span><span class="rail-dot"></span></div>
   <div class="rail-item" data-target="mol"><span class="rail-label">MOL</span><span class="rail-dot"></span></div>
-  <div class="rail-item" data-target="crm"><span class="rail-label">CRM</span><span class="rail-dot"></span></div>
   <div class="rail-item" data-target="meizo"><span class="rail-label">Meizo</span><span class="rail-dot"></span></div>
-  <div class="rail-item" data-target="axis"><span class="rail-label">Axis</span><span class="rail-dot"></span></div>
 </div>
 
 <div class="block dark">
@@ -266,10 +266,117 @@
   <div class="intro-sub reveal" style="--d:160ms;" data-i18n="intro-sub">Kein Auftrag, kein Kunde — jedes dieser Projekte ist entstanden, weil ich für ein eigenes Problem nichts Passendes gefunden habe. Hier die ausführliche Version mit Ausgangslage, Entscheidungen, Tech-Stack und einer Demo zum Ausprobieren.</div>
 </div>
 
+<!-- AXIS -->
+<div class="block light" id="axis">
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="axis-num">01 · Finance</span></div>
+  <div class="proj-name reveal" style="--d:60ms;">Axis</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="axis-tagline">Ein privates Finance-Cockpit mit echter Bank-Anbindung und einem KI-Assistenten, der mitschreibt.</div>
+
+  <div class="proj-copy">
+    <div class="reveal" style="--d:160ms;">
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="axis-ausgangslage-p">Ich wollte einen ehrlichen Überblick über mein Geld — echter Kontostand, laufende Abos, offene Rechnungen, Raten — ohne zwischen Banking-App, Gmail und einer Excel-Tabelle hin- und herzuspringen. Bank-Apps zeigen nur Kontostände, keine Abos oder Rechnungen aus dem Postfach; Excel kann beides, aber nichts davon automatisch.</p>
+    </div>
+    <div class="reveal" style="--d:200ms;">
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="axis-loesung-p">Eine private PWA für mich und meine Familie: echte Kontoanbindung über Enable Banking (Open Banking/PSD2, mehrere Banken und Fintechs gleichzeitig), automatisches Mitlesen von Rechnungsmails in Gmail, und ein KI-Assistent mit Function-Calling, der Buchungen nicht nur anzeigt, sondern auch anlegt, kategorisiert und bei Unsicherheit gezielt nachfragt — die Antwort merkt er sich dauerhaft pro Empfänger.</p>
+    </div>
+  </div>
+
+  <div class="feature-grid reveal" style="--d:240ms;">
+    <div class="feature-item"><p data-i18n="axis-feat-1">Echte Kontoanbindung über Enable Banking, mehrere Banken/Fintechs gleichzeitig</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-2">Gmail-Sync liest Rechnungs- und Kaufbestätigungsmails automatisch aus</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-3">KI-Assistent mit Function-Calling: legt Buchungen und Debts selbst an, ändert und verschiebt sie</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-4">Beleg-Fotos werden direkt im Chat ausgelesen und automatisch eingetragen</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-5">Automatische Abo-Erkennung, mit expliziter Rückfrage bei Unsicherheit (z. B. Klarna/PayPal)</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-6">Drei Debt-Kategorien: Abos, Rechnungen mit freien Tags, Raten mit Fortschritts-Gauge</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-7">Proaktive Hinweise im Chat: Preiserhöhungen, fällige Rechnungen, ungewöhnliche Ausgaben</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-8">Täglicher Cron-Sync für Bank und Gmail, keine manuelle Aktualisierung nötig</p></div>
+    <div class="feature-item"><p data-i18n="axis-feat-9">Installierbare PWA, Verbindungen jederzeit trennbar in den Einstellungen</p></div>
+  </div>
+
+  <div class="stack-row reveal" style="--d:280ms;">
+    <span class="stack-pill">Next.js</span>
+    <span class="stack-pill">Supabase (Postgres + Auth)</span>
+    <span class="stack-pill">Google Gemini</span>
+    <span class="stack-pill">Enable Banking (PSD2)</span>
+    <span class="stack-pill">Gmail API</span>
+    <span class="stack-pill">Progressive Web App</span>
+  </div>
+
+  <div class="video-grid reveal" style="--d:340ms;">
+    <div class="video-item">
+      <img src="images/axis/home.svg" alt="Axis Home">
+      <div class="video-caption"><strong>Home</strong><span data-i18n="axis-cap-home">Echter Kontostand, Konten & Boxes, Transaktionen im Blick.</span></div>
+    </div>
+    <div class="video-item">
+      <img src="images/axis/debts.svg" alt="Axis Debts">
+      <div class="video-caption"><strong>Debts</strong><span data-i18n="axis-cap-debts">Abos, Rechnungen und Raten mit Fortschritts-Gauge.</span></div>
+    </div>
+    <div class="video-item">
+      <img src="images/axis/chat.svg" alt="Axis Chat">
+      <div class="video-caption"><strong>Chat</strong><span data-i18n="axis-cap-chat">KI-Assistent mit Function-Calling, liest auch Belegfotos.</span></div>
+    </div>
+    <div class="video-item">
+      <img src="images/axis/settings.svg" alt="Axis Settings">
+      <div class="video-caption"><strong>Settings</strong><span data-i18n="axis-cap-settings">Bank & Gmail verbinden, trennen, Einkommen setzen.</span></div>
+    </div>
+  </div>
+  <p class="demo-note reveal" style="--d:380ms;" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
+</div>
+
+<!-- CRM -->
+<div class="block dark" id="crm">
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="crm-num">02 · Sales</span></div>
+  <div class="proj-name reveal" style="--d:60ms;">meizoCRM</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="crm-tagline">Das Rückgrat des Vertriebsteams bei Meizo.</div>
+
+  <div class="proj-copy">
+    <div class="reveal" style="--d:160ms;">
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="crm-ausgangslage-p">Für Kaltakquise per Telefon braucht man einen sehr konkreten Workflow: Leads importieren, anrufen, Status setzen, Wiedervorlagen nicht vergessen. Fertige CRMs waren entweder zu teuer für ein kleines Team oder zu allgemein gebaut — die typischen Telesales-Abläufe wie Wiedervorlage-Termine oder freie Pipeline-Stufen mussten wir uns dort mühsam zusammenbauen.</p>
+    </div>
+    <div class="reveal" style="--d:200ms;">
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="crm-loesung-p">Ein internes CRM, exakt auf diesen Ablauf zugeschnitten. Leads lassen sich per CSV importieren (mit Duplikatserkennung), die Pipeline ist ein Kanban-Board mit frei konfigurierbaren, farbcodierten Status-Spalten. Zugriff ist rollenbasiert zwischen Setter und Admin getrennt, abgesichert über eine eigene Session-Middleware.</p>
+    </div>
+  </div>
+
+  <div class="feature-grid reveal" style="--d:240ms;">
+    <div class="feature-item"><p data-i18n="crm-feat-1">Kanban-Pipeline mit Drag & Drop, auch touch-fähig</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-2">Frei konfigurierbare Status-Spalten mit eigenen Farben</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-3">Wiedervorlage-System für fällige Rückrufe</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-4">CSV-Import mit automatischer Duplikatserkennung</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-5">Rollenbasierter Zugriff: Setter vs. Admin</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-6">Dialer mit Warteschlangen-Modi, Tagesziel & Streak-Gamification</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-7">Team-Dashboard mit Leaderboard, Conversion & Anrufzeiten-Analyse</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-8">E-Mail-Composer mit Live-Vorschau und direktem Gmail-Versand</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-9">Admin-Bereich: Nutzerverwaltung, Listen-Import, Aktivitätslog</p></div>
+  </div>
+
+  <div class="stack-row reveal" style="--d:280ms;">
+    <span class="stack-pill">Next.js (App Router)</span>
+    <span class="stack-pill">TypeScript</span>
+    <span class="stack-pill">Neon · Serverless Postgres</span>
+    <span class="stack-pill">Cookie-Session-Middleware</span>
+  </div>
+
+  <div class="proj-links reveal" style="--d:300ms;">
+    <a class="proj-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
+    <a class="proj-link" href="demos/crm/index.html" target="_blank" rel="noopener" data-i18n="crm-link-mockup">Mockup in neuem Tab öffnen ↗</a>
+  </div>
+
+  <div class="demo-embed reveal" style="--d:340ms;">
+    <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
+    <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
+  </div>
+  <p class="demo-note reveal" style="--d:380ms;" data-i18n="crm-demonote">Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.</p>
+</div>
+
 <!-- SET -->
 <div class="block light" id="set">
   <div class="proj-head reveal">
-    <span class="proj-num" data-i18n="set-num">01 · Fitness</span>
+    <span class="proj-num" data-i18n="set-num">03 · Fitness</span>
   </div>
   <div class="proj-name reveal" style="--d:60ms;">SET</div>
   <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="set-tagline">Ein Trainings-Tracker ohne Ballast — als installierbare App.</div>
@@ -328,7 +435,7 @@
 
 <!-- MOL -->
 <div class="block dark" id="mol">
-  <div class="proj-head reveal"><span class="proj-num" data-i18n="mol-num">02 · Musik</span></div>
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="mol-num">04 · Musik</span></div>
   <div class="proj-name reveal" style="--d:60ms;">MOL</div>
   <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="mol-tagline">Ein eigenes, minimales Interface für Spotify.</div>
 
@@ -373,57 +480,9 @@
   <div class="demo-note" data-i18n="mol-demonote2">Aufgenommen direkt in der App, mit Ton — kein gestelltes Mockup.</div>
 </div>
 
-<!-- CRM -->
-<div class="block light" id="crm">
-  <div class="proj-head reveal"><span class="proj-num" data-i18n="crm-num">03 · Sales</span></div>
-  <div class="proj-name reveal" style="--d:60ms;">meizoCRM</div>
-  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="crm-tagline">Das Rückgrat des Vertriebsteams bei Meizo.</div>
-
-  <div class="proj-copy">
-    <div class="reveal" style="--d:160ms;">
-      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
-      <p data-i18n="crm-ausgangslage-p">Für Kaltakquise per Telefon braucht man einen sehr konkreten Workflow: Leads importieren, anrufen, Status setzen, Wiedervorlagen nicht vergessen. Fertige CRMs waren entweder zu teuer für ein kleines Team oder zu allgemein gebaut — die typischen Telesales-Abläufe wie Wiedervorlage-Termine oder freie Pipeline-Stufen mussten wir uns dort mühsam zusammenbauen.</p>
-    </div>
-    <div class="reveal" style="--d:200ms;">
-      <h3 data-i18n="h-loesung">Lösung</h3>
-      <p data-i18n="crm-loesung-p">Ein internes CRM, exakt auf diesen Ablauf zugeschnitten. Leads lassen sich per CSV importieren (mit Duplikatserkennung), die Pipeline ist ein Kanban-Board mit frei konfigurierbaren, farbcodierten Status-Spalten. Zugriff ist rollenbasiert zwischen Setter und Admin getrennt, abgesichert über eine eigene Session-Middleware.</p>
-    </div>
-  </div>
-
-  <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p data-i18n="crm-feat-1">Kanban-Pipeline mit Drag & Drop, auch touch-fähig</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-2">Frei konfigurierbare Status-Spalten mit eigenen Farben</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-3">Wiedervorlage-System für fällige Rückrufe</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-4">CSV-Import mit automatischer Duplikatserkennung</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-5">Rollenbasierter Zugriff: Setter vs. Admin</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-6">Dialer mit Warteschlangen-Modi, Tagesziel & Streak-Gamification</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-7">Team-Dashboard mit Leaderboard, Conversion & Anrufzeiten-Analyse</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-8">E-Mail-Composer mit Live-Vorschau und direktem Gmail-Versand</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-9">Admin-Bereich: Nutzerverwaltung, Listen-Import, Aktivitätslog</p></div>
-  </div>
-
-  <div class="stack-row reveal" style="--d:280ms;">
-    <span class="stack-pill">Next.js (App Router)</span>
-    <span class="stack-pill">TypeScript</span>
-    <span class="stack-pill">Neon · Serverless Postgres</span>
-    <span class="stack-pill">Cookie-Session-Middleware</span>
-  </div>
-
-  <div class="proj-links reveal" style="--d:300ms;">
-    <a class="proj-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
-    <a class="proj-link" href="demos/crm/index.html" target="_blank" rel="noopener" data-i18n="crm-link-mockup">Mockup in neuem Tab öffnen ↗</a>
-  </div>
-
-  <div class="demo-embed reveal" style="--d:340ms;">
-    <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
-    <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
-  </div>
-  <p class="demo-note reveal" style="--d:380ms;" data-i18n="crm-demonote">Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.</p>
-</div>
-
 <!-- MEIZO -->
-<div class="block dark" id="meizo">
-  <div class="proj-head reveal"><span class="proj-num" data-i18n="meizo-num">04 · Operations</span></div>
+<div class="block light" id="meizo">
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="meizo-num">05 · Operations</span></div>
   <div class="proj-name reveal" style="--d:60ms;">Meizo</div>
   <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="meizo-tagline">Die Software, die ein ganzes Reinigungs-Business trägt.</div>
 
@@ -481,65 +540,6 @@
     </div>
   </div>
   <p class="demo-note reveal" style="--d:380ms;" data-i18n="meizo-demonote">Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.</p>
-</div>
-
-<!-- AXIS -->
-<div class="block light" id="axis">
-  <div class="proj-head reveal"><span class="proj-num" data-i18n="axis-num">05 · Finance</span></div>
-  <div class="proj-name reveal" style="--d:60ms;">Axis</div>
-  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="axis-tagline">Ein privates Finance-Cockpit mit echter Bank-Anbindung und einem KI-Assistenten, der mitschreibt.</div>
-
-  <div class="proj-copy">
-    <div class="reveal" style="--d:160ms;">
-      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
-      <p data-i18n="axis-ausgangslage-p">Ich wollte einen ehrlichen Überblick über mein Geld — echter Kontostand, laufende Abos, offene Rechnungen, Raten — ohne zwischen Banking-App, Gmail und einer Excel-Tabelle hin- und herzuspringen. Bank-Apps zeigen nur Kontostände, keine Abos oder Rechnungen aus dem Postfach; Excel kann beides, aber nichts davon automatisch.</p>
-    </div>
-    <div class="reveal" style="--d:200ms;">
-      <h3 data-i18n="h-loesung">Lösung</h3>
-      <p data-i18n="axis-loesung-p">Eine private PWA für mich und meine Familie: echte Kontoanbindung über Enable Banking (Open Banking/PSD2, mehrere Banken und Fintechs gleichzeitig), automatisches Mitlesen von Rechnungsmails in Gmail, und ein KI-Assistent mit Function-Calling, der Buchungen nicht nur anzeigt, sondern auch anlegt, kategorisiert und bei Unsicherheit gezielt nachfragt — die Antwort merkt er sich dauerhaft pro Empfänger.</p>
-    </div>
-  </div>
-
-  <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p data-i18n="axis-feat-1">Echte Kontoanbindung über Enable Banking, mehrere Banken/Fintechs gleichzeitig</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-2">Gmail-Sync liest Rechnungs- und Kaufbestätigungsmails automatisch aus</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-3">KI-Assistent mit Function-Calling: legt Buchungen und Debts selbst an, ändert und verschiebt sie</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-4">Beleg-Fotos werden direkt im Chat ausgelesen und automatisch eingetragen</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-5">Automatische Abo-Erkennung, mit expliziter Rückfrage bei Unsicherheit (z. B. Klarna/PayPal)</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-6">Drei Debt-Kategorien: Abos, Rechnungen mit freien Tags, Raten mit Fortschritts-Gauge</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-7">Proaktive Hinweise im Chat: Preiserhöhungen, fällige Rechnungen, ungewöhnliche Ausgaben</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-8">Täglicher Cron-Sync für Bank und Gmail, keine manuelle Aktualisierung nötig</p></div>
-    <div class="feature-item"><p data-i18n="axis-feat-9">Installierbare PWA, Verbindungen jederzeit trennbar in den Einstellungen</p></div>
-  </div>
-
-  <div class="stack-row reveal" style="--d:280ms;">
-    <span class="stack-pill">Next.js</span>
-    <span class="stack-pill">Supabase (Postgres + Auth)</span>
-    <span class="stack-pill">Google Gemini</span>
-    <span class="stack-pill">Enable Banking (PSD2)</span>
-    <span class="stack-pill">Gmail API</span>
-    <span class="stack-pill">Progressive Web App</span>
-  </div>
-
-  <div class="video-grid reveal" style="--d:340ms;">
-    <div class="video-item">
-      <img src="images/axis/home.svg" alt="Axis Home">
-      <div class="video-caption"><strong>Home</strong><span data-i18n="axis-cap-home">Echter Kontostand, Konten & Boxes, Transaktionen im Blick.</span></div>
-    </div>
-    <div class="video-item">
-      <img src="images/axis/debts.svg" alt="Axis Debts">
-      <div class="video-caption"><strong>Debts</strong><span data-i18n="axis-cap-debts">Abos, Rechnungen und Raten mit Fortschritts-Gauge.</span></div>
-    </div>
-    <div class="video-item">
-      <img src="images/axis/chat.svg" alt="Axis Chat">
-      <div class="video-caption"><strong>Chat</strong><span data-i18n="axis-cap-chat">KI-Assistent mit Function-Calling, liest auch Belegfotos.</span></div>
-    </div>
-    <div class="video-item">
-      <img src="images/axis/settings.svg" alt="Axis Settings">
-      <div class="video-caption"><strong>Settings</strong><span data-i18n="axis-cap-settings">Bank & Gmail verbinden, trennen, Einkommen setzen.</span></div>
-    </div>
-  </div>
-  <p class="demo-note reveal" style="--d:380ms;" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
 </div>
 
 <div class="close dark">
