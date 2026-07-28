@@ -163,7 +163,8 @@
   .demo-embed{
     margin-top:2.6rem;border-radius:14px;overflow:hidden;
     border:0.5px solid var(--line-dark);
-    height:min(880px,88vh);
+    height:min(960px,90vh);
+    max-width:1320px;
     position:relative;
   }
   .dark .demo-embed{border-color:var(--line-light);}
@@ -184,20 +185,20 @@
   .video-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:1.4rem;
+    gap:1.6rem;
     margin-top:3.5rem;
-    max-width:900px;
+    max-width:1320px;
   }
   .video-item video, .video-item img{
     width:100%;display:block;border-radius:10px;background:#000;
     aspect-ratio:480/1040;object-fit:cover;
   }
-  .video-caption{margin-top:0.7rem;font-size:11px;line-height:1.5;opacity:0.65;}
-  .video-caption strong{display:block;font-size:12px;font-weight:700;opacity:1;margin-bottom:2px;}
-  .video-grid--single{grid-template-columns:1fr;max-width:220px;}
+  .video-caption{margin-top:0.8rem;font-size:12.5px;line-height:1.55;opacity:0.65;}
+  .video-caption strong{display:block;font-size:13.5px;font-weight:700;opacity:1;margin-bottom:2px;}
+  .video-grid--single{grid-template-columns:1fr;max-width:360px;}
 
   /* wide variant — desktop/landscape app footage (e.g. Meizo) */
-  .video-grid--wide{grid-template-columns:repeat(2,1fr);max-width:1000px;}
+  .video-grid--wide{grid-template-columns:repeat(2,1fr);max-width:1320px;}
   .video-grid--wide .video-item video{aspect-ratio:16/9;object-fit:contain;background:#000;}
 
   @media (max-width:640px){
