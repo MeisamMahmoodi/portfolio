@@ -630,10 +630,9 @@
 
 <nav>
   <div class="mark"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6L12 14L20 6V18"/></svg></div>
-  <a href="#projekte" data-i18n="nav-projekte">Projekte</a>
+  <a href="projekte.html" data-i18n="nav-projekte">Projekte ↗</a>
   <a href="#approach" data-i18n="nav-prinzipien">Prinzipien</a>
   <a href="#werdegang" data-i18n="nav-werdegang">Werdegang</a>
-  <a href="projekte.html" data-i18n="nav-alle">Alle im Detail ↗</a>
   <button class="lang-switch" type="button" aria-label="Sprache wechseln / Switch language">
     <span class="lang-opt active" data-lang="de">DE</span>
     <span class="lang-opt" data-lang="en">EN</span>
@@ -645,8 +644,7 @@
   <div class="dot" data-i="0"></div>
   <div class="dot" data-i="1"></div>
   <div class="dot" data-i="2"></div>
-  <div class="dot" data-i="3"></div>
-  <span>04</span>
+  <span>03</span>
 </div>
 
 <section id="start" class="dark">
@@ -677,150 +675,6 @@
     </div>
   </div>
   <div class="scroll-hint reveal-load" style="--d:520ms;" data-i18n="scroll-hint"><span>&#8595;</span> Scrollen</div>
-</section>
-
-<section id="projekte" class="light">
-  <div class="aurora aurora--projekte" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-  <div class="projekte-content">
-  <div class="eyebrow reveal" data-i18n="projekte-eyebrow">Meine Projekte</div>
-  <h2 class="reveal" style="--d:80ms;" data-i18n="projekte-h2">Was ich gebaut habe.</h2>
-  <div class="offer-sub reveal" style="--d:110ms;" data-i18n="projekte-sub">Ich designe und skizziere die Ideen — gebaut hat sie Claude.</div>
-  <a class="all-link reveal" style="--d:150ms;" href="projekte.html" data-i18n="projekte-alllink">Alle Projekte im Detail ↗</a>
-  <div class="builds-list reveal-group">
-
-    <div class="build-row">
-      <div class="build-info">
-        <div class="build-tag">Finance</div>
-        <div class="build-name">Axis</div>
-        <div class="build-headline" data-i18n="axis-headline">Ein Finance-Cockpit, das meine Bank &amp; mein Postfach versteht.</div>
-        <div class="build-text" data-i18n="axis-text">Ich wollte auf einen Blick sehen, was reinkommt, was rausgeht und was bald fällig ist — ohne fünf Banking-Apps und eine Excel-Tabelle. Also hab ich mir eins gebaut, das Bank, Gmail und eine KI kombiniert.</div>
-        <div class="link-row">
-          <a class="embed-link" href="https://axis-finances.vercel.app/" target="_blank" rel="noopener" data-i18n="axis-livelink">Live im Einsatz ↗</a>
-          <a class="embed-link" href="projekte.html#axis">Case Study →</a>
-        </div>
-      </div>
-      <div class="video-grid">
-        <div class="video-item">
-          <img src="images/axis/home.svg" alt="Axis Home">
-          <div class="video-caption"><strong>Home</strong><span data-i18n="axis-cap-home">Echter Kontostand, Konten & Boxes, Transaktionen im Blick.</span></div>
-        </div>
-        <div class="video-item">
-          <img src="images/axis/debts.svg" alt="Axis Debts">
-          <div class="video-caption"><strong>Debts</strong><span data-i18n="axis-cap-debts">Abos, Rechnungen und Raten mit Fortschritts-Gauge.</span></div>
-        </div>
-        <div class="video-item">
-          <img src="images/axis/chat.svg" alt="Axis Chat">
-          <div class="video-caption"><strong>Chat</strong><span data-i18n="axis-cap-chat">KI-Assistent mit Function-Calling, liest auch Belegfotos.</span></div>
-        </div>
-        <div class="video-item">
-          <img src="images/axis/settings.svg" alt="Axis Settings">
-          <div class="video-caption"><strong>Settings</strong><span data-i18n="axis-cap-settings">Bank & Gmail verbinden, trennen, Einkommen setzen.</span></div>
-        </div>
-      </div>
-      <p class="demo-note" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
-    </div>
-
-    <div class="build-row">
-      <div class="build-info">
-        <div class="build-tag">CRM</div>
-        <div class="build-name">meizoCRM</div>
-        <div class="build-headline" data-i18n="crm-headline">Sales Pipeline für Meizo.</div>
-        <div class="build-text" data-i18n="crm-text">Für unsere Kaltakquise gab's kein CRM, das zum Ablauf passte. Also hab ich eins gebaut.</div>
-        <div class="link-row">
-          <a class="embed-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener" data-i18n="crm-livelink">Live im Einsatz ↗</a>
-          <a class="embed-link" href="projekte.html#crm">Case Study →</a>
-        </div>
-      </div>
-      <div class="demo-embed">
-        <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
-        <div class="demo-scale">
-          <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
-        </div>
-      </div>
-      <p class="demo-note" data-i18n="crm-demonote">Nachbau mit Demo-Daten, kein Backend — Login oben als Setter oder Admin, frei durchklickbar.</p>
-    </div>
-
-    <div class="build-row">
-      <div class="build-info">
-        <div class="build-tag">Gym</div>
-        <div class="build-name">SET</div>
-        <div class="build-headline" data-i18n="set-headline">Einfacher Trainings-Tracker.</div>
-        <div class="build-text" data-i18n="set-text">Keine Trainings-App hat genau das gemacht, was ich wollte. Also hab ich sie selbst gebaut.</div>
-        <div class="link-row">
-          <a class="embed-link" href="projekte.html#set">Case Study →</a>
-        </div>
-      </div>
-      <div class="video-grid">
-        <div class="video-item">
-          <video src="videos/set/training.mp4" poster="videos/set/training-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="set-cap-training"><strong>Training</strong>Sätze mit Gewicht & Wiederholungen loggen.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/set/dashboard.mp4" poster="videos/set/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="set-cap-dashboard"><strong>Dashboard</strong>Fortschritt, Rekorde und Trainingstage im Blick.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/set/ernaehrung.mp4" poster="videos/set/ernaehrung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="set-cap-ernaehrung"><strong>Ernährung</strong>Mahlzeit per KI-Freitext schätzen lassen.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/set/gewicht.mp4" poster="videos/set/gewicht-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="set-cap-gewicht"><strong>Gewicht</strong>Körpergewicht eintragen, Trend verfolgen.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="build-row">
-      <div class="build-info">
-        <div class="build-tag" data-i18n="mol-tag">Musik</div>
-        <div class="build-name">MOL</div>
-        <div class="build-headline" data-i18n="mol-headline">Musik-Player, wie ich ihn wollte.</div>
-        <div class="build-text" data-i18n="mol-text">Kein Musik-Player hat sich richtig angefühlt, also hab ich mir meinen eigenen gebaut.</div>
-        <div class="link-row">
-          <a class="embed-link" href="projekte.html#mol">Case Study →</a>
-        </div>
-      </div>
-      <div class="video-grid video-grid--single">
-        <div class="video-item">
-          <video src="videos/mol/mol.mp4" poster="videos/mol/mol-poster.jpg" controls playsinline preload="metadata"></video>
-          <div class="video-caption" data-i18n="mol-cap"><strong>Kompletter Durchlauf</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="build-row">
-      <div class="build-info">
-        <div class="build-tag">SaaS</div>
-        <div class="build-name">Meizo</div>
-        <div class="build-headline" data-i18n="meizo-headline">Software für ein ganzes Reinigungs-Business.</div>
-        <div class="build-text" data-i18n="meizo-text">Ich hab selbst ein Reinigungs-Business betrieben und nie die passende Software dafür gefunden. Also hab ich sie gebaut, mittlerweile mit eigenem Stripe-Billing für mehrere Firmen.</div>
-        <div class="link-row">
-          <a class="embed-link" href="https://meizo.de" target="_blank" rel="noopener">meizo.de ↗</a>
-          <a class="embed-link" href="projekte.html#meizo">Case Study →</a>
-        </div>
-      </div>
-      <div class="video-grid video-grid--wide">
-        <div class="video-item">
-          <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="meizo-cap-einsaetze"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="meizo-cap-krankmeldung"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="meizo-cap-checkin"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" autoplay loop muted playsinline preload="auto"></video>
-          <div class="video-caption" data-i18n="meizo-cap-abrechnung"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  </div>
 </section>
 
 <section id="approach" class="dark">
@@ -863,9 +717,9 @@
   <div class="werdegang-content">
   <div class="eyebrow reveal" data-i18n="werdegang-eyebrow">Werdegang</div>
   <h2 class="reveal" style="--d:80ms;" data-i18n="werdegang-h2">Das lerne ich aktuell.</h2>
-  <div class="offer-sub reveal" style="--d:120ms;" data-i18n="werdegang-sub">Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken. Meinen Fortschritt kannst du live auf meinem Profil sehen.</div>
+  <div class="offer-sub reveal" style="--d:120ms;" data-i18n="werdegang-sub">Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken.</div>
   <div class="link-row reveal" style="--d:180ms;">
-    <a class="embed-link" href="https://www.codecademy.com/profiles/Meisam.dev" target="_blank" rel="noopener" data-i18n="werdegang-link">Codecademy-Profil ↗</a>
+    <a class="embed-link" href="projekte.html#nurich" data-i18n="werdegang-link">Meinen Fortschritt sehen ↗</a>
   </div>
   </div>
 </section>

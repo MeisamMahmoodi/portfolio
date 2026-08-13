@@ -243,10 +243,9 @@
 <nav>
   <a class="mark" href="index.html"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6L12 14L20 6V18"/></svg></a>
   <a class="navlink" href="#axis">Axis</a>
-  <a class="navlink" href="#crm">meizoCRM</a>
   <a class="navlink" href="#set">SET</a>
-  <a class="navlink" href="#mol">MOL</a>
   <a class="navlink" href="#meizo">Meizo</a>
+  <a class="navlink" href="#nurich" data-i18n="nav-nurich">Nur ich</a>
   <a class="navlink back" href="index.html" data-i18n="nav-back">← Startseite</a>
   <button class="lang-switch" type="button" aria-label="Sprache wechseln / Switch language">
     <span class="lang-opt active" data-lang="de">DE</span>
@@ -256,16 +255,21 @@
 
 <div class="rail">
   <div class="rail-item" data-target="axis"><span class="rail-label">Axis</span><span class="rail-dot"></span></div>
-  <div class="rail-item" data-target="crm"><span class="rail-label">CRM</span><span class="rail-dot"></span></div>
   <div class="rail-item" data-target="set"><span class="rail-label">SET</span><span class="rail-dot"></span></div>
-  <div class="rail-item" data-target="mol"><span class="rail-label">MOL</span><span class="rail-dot"></span></div>
   <div class="rail-item" data-target="meizo"><span class="rail-label">Meizo</span><span class="rail-dot"></span></div>
+  <div class="rail-item" data-target="nurich"><span class="rail-label">Nur ich</span><span class="rail-dot"></span></div>
 </div>
 
 <div class="block dark">
   <div class="eyebrow reveal" data-i18n="intro-eyebrow">Projekte</div>
-  <div class="intro-title reveal" style="--d:80ms;" data-i18n="intro-title">Fünf Probleme, die ich mir selbst gelöst habe.</div>
+  <div class="intro-title reveal" style="--d:80ms;" data-i18n="intro-title">Drei Probleme, die ich mir selbst gelöst habe.</div>
   <div class="intro-sub reveal" style="--d:160ms;" data-i18n="intro-sub">Kein Auftrag, kein Kunde — jedes dieser Projekte ist entstanden, weil ich für ein eigenes Problem nichts Passendes gefunden habe. Hier die ausführliche Version mit Ausgangslage, Entscheidungen, Tech-Stack und einer Demo zum Ausprobieren.</div>
+</div>
+
+<div class="block dark">
+  <div class="eyebrow reveal" data-i18n="group-ai-eyebrow">Kategorie</div>
+  <div class="intro-title reveal" style="--d:80ms;font-size:clamp(26px,4vw,40px);" data-i18n="group-ai-title">Mit KI gebaut.</div>
+  <div class="intro-sub reveal" style="--d:160ms;" data-i18n="group-ai-sub">Ich designe, skizziere und treffe die Entscheidungen — gebaut haben sie Claude und ich gemeinsam.</div>
 </div>
 
 <!-- AXIS -->
@@ -331,60 +335,10 @@
   <p class="demo-note reveal" style="--d:380ms;" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
 </div>
 
-<!-- CRM -->
-<div class="block dark" id="crm">
-  <div class="proj-head reveal"><span class="proj-num" data-i18n="crm-num">02 · Sales</span></div>
-  <div class="proj-name reveal" style="--d:60ms;">meizoCRM</div>
-  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="crm-tagline">Das Rückgrat des Vertriebsteams bei Meizo.</div>
-
-  <div class="proj-copy">
-    <div class="reveal" style="--d:160ms;">
-      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
-      <p data-i18n="crm-ausgangslage-p">Für Kaltakquise per Telefon braucht man einen sehr konkreten Workflow: Leads importieren, anrufen, Status setzen, Wiedervorlagen nicht vergessen. Fertige CRMs waren entweder zu teuer für ein kleines Team oder zu allgemein gebaut — die typischen Telesales-Abläufe wie Wiedervorlage-Termine oder freie Pipeline-Stufen mussten wir uns dort mühsam zusammenbauen.</p>
-    </div>
-    <div class="reveal" style="--d:200ms;">
-      <h3 data-i18n="h-loesung">Lösung</h3>
-      <p data-i18n="crm-loesung-p">Ein internes CRM, exakt auf diesen Ablauf zugeschnitten. Leads lassen sich per CSV importieren (mit Duplikatserkennung), die Pipeline ist ein Kanban-Board mit frei konfigurierbaren, farbcodierten Status-Spalten. Zugriff ist rollenbasiert zwischen Setter und Admin getrennt, abgesichert über eine eigene Session-Middleware.</p>
-    </div>
-  </div>
-
-  <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p data-i18n="crm-feat-1">Kanban-Pipeline mit Drag & Drop, auch touch-fähig</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-2">Frei konfigurierbare Status-Spalten mit eigenen Farben</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-3">Wiedervorlage-System für fällige Rückrufe</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-4">CSV-Import mit automatischer Duplikatserkennung</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-5">Rollenbasierter Zugriff: Setter vs. Admin</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-6">Dialer mit Warteschlangen-Modi, Tagesziel & Streak-Gamification</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-7">Team-Dashboard mit Leaderboard, Conversion & Anrufzeiten-Analyse</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-8">E-Mail-Composer mit Live-Vorschau und direktem Gmail-Versand</p></div>
-    <div class="feature-item"><p data-i18n="crm-feat-9">Admin-Bereich: Nutzerverwaltung, Listen-Import, Aktivitätslog</p></div>
-  </div>
-
-  <div class="stack-row reveal" style="--d:280ms;">
-    <span class="stack-pill">Next.js (App Router)</span>
-    <span class="stack-pill">TypeScript</span>
-    <span class="stack-pill">Neon · Serverless Postgres</span>
-    <span class="stack-pill">Cookie-Session-Middleware</span>
-  </div>
-
-  <div class="proj-links reveal" style="--d:300ms;">
-    <a class="proj-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
-    <a class="proj-link" href="demos/crm/index.html" target="_blank" rel="noopener" data-i18n="crm-link-mockup">Mockup in neuem Tab öffnen ↗</a>
-  </div>
-
-  <div class="demo-embed reveal" style="--d:340ms;">
-    <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
-    <div class="demo-scale">
-      <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
-    </div>
-  </div>
-  <p class="demo-note reveal" style="--d:380ms;" data-i18n="crm-demonote">Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.</p>
-</div>
-
 <!-- SET -->
 <div class="block light" id="set">
   <div class="proj-head reveal">
-    <span class="proj-num" data-i18n="set-num">03 · Fitness</span>
+    <span class="proj-num" data-i18n="set-num">02 · Fitness</span>
   </div>
   <div class="proj-name reveal" style="--d:60ms;">SET</div>
   <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="set-tagline">Ein Trainings-Tracker ohne Ballast — als installierbare App.</div>
@@ -441,56 +395,9 @@
   <div class="demo-note" data-i18n="set-demonote">Aufgenommen direkt in der App — kein gestelltes Mockup.</div>
 </div>
 
-<!-- MOL -->
-<div class="block dark" id="mol">
-  <div class="proj-head reveal"><span class="proj-num" data-i18n="mol-num">04 · Musik</span></div>
-  <div class="proj-name reveal" style="--d:60ms;">MOL</div>
-  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="mol-tagline">Ein eigenes, minimales Interface für Spotify.</div>
-
-  <div class="proj-copy">
-    <div class="reveal" style="--d:160ms;">
-      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
-      <p data-i18n="mol-ausgangslage-p">Ich höre Musik meistens sehr gezielt — suchen, abspielen, weiter. Die offiziellen Spotify-Clients sind für genau diesen Flow überladen. Ich wollte eine Oberfläche, die nur das kann: Suche, Playlists, Player-Steuerung, ohne alles drumherum.</p>
-    </div>
-    <div class="reveal" style="--d:200ms;">
-      <h3 data-i18n="h-loesung">Lösung</h3>
-      <p data-i18n="mol-loesung-p">Ein reines Frontend, das direkt gegen die Spotify Web API und das Web Playback SDK spricht. Anmeldung läuft über den OAuth-Authorization-Code-Flow mit PKCE — dadurch ist kein eigenes Backend und kein Client Secret nötig, der Login bleibt trotzdem sicher.</p>
-    </div>
-  </div>
-
-  <div class="feature-grid reveal" style="--d:240ms;">
-    <div class="feature-item"><p data-i18n="mol-feat-1">Sicherer Login per PKCE, ganz ohne eigenen Server</p></div>
-    <div class="feature-item"><p data-i18n="mol-feat-2">Songsuche direkt über die Spotify-API</p></div>
-    <div class="feature-item"><p data-i18n="mol-feat-3">Personalisierte Startseite: "Zuletzt gehört", Alben & Playlists</p></div>
-    <div class="feature-item"><p data-i18n="mol-feat-4">Vollflächiger Player: Cover, Fortschritt, Shuffle & Repeat</p></div>
-    <div class="feature-item"><p data-i18n="mol-feat-5">Mini-Player bleibt beim Weiterstöbern aktiv</p></div>
-    <div class="feature-item"><p data-i18n="mol-feat-6">Kein zusätzlicher Client — läuft komplett im Browser</p></div>
-  </div>
-
-  <div class="stack-row reveal" style="--d:280ms;">
-    <span class="stack-pill">Vanilla JavaScript</span>
-    <span class="stack-pill">Spotify Web API</span>
-    <span class="stack-pill">Spotify Web Playback SDK</span>
-    <span class="stack-pill">OAuth 2.0 · PKCE</span>
-  </div>
-
-  <div class="proj-links reveal" style="--d:300ms;">
-    <a class="proj-link" href="https://mol-omega.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
-  </div>
-  <p class="demo-note reveal" style="--d:320ms;" data-i18n="mol-demonote1">Zum Testen der Live-Demo ist ein Spotify-Premium-Account nötig (Voraussetzung des Web Playback SDK). Ohne Premium zeigt das Video unten die volle Funktionalität mit echtem Ton.</p>
-
-  <div class="video-grid video-grid--single reveal" style="--d:340ms;">
-    <div class="video-item">
-      <video src="videos/mol/mol.mp4" poster="videos/mol/mol-poster.jpg" controls playsinline preload="metadata"></video>
-      <div class="video-caption" data-i18n="mol-cap"><strong>Kompletter Durchlauf</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
-    </div>
-  </div>
-  <div class="demo-note" data-i18n="mol-demonote2">Aufgenommen direkt in der App, mit Ton — kein gestelltes Mockup.</div>
-</div>
-
 <!-- MEIZO -->
 <div class="block light" id="meizo">
-  <div class="proj-head reveal"><span class="proj-num" data-i18n="meizo-num">05 · Operations</span></div>
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="meizo-num">03 · Operations</span></div>
   <div class="proj-name reveal" style="--d:60ms;">Meizo</div>
   <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="meizo-tagline">Die Software, die ein ganzes Reinigungs-Business trägt.</div>
 
@@ -550,6 +457,15 @@
   <p class="demo-note reveal" style="--d:380ms;" data-i18n="meizo-demonote">Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.</p>
 </div>
 
+<div class="block dark" id="nurich">
+  <div class="eyebrow reveal" data-i18n="group-solo-eyebrow">Kategorie</div>
+  <div class="intro-title reveal" style="--d:80ms;font-size:clamp(26px,4vw,40px);" data-i18n="group-solo-title">Nur ich.</div>
+  <div class="intro-sub reveal" style="--d:160ms;" data-i18n="group-solo-sub">Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch keine großen Projekte, sondern eigene Übungen. Meinen Fortschritt siehst du live auf meinem Codecademy-Profil.</div>
+  <div class="proj-links reveal" style="--d:220ms;margin-top:1.6rem;">
+    <a class="proj-link" href="https://www.codecademy.com/profiles/Meisam.dev" target="_blank" rel="noopener" data-i18n="group-solo-link">Codecademy-Profil ↗</a>
+  </div>
+</div>
+
 <div class="close dark">
   <div class="name reveal" data-i18n="close-name">Das will ich auch.</div>
   <div class="foot reveal" style="--d:80ms;margin-top:0.6rem;" data-i18n="close-foot">Schreib mir kurz, worum es geht — ich melde mich schnell zurück.</div>
@@ -558,6 +474,108 @@
     <a class="proj-link" href="https://wa.me/4917661860432" target="_blank" rel="noopener">WhatsApp ↗</a>
   </div>
   <div class="foot reveal" style="--d:180ms;margin-top:2.2rem;"><a href="index.html" data-i18n="close-backlink">← Zurück zur Startseite</a></div>
+</div>
+
+<div class="block light">
+  <div class="eyebrow reveal" data-i18n="group-more-eyebrow">Außerdem</div>
+  <div class="intro-sub reveal" style="--d:80ms;max-width:640px;margin-top:0;" data-i18n="group-more-sub">Zwei weitere Experimente, aus der Haupt-Auswahl raus, aber noch da.</div>
+</div>
+
+<!-- CRM -->
+<div class="block dark" id="crm">
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="crm-num">02 · Sales</span></div>
+  <div class="proj-name reveal" style="--d:60ms;">meizoCRM</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="crm-tagline">Das Rückgrat des Vertriebsteams bei Meizo.</div>
+
+  <div class="proj-copy">
+    <div class="reveal" style="--d:160ms;">
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="crm-ausgangslage-p">Für Kaltakquise per Telefon braucht man einen sehr konkreten Workflow: Leads importieren, anrufen, Status setzen, Wiedervorlagen nicht vergessen. Fertige CRMs waren entweder zu teuer für ein kleines Team oder zu allgemein gebaut — die typischen Telesales-Abläufe wie Wiedervorlage-Termine oder freie Pipeline-Stufen mussten wir uns dort mühsam zusammenbauen.</p>
+    </div>
+    <div class="reveal" style="--d:200ms;">
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="crm-loesung-p">Ein internes CRM, exakt auf diesen Ablauf zugeschnitten. Leads lassen sich per CSV importieren (mit Duplikatserkennung), die Pipeline ist ein Kanban-Board mit frei konfigurierbaren, farbcodierten Status-Spalten. Zugriff ist rollenbasiert zwischen Setter und Admin getrennt, abgesichert über eine eigene Session-Middleware.</p>
+    </div>
+  </div>
+
+  <div class="feature-grid reveal" style="--d:240ms;">
+    <div class="feature-item"><p data-i18n="crm-feat-1">Kanban-Pipeline mit Drag & Drop, auch touch-fähig</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-2">Frei konfigurierbare Status-Spalten mit eigenen Farben</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-3">Wiedervorlage-System für fällige Rückrufe</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-4">CSV-Import mit automatischer Duplikatserkennung</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-5">Rollenbasierter Zugriff: Setter vs. Admin</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-6">Dialer mit Warteschlangen-Modi, Tagesziel & Streak-Gamification</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-7">Team-Dashboard mit Leaderboard, Conversion & Anrufzeiten-Analyse</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-8">E-Mail-Composer mit Live-Vorschau und direktem Gmail-Versand</p></div>
+    <div class="feature-item"><p data-i18n="crm-feat-9">Admin-Bereich: Nutzerverwaltung, Listen-Import, Aktivitätslog</p></div>
+  </div>
+
+  <div class="stack-row reveal" style="--d:280ms;">
+    <span class="stack-pill">Next.js (App Router)</span>
+    <span class="stack-pill">TypeScript</span>
+    <span class="stack-pill">Neon · Serverless Postgres</span>
+    <span class="stack-pill">Cookie-Session-Middleware</span>
+  </div>
+
+  <div class="proj-links reveal" style="--d:300ms;">
+    <a class="proj-link" href="https://crm-meizo.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
+    <a class="proj-link" href="demos/crm/index.html" target="_blank" rel="noopener" data-i18n="crm-link-mockup">Mockup in neuem Tab öffnen ↗</a>
+  </div>
+
+  <div class="demo-embed reveal" style="--d:340ms;">
+    <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
+    <div class="demo-scale">
+      <iframe src="demos/crm/index.html" title="meizoCRM Mockup" loading="lazy"></iframe>
+    </div>
+  </div>
+  <p class="demo-note reveal" style="--d:380ms;" data-i18n="crm-demonote">Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.</p>
+</div>
+
+<!-- MOL -->
+<div class="block dark" id="mol">
+  <div class="proj-head reveal"><span class="proj-num" data-i18n="mol-num">04 · Musik</span></div>
+  <div class="proj-name reveal" style="--d:60ms;">MOL</div>
+  <div class="proj-tagline reveal" style="--d:120ms;" data-i18n="mol-tagline">Ein eigenes, minimales Interface für Spotify.</div>
+
+  <div class="proj-copy">
+    <div class="reveal" style="--d:160ms;">
+      <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+      <p data-i18n="mol-ausgangslage-p">Ich höre Musik meistens sehr gezielt — suchen, abspielen, weiter. Die offiziellen Spotify-Clients sind für genau diesen Flow überladen. Ich wollte eine Oberfläche, die nur das kann: Suche, Playlists, Player-Steuerung, ohne alles drumherum.</p>
+    </div>
+    <div class="reveal" style="--d:200ms;">
+      <h3 data-i18n="h-loesung">Lösung</h3>
+      <p data-i18n="mol-loesung-p">Ein reines Frontend, das direkt gegen die Spotify Web API und das Web Playback SDK spricht. Anmeldung läuft über den OAuth-Authorization-Code-Flow mit PKCE — dadurch ist kein eigenes Backend und kein Client Secret nötig, der Login bleibt trotzdem sicher.</p>
+    </div>
+  </div>
+
+  <div class="feature-grid reveal" style="--d:240ms;">
+    <div class="feature-item"><p data-i18n="mol-feat-1">Sicherer Login per PKCE, ganz ohne eigenen Server</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-2">Songsuche direkt über die Spotify-API</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-3">Personalisierte Startseite: "Zuletzt gehört", Alben & Playlists</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-4">Vollflächiger Player: Cover, Fortschritt, Shuffle & Repeat</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-5">Mini-Player bleibt beim Weiterstöbern aktiv</p></div>
+    <div class="feature-item"><p data-i18n="mol-feat-6">Kein zusätzlicher Client — läuft komplett im Browser</p></div>
+  </div>
+
+  <div class="stack-row reveal" style="--d:280ms;">
+    <span class="stack-pill">Vanilla JavaScript</span>
+    <span class="stack-pill">Spotify Web API</span>
+    <span class="stack-pill">Spotify Web Playback SDK</span>
+    <span class="stack-pill">OAuth 2.0 · PKCE</span>
+  </div>
+
+  <div class="proj-links reveal" style="--d:300ms;">
+    <a class="proj-link" href="https://mol-omega.vercel.app" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
+  </div>
+  <p class="demo-note reveal" style="--d:320ms;" data-i18n="mol-demonote1">Zum Testen der Live-Demo ist ein Spotify-Premium-Account nötig (Voraussetzung des Web Playback SDK). Ohne Premium zeigt das Video unten die volle Funktionalität mit echtem Ton.</p>
+
+  <div class="video-grid video-grid--single reveal" style="--d:340ms;">
+    <div class="video-item">
+      <video src="videos/mol/mol.mp4" poster="videos/mol/mol-poster.jpg" controls playsinline preload="metadata"></video>
+      <div class="video-caption" data-i18n="mol-cap"><strong>Kompletter Durchlauf</strong>Zuletzt gehört → suchen → abspielen mit echtem Ton, Mini-Player bleibt beim Durchblättern eines Albums aktiv.</div>
+    </div>
+  </div>
+  <div class="demo-note" data-i18n="mol-demonote2">Aufgenommen direkt in der App, mit Ton — kein gestelltes Mockup.</div>
 </div>
 
 <script src="i18n.js"></script>

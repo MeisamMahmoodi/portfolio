@@ -4,7 +4,7 @@
    und wird nicht angerührt. */
 
 const I18N_INDEX = {
-  'nav-projekte':   { de: `Projekte`, en: `Projects` },
+  'nav-projekte':   { de: `Projekte ↗`, en: `Projects ↗` },
   'nav-prinzipien': { de: `Prinzipien`, en: `Principles` },
   'nav-werdegang':  { de: `Werdegang`, en: `Background` },
   'nav-alle':       { de: `Alle im Detail ↗`, en: `All in detail ↗` },
@@ -74,8 +74,8 @@ const I18N_INDEX = {
 
   'werdegang-eyebrow': { de: `Werdegang`, en: `Background` },
   'werdegang-h2':      { de: `Das lerne ich aktuell.`, en: `What I'm learning right now.` },
-  'werdegang-sub':     { de: `Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken. Meinen Fortschritt kannst du live auf meinem Profil sehen.`, en: `I'm learning to program right now — on Codecademy, alongside everything else. Because I want a career in this direction and want to actually understand it, not just assemble things superficially with AI. You can see my progress live on my profile.` },
-  'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
+  'werdegang-sub':     { de: `Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken.`, en: `I'm learning to program right now — on Codecademy, alongside everything else. Because I want a career in this direction and want to actually understand it, not just assemble things superficially with AI.` },
+  'werdegang-link':    { de: `Meinen Fortschritt sehen ↗`, en: `See my progress ↗` },
 
   'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
 
@@ -90,12 +90,25 @@ const I18N_INDEX = {
 
 const I18N_PROJEKTE = {
   'nav-back': { de: `← Startseite`, en: `← Home` },
+  'nav-nurich': { de: `Nur ich`, en: `Just me` },
 
   'intro-eyebrow': { de: `Projekte`, en: `Projects` },
-  'intro-title':   { de: `Fünf Probleme, die ich mir selbst gelöst habe.`, en: `Five problems I solved for myself.` },
+  'intro-title':   { de: `Drei Probleme, die ich mir selbst gelöst habe.`, en: `Three problems I solved for myself.` },
   'intro-sub':     { de: `Kein Auftrag, kein Kunde — jedes dieser Projekte ist entstanden, weil ich für ein eigenes Problem nichts Passendes gefunden habe. Hier die ausführliche Version mit Ausgangslage, Entscheidungen, Tech-Stack und einer Demo zum Ausprobieren.`, en: `No client, no brief — each of these projects exists because I couldn't find the right thing on the market for a problem of my own. Here's the full version: background, decisions, tech stack, and a demo to try.` },
 
-  'set-num':     { de: `03 · Fitness`, en: `03 · Fitness` },
+  'group-ai-eyebrow': { de: `Kategorie`, en: `Category` },
+  'group-ai-title':   { de: `Mit KI gebaut.`, en: `Built with AI.` },
+  'group-ai-sub':     { de: `Ich designe, skizziere und treffe die Entscheidungen — gebaut haben sie Claude und ich gemeinsam.`, en: `I design, sketch and make the decisions — Claude and I built them together.` },
+
+  'group-solo-eyebrow': { de: `Kategorie`, en: `Category` },
+  'group-solo-title':   { de: `Nur ich.`, en: `Just me.` },
+  'group-solo-sub':     { de: `Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch keine großen Projekte, sondern eigene Übungen. Meinen Fortschritt siehst du live auf meinem Codecademy-Profil.`, en: `This is where I'm actually learning to program myself — no AI involved. No big projects yet, just my own exercises. You can see my progress live on my Codecademy profile.` },
+  'group-solo-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
+
+  'group-more-eyebrow': { de: `Außerdem`, en: `Also` },
+  'group-more-sub':     { de: `Zwei weitere Experimente, aus der Haupt-Auswahl raus, aber noch da.`, en: `Two more experiments — outside the main selection, but still here.` },
+
+  'set-num':     { de: `02 · Fitness`, en: `02 · Fitness` },
   'set-tagline': { de: `Ein Trainings-Tracker ohne Ballast — als installierbare App.`, en: `A workout tracker without the bloat — installable as an app.` },
   'h-ausgangslage': { de: `Ausgangslage`, en: `Background` },
   'h-loesung':      { de: `Lösung`, en: `Solution` },
@@ -145,7 +158,7 @@ const I18N_PROJEKTE = {
   'crm-overlay': { de: `Klicken zum Interagieren`, en: `Click to interact` },
   'crm-demonote': { de: `Vollständiger Nachbau mit Demo-Daten, keine Aufnahmen — jede Seite lässt sich frei durchklicken: Dashboard, Leads, Kanban, Dialer, E-Mails und Admin-Panel (Login oben als Setter oder Admin). Kein Backend, keine echten Kundendaten — Änderungen verschwinden beim Neuladen.`, en: `A full rebuild with demo data, no recordings — every screen is fully clickable: dashboard, leads, Kanban, dialer, emails, and admin panel (log in above as Setter or Admin). No backend, no real customer data — changes disappear on reload.` },
 
-  'meizo-num':     { de: `05 · Operations`, en: `05 · Operations` },
+  'meizo-num':     { de: `03 · Operations`, en: `03 · Operations` },
   'meizo-tagline': { de: `Die Software, die ein ganzes Reinigungs-Business trägt.`, en: `The software running an entire cleaning business.` },
   'meizo-ausgangslage-p': { de: `Ich habe selbst ein Reinigungs-Business betrieben und dafür Einsatzplanung, Zeiterfassung mit Nachweis und eine saubere Lohnabrechnung gebraucht. Was am Markt existierte, war entweder generische Baustellen-Software ohne DATEV-Anbindung und Kundennachweis, oder schlicht zu teuer für den Zuschnitt eines kleinen Teams.`, en: `I ran a cleaning business myself and needed job scheduling, verifiable time tracking, and clean payroll. What existed on the market was either generic construction-site software without DATEV integration and customer proof, or simply too expensive for a small team.` },
   'meizo-loesung-p':      { de: `Eine mandantenfähige SaaS-Plattform mit vier Oberflächen in einem System: Dashboard für den Inhaber, eigene App für die Mitarbeiter, ein Kunden-Portal ohne Login und Verwaltung für mich als Plattform-Betreiber. Inzwischen längst nicht mehr nur für den eigenen Betrieb — mit Stripe-Abrechnung, automatischem Seat-Sync und Platz für weitere Firmen.`, en: `A multi-tenant SaaS platform with four interfaces in one system: a dashboard for the owner, a dedicated app for employees, a login-free customer portal, and management tools for me as the platform operator. It's long outgrown just my own business — now with Stripe billing, automatic seat sync, and room for more companies.` },
