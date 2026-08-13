@@ -102,22 +102,20 @@
   }
   nav a{
     position:relative;
-    display:inline-block;
     color:#fff;
     text-decoration:none;
     font-size:12px;
     letter-spacing:0.08em;
     text-transform:uppercase;
     opacity:0.7;
-    transition:opacity .3s var(--ease), transform .35s cubic-bezier(0.34,1.56,0.64,1);
+    transition:opacity .3s var(--ease);
   }
   nav a::after{
     content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;
     background:currentColor;transition:width .4s cubic-bezier(0.34,1.56,0.64,1);
   }
-  nav a:hover{opacity:1;transform:rotate(-3deg) translateY(-2px);}
+  nav a:hover{opacity:1;}
   nav a:hover::after{width:100%;}
-  @media (prefers-reduced-motion: reduce){ nav a{transition:opacity .3s var(--ease);} }
 
   .lang-switch{
     display:flex;align-items:center;gap:0;
@@ -287,15 +285,12 @@
     flex-direction:column;
     margin-top:2.5rem;
     max-width:1320px;
-    perspective:1400px;
   }
   .build-row{
     display:flex;
     flex-direction:column;
     padding:3rem 0;
     border-top:0.5px solid var(--line-dark);
-    transition:transform .15s ease-out;
-    will-change:transform;
   }
   .build-row:first-child{border-top:none;padding-top:0;}
 
@@ -306,17 +301,11 @@
     letter-spacing:0.1em;
     text-transform:uppercase;
     opacity:0.5;
-    transition:transform .3s cubic-bezier(0.34,1.56,0.64,1);
   }
-  /* leicht schief wie ein Stempel/Sticker — abwechselnd je Zeile,
-     richtet sich beim Hover kurz auf. "Unsere Seite, unsere Regeln." */
+  /* leicht schief wie ein Stempel/Sticker — abwechselnd je Zeile, statisch,
+     kein Hover-Effekt. */
   .build-row:nth-child(odd) .build-tag{transform:rotate(-3deg);}
   .build-row:nth-child(even) .build-tag{transform:rotate(2deg);}
-  .build-row:hover .build-tag{transform:rotate(0deg) scale(1.08);}
-  @media (prefers-reduced-motion: reduce){
-    .build-tag{transition:none;}
-    .build-row{transition:none;}
-  }
   .build-name{font-size:26px;font-weight:700;margin-top:0.6rem;}
   .build-headline{font-size:13px;opacity:0.65;margin-top:0.4rem;}
   .build-text{font-size:13px;line-height:1.6;opacity:0.75;margin-top:1rem;}
@@ -997,22 +986,6 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && rafId) { cancelAnimationFrame(rafId); rafId = null; }
     else if (!document.hidden && !rafId) { tick(); }
-  });
-})();
-
-/* Projekt-Zeilen kippen leicht Richtung Cursor beim Hover (magnetic card) —
-   .builds-list hat dafür bereits perspective gesetzt. Reine CSS-Transition
-   übernimmt die Glättung, kein rAF nötig. */
-(() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.querySelectorAll('.build-row').forEach(row => {
-    row.addEventListener('mousemove', (e) => {
-      const rect = row.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width - 0.5;
-      const py = (e.clientY - rect.top) / rect.height - 0.5;
-      row.style.transform = `rotateX(${(-py * 3.5).toFixed(2)}deg) rotateY(${(px * 3.5).toFixed(2)}deg)`;
-    });
-    row.addEventListener('mouseleave', () => { row.style.transform = ''; });
   });
 })();
 </script>
