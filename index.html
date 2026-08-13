@@ -102,20 +102,22 @@
   }
   nav a{
     position:relative;
+    display:inline-block;
     color:#fff;
     text-decoration:none;
     font-size:12px;
     letter-spacing:0.08em;
     text-transform:uppercase;
     opacity:0.7;
-    transition:opacity .3s var(--ease);
+    transition:opacity .3s var(--ease), transform .35s cubic-bezier(0.34,1.56,0.64,1);
   }
   nav a::after{
     content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;
     background:currentColor;transition:width .4s cubic-bezier(0.34,1.56,0.64,1);
   }
-  nav a:hover{opacity:1;}
+  nav a:hover{opacity:1;transform:rotate(-3deg) translateY(-2px);}
   nav a:hover::after{width:100%;}
+  @media (prefers-reduced-motion: reduce){ nav a{transition:opacity .3s var(--ease);} }
 
   .lang-switch{
     display:flex;align-items:center;gap:0;
@@ -212,8 +214,17 @@
     will-change:transform;
     -webkit-mask-image:linear-gradient(to bottom, #000 78%, transparent 100%);
     mask-image:linear-gradient(to bottom, #000 78%, transparent 100%);
+    perspective:800px;
   }
   body.loaded .hero-photo-wrap{opacity:0.92;transform:translateY(0) scale(1);}
+  /* kippt leicht Richtung Cursor — eigener Wrapper, damit die schnelle
+     Tilt-Transition nicht mit der langsamen Lade-Animation oben kollidiert */
+  .hero-photo-tilt{
+    position:relative;
+    transform:rotateX(var(--tilty,0deg)) rotateY(var(--tiltx,0deg));
+    transition:transform .3s ease-out;
+    transform-style:preserve-3d;
+  }
   .hero-photo{
     width:100%;
     height:auto;
@@ -246,6 +257,7 @@
   .hero-photo-tile:nth-child(6){transition-delay:.74s;}
   @media (prefers-reduced-motion: reduce){
     .hero-photo-tile{transition:none;transform:scaleY(0);}
+    .hero-photo-tilt{transition:none;}
   }
   @media (max-width:820px){
     .hero-photo-wrap{
@@ -268,21 +280,35 @@
     flex-direction:column;
     margin-top:2.5rem;
     max-width:1320px;
+    perspective:1400px;
   }
   .build-row{
     display:flex;
     flex-direction:column;
     padding:3rem 0;
     border-top:0.5px solid var(--line-dark);
+    transition:transform .15s ease-out;
+    will-change:transform;
   }
   .build-row:first-child{border-top:none;padding-top:0;}
 
   .build-info{max-width:560px;}
   .build-tag{
+    display:inline-block;
     font-size:10px;
     letter-spacing:0.1em;
     text-transform:uppercase;
     opacity:0.5;
+    transition:transform .3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  /* leicht schief wie ein Stempel/Sticker — abwechselnd je Zeile,
+     richtet sich beim Hover kurz auf. "Unsere Seite, unsere Regeln." */
+  .build-row:nth-child(odd) .build-tag{transform:rotate(-3deg);}
+  .build-row:nth-child(even) .build-tag{transform:rotate(2deg);}
+  .build-row:hover .build-tag{transform:rotate(0deg) scale(1.08);}
+  @media (prefers-reduced-motion: reduce){
+    .build-tag{transition:none;}
+    .build-row{transition:none;}
   }
   .build-name{font-size:26px;font-weight:700;margin-top:0.6rem;}
   .build-headline{font-size:13px;opacity:0.65;margin-top:0.4rem;}
@@ -484,6 +510,7 @@
       <div class="hero-sub reveal-load" style="--d:320ms;" data-i18n="hero-sub">Fehlt mir eine App, bau ich sie mir selbst. Ein paar Beispiele davon findest du hier.</div>
     </div>
     <div class="hero-photo-wrap">
+     <div class="hero-photo-tilt">
       <img class="hero-photo" src="profilBild-crop.png" alt="Meisam">
       <div class="hero-photo-tiles">
         <div class="hero-photo-tile"></div>
@@ -493,6 +520,7 @@
         <div class="hero-photo-tile"></div>
         <div class="hero-photo-tile"></div>
       </div>
+     </div>
     </div>
   </div>
   <div class="scroll-hint reveal-load" style="--d:520ms;" data-i18n="scroll-hint"><span>&#8595;</span> Scrollen</div>
@@ -802,10 +830,19 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   let targetRy = 0, targetRx = 0, ry = 0, rx = 0;
+  const heroPhotoTilt = document.querySelector('.hero-photo-tilt');
 
   function onMouseMove(e){
-    targetRy = (e.clientX / window.innerWidth - 0.5) * 14;
-    targetRx = (e.clientY / window.innerHeight - 0.5) * -8;
+    const fx = (e.clientX / window.innerWidth - 0.5);
+    const fy = (e.clientY / window.innerHeight - 0.5);
+    targetRy = fx * 14;
+    targetRx = fy * -8;
+    /* Foto kippt leicht Richtung Cursor — eigene, schnellere CSS-Transition
+       statt JS-Lerp, daher hier direkt gesetzt statt im rAF-Loop unten. */
+    if (heroPhotoTilt){
+      heroPhotoTilt.style.setProperty('--tiltx', (fx * 12) + 'deg');
+      heroPhotoTilt.style.setProperty('--tilty', (fy * -10) + 'deg');
+    }
   }
   window.addEventListener('mousemove', onMouseMove);
 
@@ -831,6 +868,22 @@
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && rafId) { cancelAnimationFrame(rafId); rafId = null; }
     else if (!document.hidden && !rafId) { tick(); }
+  });
+})();
+
+/* Projekt-Zeilen kippen leicht Richtung Cursor beim Hover (magnetic card) —
+   .builds-list hat dafür bereits perspective gesetzt. Reine CSS-Transition
+   übernimmt die Glättung, kein rAF nötig. */
+(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.build-row').forEach(row => {
+    row.addEventListener('mousemove', (e) => {
+      const rect = row.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      row.style.transform = `rotateX(${(-py * 3.5).toFixed(2)}deg) rotateY(${(px * 3.5).toFixed(2)}deg)`;
+    });
+    row.addEventListener('mouseleave', () => { row.style.transform = ''; });
   });
 })();
 </script>
