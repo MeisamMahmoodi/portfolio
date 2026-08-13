@@ -7,6 +7,7 @@ const I18N_INDEX = {
   'nav-projekte':   { de: `Projekte`, en: `Projects` },
   'nav-prinzipien': { de: `Prinzipien`, en: `Principles` },
   'nav-angebot':    { de: `Angebot`, en: `Services` },
+  'nav-werdegang':  { de: `Werdegang`, en: `Background` },
   'nav-alle':       { de: `Alle im Detail ↗`, en: `All in detail ↗` },
 
   'hero-name': {
@@ -29,6 +30,7 @@ const I18N_INDEX = {
 
   'projekte-eyebrow': { de: `Meine Projekte`, en: `My Projects` },
   'projekte-h2':      { de: `Was ich gebaut habe.`, en: `What I've built.` },
+  'projekte-sub':     { de: `<strong>AI Product Manager.</strong> Ich mache Produktdesign und Konzeption — ich plane, designe und verknüpfe alles. Die KI ist mein Entwicklerteam: sie übernimmt das Bauen.`, en: `<strong>AI Product Manager.</strong> I handle product design and concept — I plan, design, and connect everything. The AI is my dev team: it does the building.` },
   'projekte-alllink': { de: `Alle Projekte im Detail ↗`, en: `All projects in detail ↗` },
 
   'set-tag':      { de: `Gym`, en: `Gym` },
@@ -82,6 +84,11 @@ const I18N_INDEX = {
   'o4-p':  { de: `Mandantenfähige Software mit Billing, wie Meizo. Von einem Nutzer bis zu vielen Firmen.`, en: `Multi-tenant software with billing, like Meizo. From one user to many companies.` },
   'o1-p':  { de: `Web- und mobile Anwendungen, von der ersten Idee bis zur installierbaren PWA.`, en: `Web and mobile applications, from first idea to installable PWA.` },
   'angebot-note': { de: `Preise bespreche ich individuell je nach Umfang. Passt dein Vorhaben nicht genau in die Liste oben, schreib mir trotzdem:`, en: `Pricing is discussed individually based on scope. If your project doesn't fit exactly into the list above, reach out anyway:` },
+
+  'werdegang-eyebrow': { de: `Werdegang`, en: `Background` },
+  'werdegang-h2':      { de: `Wie ich das gelernt habe.`, en: `How I learned this.` },
+  'werdegang-sub':     { de: `Ich lerne meistens direkt am Projekt, nicht vorher aus dem Lehrbuch. Codecademy nutze ich, um Lücken gezielt zu schließen und Grundlagen sauber nachzuziehen. Meinen Lernweg — Kurse, Fortschritt, Projekte — kannst du live auf meinem Profil verfolgen.`, en: `I mostly learn directly on the project, not from a textbook beforehand. I use Codecademy to close specific gaps and get the fundamentals right. You can follow my learning path — courses, progress, projects — live on my profile.` },
+  'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
 
   'axis-headline': { de: `Ein Finance-Cockpit, das meine Bank &amp; mein Postfach versteht.`, en: `A finance cockpit that understands my bank &amp; inbox.` },
   'axis-text': { de: `Ich wollte auf einen Blick sehen, was reinkommt, was rausgeht und was bald fällig ist — ohne fünf Banking-Apps und eine Excel-Tabelle. Also hab ich mir eins gebaut, das Bank, Gmail und eine KI kombiniert.`, en: `I wanted to see at a glance what's coming in, what's going out, and what's due soon — without five banking apps and a spreadsheet. So I built one that combines my bank, Gmail, and an AI.` },
