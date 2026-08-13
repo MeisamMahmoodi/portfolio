@@ -54,14 +54,21 @@
     .reveal, .reveal-load{opacity:1;transform:none;transition:none;}
   }
 
-  .word-wrap{display:inline-block;overflow:hidden;vertical-align:top;}
+  .word-wrap{display:inline-block;overflow:hidden;vertical-align:top;transform-style:preserve-3d;}
   .word{
     display:inline-block;
-    transform:translateY(110%);
+    transform:translateY(110%) translateZ(var(--wz,0px));
     transition:transform .9s var(--ease);
     transition-delay:var(--d,0ms);
   }
-  body.loaded .word{transform:translateY(0);}
+  body.loaded .word{transform:translateY(0) translateZ(var(--wz,0px));}
+  /* jedes Wort sitzt auf einer anderen Tiefe — beim Kippen der ganzen
+     .hero-name (siehe unten) verschieben sich die Wörter dadurch sichtbar
+     unterschiedlich schnell, echter 3D-Parallax-Effekt statt nur eine Ebene. */
+  .word-wrap:nth-child(1) .word{--wz:16px;}
+  .word-wrap:nth-child(2) .word{--wz:44px;}
+  .word-wrap:nth-child(3) .word{--wz:16px;}
+  .word-wrap:nth-child(4) .word{--wz:70px;}
   section{
     min-height:100vh;
     padding:8vh 8vw;
@@ -69,11 +76,12 @@
     flex-direction:column;
     justify-content:center;
     position:relative;
+    z-index:1;
   }
   .dark{background:var(--black);color:var(--white);}
   .light{background:var(--white);color:var(--black);}
 
-  footer{padding:6vh 8vw;display:flex;flex-direction:column;gap:1rem;}
+  footer{padding:6vh 8vw;display:flex;flex-direction:column;gap:1rem;position:relative;z-index:1;}
 
   nav{
     position:fixed;
@@ -153,11 +161,15 @@
     opacity:0.55;
     margin-bottom:1.4rem;
   }
+  .hero-grid > div:first-child{perspective:1400px;}
   .hero-name{
     font-size:clamp(48px,9vw,120px);
     font-weight:700;
     line-height:0.95;
     letter-spacing:-0.02em;
+    transform-style:preserve-3d;
+    transform:rotateY(var(--hero-ry,0deg)) rotateX(var(--hero-rx,0deg));
+    transition:opacity .3s linear;
   }
   .hero-sub{
     font-size:15px;
@@ -180,9 +192,13 @@
   }
   @media (prefers-reduced-motion: reduce){ .scroll-hint span{animation:none;} }
 
+  /* seitenweites 3D-Objekt: fixed im Hintergrund, mix-blend-mode:difference
+     macht es auf hellen UND dunklen Sektionen sichtbar (gleicher Trick wie
+     beim Cursor-Punkt), bewegt sich mit dem Scroll-Fortschritt der Seite. */
   #hero-canvas{
-    position:absolute;inset:0;width:100%;height:100%;
+    position:fixed;inset:0;width:100vw;height:100vh;
     z-index:0;pointer-events:none;
+    mix-blend-mode:difference;
     opacity:0;transition:opacity 1.6s var(--ease);
   }
   #hero-canvas.is-visible{opacity:1;}
@@ -411,6 +427,7 @@
 </head>
 <body>
 
+<canvas id="hero-canvas" aria-hidden="true"></canvas>
 <div class="grain"></div>
 
 <nav>
@@ -435,7 +452,6 @@
 </div>
 
 <section id="start" class="dark">
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-grid">
     <div>
       <div class="eyebrow reveal-load" style="--d:0ms;">Portfolio</div>
@@ -744,10 +760,13 @@
 </script>
 
 <script type="module">
-/* 3D-Hero: abstraktes Wireframe-Objekt hinter dem Namen, reagiert leicht auf
-   die Maus. Reines Vanilla-Three.js per ESM-CDN-Import — kein Build-Schritt,
-   kein React nötig. Läuft nur, wenn WebGL verfügbar ist und der Nutzer keine
-   reduzierte Bewegung eingestellt hat; sonst bleibt die Seite unverändert. */
+/* Seitenweites 3D-Objekt: abstraktes Wireframe, das über die ganze Seite hinweg
+   fest im Hintergrund sitzt (mix-blend-mode:difference, gleicher Trick wie beim
+   Cursor-Punkt, damit es auf hellen und dunklen Sektionen sichtbar bleibt) und
+   sich beim Scrollen durch die Seite bewegt, dreht und skaliert — plus leichtes
+   Mitlaufen der Maus. Reines Vanilla-Three.js per ESM-CDN-Import, kein Build-
+   Schritt nötig. Läuft nur mit WebGL und ohne reduzierte Bewegung; sonst bleibt
+   die Seite optisch unverändert (progressive enhancement). */
 (async () => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -760,8 +779,7 @@
   if (!hasWebGL()) return;
 
   const canvas = document.getElementById('hero-canvas');
-  const heroSection = document.getElementById('start');
-  if (!canvas || !heroSection) return;
+  if (!canvas) return;
 
   let THREE;
   try{
@@ -778,15 +796,14 @@
   const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
   camera.position.z = 6;
 
-  const geometry = new THREE.IcosahedronGeometry(2.3, 1);
+  const geometry = new THREE.IcosahedronGeometry(2.2, 1);
   const wireframe = new THREE.WireframeGeometry(geometry);
-  const material = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.26 });
+  const material = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
   const shape = new THREE.LineSegments(wireframe, material);
   scene.add(shape);
 
   function resize(){
-    const w = heroSection.clientWidth, h = heroSection.clientHeight;
-    if (!w || !h) return;
+    const w = window.innerWidth, h = window.innerHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -800,16 +817,31 @@
     targetY = (e.clientY / window.innerHeight - 0.5);
   });
 
+  function scrollProgress(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    return max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+  }
+
   let running = false, rafId = null, baseRotY = 0, baseRotX = 0;
 
   function animate(){
     if (!running) return;
-    baseRotY += 0.0018;
-    baseRotX += 0.0009;
+    const progress = scrollProgress();
+
+    baseRotY += 0.0014;
+    baseRotX += 0.0007;
     mouseX += (targetX - mouseX) * 0.04;
     mouseY += (targetY - mouseY) * 0.04;
-    shape.rotation.y = baseRotY + mouseX * 0.5;
-    shape.rotation.x = baseRotX + mouseY * 0.5;
+
+    /* Objekt wandert quer über den Bildschirm, dreht sich zusätzlich zur
+       Idle-Rotation und wird kleiner, je weiter man runterscrollt. */
+    shape.rotation.y = baseRotY + mouseX * 0.5 + progress * Math.PI * 1.6;
+    shape.rotation.x = baseRotX + mouseY * 0.5 + progress * Math.PI * 0.6;
+    shape.position.x = THREE.MathUtils.lerp(-1.1, 1.3, progress);
+    shape.position.y = THREE.MathUtils.lerp(0.6, -1.4, progress);
+    const scale = THREE.MathUtils.lerp(1, 0.55, progress);
+    shape.scale.setScalar(scale);
+
     renderer.render(scene, camera);
     rafId = requestAnimationFrame(animate);
   }
@@ -825,17 +857,55 @@
     rafId = null;
   }
 
-  const visObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { entry.isIntersecting ? start() : stop(); });
-  }, { threshold: 0.1 });
-  visObserver.observe(heroSection);
+  start();
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? stop() : start();
+  });
+})();
+</script>
+
+<script>
+/* 3D-Hero-Titel: echte CSS-3D-Transforms (perspective + preserve-3d) statt nur
+   flacher Wort-Animation. Reagiert auf Maus (leichtes Kippen) und Scroll (kippt
+   beim Runterscrollen im Raum nach hinten weg). Rein CSS-var-basiert, damit es
+   auch nach einem Sprachwechsel (i18n ersetzt die Wort-Spans neu) sofort wieder
+   funktioniert, ohne dass JS auf einzelne DOM-Knoten zeigen muss. */
+(() => {
+  const heroName = document.querySelector('.hero-name');
+  const heroSection = document.getElementById('start');
+  if (!heroName || !heroSection) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let targetRy = 0, targetRx = 0, ry = 0, rx = 0;
+
+  function onMouseMove(e){
+    targetRy = (e.clientX / window.innerWidth - 0.5) * 14;
+    targetRx = (e.clientY / window.innerHeight - 0.5) * -8;
+  }
+  window.addEventListener('mousemove', onMouseMove);
+
+  function scrollTilt(){
+    const r = heroSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    return Math.min(Math.max(-r.top / vh, 0), 1);
+  }
+
+  let rafId = null;
+  function tick(){
+    const p = scrollTilt();
+    ry += (targetRy - ry) * 0.08;
+    rx += (targetRx - rx) * 0.08;
+    const scrollRx = p * -26;
+    heroName.style.setProperty('--hero-ry', (ry) + 'deg');
+    heroName.style.setProperty('--hero-rx', (rx + scrollRx) + 'deg');
+    heroName.style.opacity = String(1 - p * 0.9);
+    rafId = requestAnimationFrame(tick);
+  }
+  tick();
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stop();
-    else {
-      const r = heroSection.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) start();
-    }
+    if (document.hidden && rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    else if (!document.hidden && !rafId) { tick(); }
   });
 })();
 </script>
