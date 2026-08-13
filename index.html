@@ -897,12 +897,6 @@
   resize();
   window.addEventListener('resize', resize);
 
-  let targetRy = 0, targetRx = 0, mRy = 0, mRx = 0;
-  window.addEventListener('mousemove', (e) => {
-    targetRy = (e.clientX / window.innerWidth - 0.5) * 1.1;
-    targetRx = (e.clientY / window.innerHeight - 0.5) * -0.7;
-  });
-
   function heroProgress(){
     const r = heroSection.getBoundingClientRect();
     return Math.min(Math.max(-r.top / window.innerHeight, 0), 1);
@@ -913,11 +907,9 @@
   function animate(){
     if (!running) return;
     idle += 0.006;
-    mRy += (targetRy - mRy) * 0.05;
-    mRx += (targetRx - mRx) * 0.05;
 
-    knot.rotation.y = idle + mRy;
-    knot.rotation.x = idle * 0.55 + mRx;
+    knot.rotation.y = idle;
+    knot.rotation.x = idle * 0.55;
 
     const p = heroProgress();
     const breathe = 1 + Math.sin(idle * 1.3) * 0.045;
