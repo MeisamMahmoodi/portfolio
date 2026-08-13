@@ -194,9 +194,16 @@
   }
   @media (prefers-reduced-motion: reduce){ .scroll-hint span{animation:none;} }
 
-  /* seitenweites 3D-Objekt: fixed im Hintergrund, mix-blend-mode:difference
-     macht es auf hellen UND dunklen Sektionen sichtbar (gleicher Trick wie
-     beim Cursor-Punkt), bewegt sich mit dem Scroll-Fortschritt der Seite. */
+  /* 3D-Objekt NUR innerhalb der Hero-Section (Kind-Element, kein fixed/
+     seitenweites Canvas mehr) — liegt hinter .hero-grid (z-index:1), kann
+     dadurch architektonisch nie wieder andere Sektionen verdecken. */
+  #hero-canvas{
+    position:absolute;inset:0;width:100%;height:100%;
+    z-index:0;pointer-events:none;
+    opacity:0;transition:opacity 1.8s var(--ease);
+  }
+  #hero-canvas.is-visible{opacity:1;}
+
   .hero-grid{
     width:100%;
     position:relative;
@@ -498,6 +505,7 @@
 </div>
 
 <section id="start" class="dark">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-grid">
     <div>
       <div class="eyebrow reveal-load" style="--d:0ms;">Portfolio</div>
@@ -815,6 +823,135 @@
   fitDemoEmbeds();
   window.addEventListener('resize', fitDemoEmbeds);
   window.addEventListener('load', fitDemoEmbeds);
+</script>
+
+<script type="module">
+/* Hero-Objekt: ein Chrom-Torusknoten mit echter Mehrpunkt-Beleuchtung,
+   sanfter Idle-Rotation, "Atem"-Skalierung und Maus-Tilt. Nur innerhalb
+   der Hero-Section (Kind-Element, kein fixed/seitenweites Canvas) — kann
+   dadurch nie wieder andere Sektionen verdecken. Reines Vanilla-Three.js
+   per ESM-CDN-Import, kein Build-Schritt. Läuft nur mit WebGL und ohne
+   reduzierte Bewegung; sonst bleibt die Seite optisch unverändert. */
+(async () => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function hasWebGL(){
+    try{
+      const c = document.createElement('canvas');
+      return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+    }catch(e){ return false; }
+  }
+  if (!hasWebGL()) return;
+
+  const canvas = document.getElementById('hero-canvas');
+  const heroSection = document.getElementById('start');
+  if (!canvas || !heroSection) return;
+
+  let THREE;
+  try{
+    THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  }catch(e){ return; }
+
+  let renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  }catch(e){ return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  camera.position.set(0, 0, 7.5);
+
+  /* Beleuchtung fürs Chrom-Material — Key-Light für die harten Highlights,
+     Fill-Light von der anderen Seite, schwaches Ambient gegen komplett
+     schwarze Schattenpartien. Alles neutral-weiß, bleibt markenkonform. */
+  const key = new THREE.DirectionalLight(0xffffff, 2.4);
+  key.position.set(4, 5, 6);
+  scene.add(key);
+  const fill = new THREE.DirectionalLight(0xffffff, 0.7);
+  fill.position.set(-5, -2, 4);
+  scene.add(fill);
+  const rim = new THREE.DirectionalLight(0xffffff, 0.9);
+  rim.position.set(-2, 4, -6);
+  scene.add(rim);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.18));
+
+  const geometry = new THREE.TorusKnotGeometry(1.5, 0.42, 220, 32, 2, 3);
+  const material = new THREE.MeshPhysicalMaterial({
+    color: 0xf4f2ec,
+    metalness: 1,
+    roughness: 0.24,
+    clearcoat: 0.6,
+    clearcoatRoughness: 0.25,
+  });
+  const knot = new THREE.Mesh(geometry, material);
+  scene.add(knot);
+
+  function resize(){
+    const w = heroSection.clientWidth, h = heroSection.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let targetRy = 0, targetRx = 0, mRy = 0, mRx = 0;
+  window.addEventListener('mousemove', (e) => {
+    targetRy = (e.clientX / window.innerWidth - 0.5) * 1.1;
+    targetRx = (e.clientY / window.innerHeight - 0.5) * -0.7;
+  });
+
+  function heroProgress(){
+    const r = heroSection.getBoundingClientRect();
+    return Math.min(Math.max(-r.top / window.innerHeight, 0), 1);
+  }
+
+  let running = false, rafId = null, idle = 0;
+
+  function animate(){
+    if (!running) return;
+    idle += 0.006;
+    mRy += (targetRy - mRy) * 0.05;
+    mRx += (targetRx - mRx) * 0.05;
+
+    knot.rotation.y = idle + mRy;
+    knot.rotation.x = idle * 0.55 + mRx;
+
+    const p = heroProgress();
+    const breathe = 1 + Math.sin(idle * 1.3) * 0.045;
+    knot.scale.setScalar(breathe * (1 - p * 0.35));
+    canvas.style.opacity = String(Math.max(0, 1 - p * 1.1));
+
+    renderer.render(scene, camera);
+    rafId = requestAnimationFrame(animate);
+  }
+  function start(){
+    if (running) return;
+    running = true;
+    canvas.classList.add('is-visible');
+    animate();
+  }
+  function stop(){
+    running = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+
+  const visObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { entry.isIntersecting ? start() : stop(); });
+  }, { threshold: 0.05 });
+  visObserver.observe(heroSection);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+    else {
+      const r = heroSection.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) start();
+    }
+  });
+})();
 </script>
 
 <script>
