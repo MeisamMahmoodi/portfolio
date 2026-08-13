@@ -66,7 +66,7 @@ const I18N_INDEX = {
   'p2-h3': { de: `Erst machen, dann können`, en: `Learn by building` },
   'p2-p':  { de: `Ich hab keinen Plan, ich hab Lust. Was ich nicht kann, lerne ich, während ich's baue.`, en: `I don't have a plan, I have motivation. Whatever I can't do yet, I learn while building it.` },
   'p3-h3': { de: `Mit KI arbeiten`, en: `Working with AI` },
-  'p3-p':  { de: `Ich schreibe nicht jede Zeile Code von Hand. Ich nutze KI, um schneller von der Idee zum Prototypen zu kommen.`, en: `I don't write every line of code by hand. I use AI to get from idea to prototype faster.` },
+  'p3-p':  { de: `Ich plane die Idee, das Design und die Struktur, dann beschreibe ich es der KI Schritt für Schritt. Jedes Ergebnis teste ich selbst — passt etwas nicht, sage ich genau was, und wir bessern nach, bis es stimmt. Debuggen und verstehen, warum etwas funktioniert, bleibt bei mir.`, en: `I plan the idea, the design and the structure, then I describe it to the AI step by step. I test every result myself — if something's off, I say exactly what, and we fix it until it's right. Debugging and understanding why something works stays with me.` },
   'p4-h3': { de: `Ideen kombinieren`, en: `Combining ideas` },
   'p4-p':  { de: `Ich kopiere keine Lösungen. Ich nehme, was mir bei Pinterest oder in anderen Apps gefällt, und baue daraus etwas, das für mich funktioniert.`, en: `I don't copy solutions. I take what I like from Pinterest or other apps and build something out of it that works for me.` },
   'p5-h3': { de: `Disziplin`, en: `Discipline` },
@@ -196,8 +196,7 @@ const I18N_PROJEKTE = {
   'axis-cap-settings': { de: `Bank &amp; Gmail verbinden, trennen, Einkommen setzen.`, en: `Connect or disconnect bank &amp; Gmail, set income.` },
   'axis-demonote': { de: `Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.`, en: `Screenshots with entirely made-up balances, names and amounts — no real financial data. A private tool for me and my family, no public access.` },
 
-  'close-name': { de: `Das will ich auch.`, en: `I want that too.` },
-  'close-foot': { de: `Schreib mir kurz, worum es geht — ich melde mich schnell zurück.`, en: `Send me a quick note about what it's about — I'll get back to you fast.` },
+  'close-name': { de: `Kontakt`, en: `Contact` },
   'close-backlink': { de: `← Zurück zur Startseite`, en: `← Back to homepage` }
 };
 
