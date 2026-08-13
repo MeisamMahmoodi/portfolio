@@ -73,8 +73,8 @@ const I18N_INDEX = {
   'p5-p':  { de: `Ob Trading oder Coden: Emotionen raus, Daten rein. Sonst wird es nichts.`, en: `Trading or coding, same rule: emotions out, data in. Otherwise it doesn't work.` },
 
   'werdegang-eyebrow': { de: `Werdegang`, en: `Background` },
-  'werdegang-h2':      { de: `Wie ich das gelernt habe.`, en: `How I learned this.` },
-  'werdegang-sub':     { de: `Ich mache das, weil ich später beruflich in diese Richtung will — und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken. Deshalb lerne ich nebenbei auf Codecademy. Meinen Fortschritt kannst du live auf meinem Profil sehen.`, en: `I'm doing this because I want a career in this direction later — and I want to actually understand it, not just assemble things superficially with AI. So I'm learning alongside it on Codecademy. You can see my progress live on my profile.` },
+  'werdegang-h2':      { de: `Das lerne ich aktuell.`, en: `What I'm learning right now.` },
+  'werdegang-sub':     { de: `Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken. Meinen Fortschritt kannst du live auf meinem Profil sehen.`, en: `I'm learning to program right now — on Codecademy, alongside everything else. Because I want a career in this direction and want to actually understand it, not just assemble things superficially with AI. You can see my progress live on my profile.` },
   'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
 
   'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
