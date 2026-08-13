@@ -77,6 +77,8 @@ const I18N_INDEX = {
   'werdegang-sub':     { de: `Ich mache das, weil ich später beruflich in diese Richtung will — und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken. Deshalb lerne ich nebenbei auf Codecademy. Meinen Fortschritt kannst du live auf meinem Profil sehen.`, en: `I'm doing this because I want a career in this direction later — and I want to actually understand it, not just assemble things superficially with AI. So I'm learning alongside it on Codecademy. You can see my progress live on my profile.` },
   'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
 
+  'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
+
   'axis-headline': { de: `Ein Finance-Cockpit, das meine Bank &amp; mein Postfach versteht.`, en: `A finance cockpit that understands my bank &amp; inbox.` },
   'axis-text': { de: `Ich wollte auf einen Blick sehen, was reinkommt, was rausgeht und was bald fällig ist — ohne fünf Banking-Apps und eine Excel-Tabelle. Also hab ich mir eins gebaut, das Bank, Gmail und eine KI kombiniert.`, en: `I wanted to see at a glance what's coming in, what's going out, and what's due soon — without five banking apps and a spreadsheet. So I built one that combines my bank, Gmail, and an AI.` },
   'axis-cap-home':     { de: `Echter Kontostand, Konten &amp; Boxes, Transaktionen im Blick.`, en: `Real balance, accounts &amp; boxes, transactions at a glance.` },
