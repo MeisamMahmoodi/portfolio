@@ -14,6 +14,12 @@
     --ease:cubic-bezier(0.16,1,0.3,1);
     --accent:#d69a3c;
     --accent-soft:rgba(214,154,60,0.35);
+    --violet:#8b7cf6;
+    --violet-soft:rgba(139,124,246,0.4);
+    --coral:#ff7a59;
+    --coral-soft:rgba(255,122,89,0.38);
+    --teal:#3ecfc0;
+    --teal-soft:rgba(62,207,192,0.38);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -95,32 +101,38 @@
   }
   #approach-canvas.is-visible{opacity:1;}
 
-  /* Aurora: langsam driftende, weiche Farbflecken im Hintergrund der
-     Werdegang-Sektion — bewegt sich, ohne laut zu sein. */
-  .werdegang-content{position:relative;z-index:1;}
+  /* Aurora: langsam driftende, farbige Flecken im Hintergrund der
+     hellen Sektionen — jede Sektion bekommt ihre eigene Farbwelt. */
+  .werdegang-content, .projekte-content{position:relative;z-index:1;}
   .aurora{position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;}
   .aurora span{
     position:absolute;
-    width:42vw;height:42vw;
+    width:44vw;height:44vw;
     border-radius:50%;
-    filter:blur(70px);
-    opacity:0.4;
+    filter:blur(64px);
+    opacity:0.55;
     mix-blend-mode:multiply;
   }
-  .aurora span:nth-child(1){background:var(--accent-soft);top:-12%;left:-8%;animation:auroraDrift1 22s ease-in-out infinite;}
-  .aurora span:nth-child(2){background:rgba(10,10,10,0.05);bottom:-18%;right:-6%;animation:auroraDrift2 26s ease-in-out infinite;}
-  .aurora span:nth-child(3){width:26vw;height:26vw;background:var(--accent-soft);top:28%;right:18%;opacity:0.28;animation:auroraDrift3 19s ease-in-out infinite;}
+  .aurora span:nth-child(1){background:var(--teal-soft);top:-14%;left:-10%;animation:auroraDrift1 22s ease-in-out infinite;}
+  .aurora span:nth-child(2){background:var(--accent-soft);bottom:-20%;right:-8%;opacity:0.5;animation:auroraDrift2 26s ease-in-out infinite;}
+  .aurora span:nth-child(3){width:28vw;height:28vw;background:var(--violet-soft);top:30%;right:20%;opacity:0.4;animation:auroraDrift3 19s ease-in-out infinite;}
+
+  .aurora--projekte span:nth-child(1){background:var(--coral-soft);top:-10%;left:-6%;animation:auroraDrift1 24s ease-in-out infinite;}
+  .aurora--projekte span:nth-child(2){background:var(--violet-soft);bottom:-16%;right:-10%;opacity:0.48;animation:auroraDrift2 29s ease-in-out infinite;}
+  .aurora--projekte span:nth-child(3){width:30vw;height:30vw;background:var(--accent-soft);top:38%;right:12%;opacity:0.4;animation:auroraDrift3 21s ease-in-out infinite;}
+  .aurora--projekte span:nth-child(4){width:24vw;height:24vw;background:var(--teal-soft);bottom:8%;left:14%;opacity:0.36;animation:auroraDrift2 25s ease-in-out infinite reverse;}
+
   @keyframes auroraDrift1{
     0%,100%{transform:translate(0,0) scale(1);}
-    50%{transform:translate(6vw,4vh) scale(1.15);}
+    50%{transform:translate(7vw,5vh) scale(1.18);}
   }
   @keyframes auroraDrift2{
     0%,100%{transform:translate(0,0) scale(1);}
-    50%{transform:translate(-5vw,-3vh) scale(1.1);}
+    50%{transform:translate(-6vw,-4vh) scale(1.12);}
   }
   @keyframes auroraDrift3{
-    0%,100%{transform:translate(-3vw,3vh) scale(0.9);}
-    50%{transform:translate(3vw,-4vh) scale(1.05);}
+    0%,100%{transform:translate(-4vw,4vh) scale(0.9);}
+    50%{transform:translate(4vw,-5vh) scale(1.08);}
   }
   @media (prefers-reduced-motion: reduce){
     .aurora span{animation:none;}
@@ -577,6 +589,8 @@
 </section>
 
 <section id="projekte" class="light">
+  <div class="aurora aurora--projekte" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <div class="projekte-content">
   <div class="eyebrow reveal" data-i18n="projekte-eyebrow">Meine Projekte</div>
   <h2 class="reveal" style="--d:80ms;" data-i18n="projekte-h2">Was ich gebaut habe.</h2>
   <div class="offer-sub reveal" style="--d:110ms;" data-i18n="projekte-sub">Ich designe und skizziere die Ideen — gebaut hat sie Claude.</div>
@@ -714,6 +728,7 @@
       </div>
     </div>
 
+  </div>
   </div>
 </section>
 
@@ -1045,26 +1060,28 @@
   const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
   camera.position.z = 6;
 
-  const COUNT = 260;
-  const positions = new Float32Array(COUNT * 3);
-  for (let i = 0; i < COUNT; i++){
-    positions[i*3]     = (Math.random() - 0.5) * 14;
-    positions[i*3 + 1] = (Math.random() - 0.5) * 8;
-    positions[i*3 + 2] = (Math.random() - 0.5) * 6;
+  function makeCloud(count, spread, color, size, opacity){
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++){
+      positions[i*3]     = (Math.random() - 0.5) * spread[0];
+      positions[i*3 + 1] = (Math.random() - 0.5) * spread[1];
+      positions[i*3 + 2] = (Math.random() - 0.5) * spread[2];
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const material = new THREE.PointsMaterial({
+      color, size, transparent: true, opacity,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    return new THREE.Points(geometry, material);
   }
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-  const material = new THREE.PointsMaterial({
-    color: 0xd69a3c,
-    size: 0.05,
-    transparent: true,
-    opacity: 0.55,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-  });
-  const points = new THREE.Points(geometry, material);
-  scene.add(points);
+  // Zwei Farbwolken mit unterschiedlichem Tempo — bewusst anders als
+  // das goldene Hero-Objekt, damit jede Sektion ihren eigenen Charakter hat.
+  const pointsA = makeCloud(180, [14, 8, 6], 0x8b7cf6, 0.052, 0.55);
+  const pointsB = makeCloud(90, [12, 7, 5], 0x3ecfc0, 0.04, 0.45);
+  scene.add(pointsA, pointsB);
 
   function resize(){
     const w = section.clientWidth, h = section.clientHeight;
@@ -1081,8 +1098,10 @@
   function animate(){
     if (!running) return;
     t += 0.0022;
-    points.rotation.y = t;
-    points.rotation.x = Math.sin(t * 0.6) * 0.1;
+    pointsA.rotation.y = t;
+    pointsA.rotation.x = Math.sin(t * 0.6) * 0.1;
+    pointsB.rotation.y = -t * 1.4;
+    pointsB.rotation.x = Math.cos(t * 0.5) * 0.14;
     renderer.render(scene, camera);
     rafId = requestAnimationFrame(animate);
   }
