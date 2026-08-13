@@ -6,7 +6,6 @@
 const I18N_INDEX = {
   'nav-projekte':   { de: `Projekte`, en: `Projects` },
   'nav-prinzipien': { de: `Prinzipien`, en: `Principles` },
-  'nav-angebot':    { de: `Angebot`, en: `Services` },
   'nav-werdegang':  { de: `Werdegang`, en: `Background` },
   'nav-alle':       { de: `Alle im Detail ↗`, en: `All in detail ↗` },
 
@@ -30,7 +29,7 @@ const I18N_INDEX = {
 
   'projekte-eyebrow': { de: `Meine Projekte`, en: `My Projects` },
   'projekte-h2':      { de: `Was ich gebaut habe.`, en: `What I've built.` },
-  'projekte-sub':     { de: `<strong>AI Product Manager.</strong> Ich mache Produktdesign und Konzeption — ich plane, designe und verknüpfe alles. Die KI ist mein Entwicklerteam: sie übernimmt das Bauen.`, en: `<strong>AI Product Manager.</strong> I handle product design and concept — I plan, design, and connect everything. The AI is my dev team: it does the building.` },
+  'projekte-sub':     { de: `Ich designe und skizziere die Ideen — gebaut hat sie Claude.`, en: `I design and sketch out the ideas — Claude built them.` },
   'projekte-alllink': { de: `Alle Projekte im Detail ↗`, en: `All projects in detail ↗` },
 
   'set-tag':      { de: `Gym`, en: `Gym` },
@@ -73,21 +72,9 @@ const I18N_INDEX = {
   'p5-h3': { de: `Disziplin`, en: `Discipline` },
   'p5-p':  { de: `Ob Trading oder Coden: Emotionen raus, Daten rein. Sonst wird es nichts.`, en: `Trading or coding, same rule: emotions out, data in. Otherwise it doesn't work.` },
 
-  'angebot-eyebrow': { de: `Zusammenarbeit`, en: `Work with me` },
-  'angebot-h2':      { de: `Das baue ich auch für andere.`, en: `I build this for others too.` },
-  'angebot-sub':     { de: `Die Projekte oben sind für mich selbst entstanden. Aus demselben Antrieb baue ich auch für andere:`, en: `The projects above were built for myself. I build for others out of the same drive:` },
-  'o2-h3': { de: `Automatisierungen`, en: `Automations` },
-  'o2-p':  { de: `Wiederkehrende Arbeit rausnehmen: Scripts und KI-Workflows statt Copy-Paste.`, en: `Taking recurring work off your plate: scripts and AI workflows instead of copy-paste.` },
-  'o3-h3': { de: `Datenbanken & Backends`, en: `Databases & Backends` },
-  'o3-p':  { de: `Saubere Datenmodelle, Auth, APIs. Das Fundament, auf dem alles andere steht.`, en: `Clean data models, auth, APIs. The foundation everything else stands on.` },
-  'o4-h3': { de: `SaaS & Plattformen`, en: `SaaS & Platforms` },
-  'o4-p':  { de: `Mandantenfähige Software mit Billing, wie Meizo. Von einem Nutzer bis zu vielen Firmen.`, en: `Multi-tenant software with billing, like Meizo. From one user to many companies.` },
-  'o1-p':  { de: `Web- und mobile Anwendungen, von der ersten Idee bis zur installierbaren PWA.`, en: `Web and mobile applications, from first idea to installable PWA.` },
-  'angebot-note': { de: `Preise bespreche ich individuell je nach Umfang. Passt dein Vorhaben nicht genau in die Liste oben, schreib mir trotzdem:`, en: `Pricing is discussed individually based on scope. If your project doesn't fit exactly into the list above, reach out anyway:` },
-
   'werdegang-eyebrow': { de: `Werdegang`, en: `Background` },
   'werdegang-h2':      { de: `Wie ich das gelernt habe.`, en: `How I learned this.` },
-  'werdegang-sub':     { de: `Ich lerne meistens direkt am Projekt, nicht vorher aus dem Lehrbuch. Codecademy nutze ich, um Lücken gezielt zu schließen und Grundlagen sauber nachzuziehen. Meinen Lernweg — Kurse, Fortschritt, Projekte — kannst du live auf meinem Profil verfolgen.`, en: `I mostly learn directly on the project, not from a textbook beforehand. I use Codecademy to close specific gaps and get the fundamentals right. You can follow my learning path — courses, progress, projects — live on my profile.` },
+  'werdegang-sub':     { de: `Ich mache das, weil ich später beruflich in diese Richtung will — und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken. Deshalb lerne ich nebenbei auf Codecademy. Meinen Fortschritt kannst du live auf meinem Profil sehen.`, en: `I'm doing this because I want a career in this direction later — and I want to actually understand it, not just assemble things superficially with AI. So I'm learning alongside it on Codecademy. You can see my progress live on my profile.` },
   'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
 
   'axis-headline': { de: `Ein Finance-Cockpit, das meine Bank &amp; mein Postfach versteht.`, en: `A finance cockpit that understands my bank &amp; inbox.` },
