@@ -75,7 +75,7 @@ const I18N_INDEX = {
   'werdegang-eyebrow': { de: `Werdegang`, en: `Background` },
   'werdegang-h2':      { de: `Das lerne ich aktuell.`, en: `What I'm learning right now.` },
   'werdegang-sub':     { de: `Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken.`, en: `I'm learning to program right now — on Codecademy, alongside everything else. Because I want a career in this direction and want to actually understand it, not just assemble things superficially with AI.` },
-  'werdegang-link':    { de: `Meinen Fortschritt sehen ↗`, en: `See my progress ↗` },
+  'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
 
   'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
 
