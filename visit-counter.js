@@ -22,8 +22,8 @@
     const lang = document.documentElement.lang === 'en' ? 'en' : 'de';
     const num = new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'de-DE').format(total);
     return lang === 'en'
-      ? num + (total === 1 ? ' visit' : ' visits')
-      : num + ' Besuche';
+      ? 'visited ' + num + (total === 1 ? ' time' : ' times')
+      : num + ' mal besucht';
   }
 
   async function init() {
@@ -43,7 +43,7 @@
       if (typeof data.total !== 'number') return;
 
       el.textContent = formatCount(data.total);
-      el.style.opacity = '';
+      el.classList.add('is-visible');
 
       // Reagiert auf DE/EN-Umschalter (i18n.js löst hierfür kein eigenes
       // Event aus, darum direkt an die vorhandenen Buttons andocken).
