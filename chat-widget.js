@@ -16,7 +16,7 @@
       suggestions: [
         'Was hat er gebaut?',
         'Wie arbeitet er mit KI?',
-        'Gibt es einen Lebenslauf?',
+        'Wie erreiche ich ihn?',
       ],
       error: 'Etwas ist schiefgelaufen. Versuch es gleich nochmal oder schreib direkt: meisam@meizo.de',
       thinking: '…',
@@ -32,7 +32,7 @@
       suggestions: [
         'What has he built?',
         'How does he work with AI?',
-        'Is there a resume?',
+        'How can I reach him?',
       ],
       error: 'Something went wrong. Try again in a moment, or write directly: meisam@meizo.de',
       thinking: '…',
