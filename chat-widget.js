@@ -40,7 +40,11 @@
   };
 
   function currentLang() {
-    return document.documentElement.lang === 'en' || localStorage.getItem('lang') === 'en' ? 'en' : 'de';
+    try {
+      if (document.documentElement.lang === 'en') return 'en';
+      if (localStorage.getItem('site-lang') === 'en') return 'en';
+    } catch (e) {}
+    return 'de';
   }
 
   const css = `
@@ -147,8 +151,8 @@
   }
 
   function buildWidget() {
-    const lang = currentLang();
-    const t = STRINGS[lang];
+    let lang = currentLang();
+    let t = STRINGS[lang];
 
     const launcher = document.createElement('button');
     launcher.className = 'cw-launcher';
@@ -188,10 +192,14 @@
     const input = panel.querySelector('.cw-input');
     const sendBtn = panel.querySelector('.cw-send');
     const closeBtn = panel.querySelector('.cw-close');
+    const launcherLabel = launcher.querySelector('span');
+    const titleEl = panel.querySelector('.cw-head-title');
+    const subEl = panel.querySelector('.cw-head-sub');
 
     const history = []; // {role:'user'|'model', text}
     let sending = false;
     let opened = false;
+    let greetingEl = null;
 
     function addMessage(role, text, opts) {
       const el = document.createElement('div');
@@ -228,6 +236,23 @@
         });
         suggestionsEl.appendChild(b);
       });
+    }
+
+    function applyLang(newLang) {
+      if (newLang !== 'en') newLang = 'de';
+      if (newLang === lang) return;
+      lang = newLang;
+      t = STRINGS[lang];
+
+      launcher.setAttribute('aria-label', t.launcher);
+      if (launcherLabel) launcherLabel.textContent = t.launcher;
+      titleEl.textContent = t.title;
+      subEl.textContent = t.subtitle;
+      closeBtn.setAttribute('aria-label', t.close);
+      input.setAttribute('placeholder', t.placeholder);
+      sendBtn.textContent = t.send;
+      if (greetingEl) greetingEl.innerHTML = formatBotText(t.greeting);
+      if (!history.length) renderSuggestions();
     }
 
     async function sendMessage(text) {
@@ -273,7 +298,7 @@
       launcher.style.display = 'none';
       if (!opened) {
         opened = true;
-        addMessage('bot', t.greeting);
+        greetingEl = addMessage('bot', t.greeting);
         renderSuggestions();
       }
       setTimeout(() => input.focus(), 260);
@@ -297,6 +322,12 @@
     input.addEventListener('input', () => {
       input.style.height = 'auto';
       input.style.height = Math.min(input.scrollHeight, 88) + 'px';
+    });
+
+    // Reagiert live auf den DE/EN-Umschalter in der Nav (i18n.js löst dafür
+    // kein eigenes Event aus, darum direkt an die vorhandenen Buttons andocken).
+    document.querySelectorAll('.lang-switch .lang-opt').forEach((opt) => {
+      opt.addEventListener('click', () => applyLang(opt.dataset.lang));
     });
   }
 
