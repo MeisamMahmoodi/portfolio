@@ -2,7 +2,7 @@
 // "Frag mich etwas"-Widget auf der Portfolio-Seite. Der API-Key bleibt
 // serverseitig in der Env-Variable GEMINI_API_KEY, landet nie im Frontend.
 
-const MODEL = 'gemini-2.5-flash-lite';
+const MODEL = 'gemini-3.5-flash-lite';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
 // Wissen über Meisam — aus den tatsächlichen Site-Inhalten (index.html /
