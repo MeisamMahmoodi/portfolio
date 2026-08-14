@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Meisam</title>
 <style>
   :root{
@@ -161,12 +163,18 @@
     mix-blend-mode:difference;
     color:#fff;
   }
+  /* Logo bekommt eigenes, normales Blending statt des difference-Tricks vom
+     restlichen Nav — sonst würde das eckige Icon auf hellen Sektionen als
+     grober weißer Block aufblitzen statt als sauberes Badge zu bleiben. */
   nav .mark{
     width:34px;height:34px;border-radius:50%;
-    border:1.5px solid #fff;
+    overflow:hidden;
     display:flex;align-items:center;justify-content:center;
-    font-size:13px;font-weight:700;
+    mix-blend-mode:normal;
+    isolation:isolate;
+    flex-shrink:0;
   }
+  nav .mark img{width:100%;height:100%;object-fit:cover;display:block;}
   nav a{
     position:relative;
     color:#fff;
@@ -648,7 +656,7 @@
 <div class="grain"></div>
 
 <nav>
-  <div class="mark"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6L12 14L20 6V18"/></svg></div>
+  <div class="mark"><img src="logo.png" alt="Logo" width="34" height="34"></div>
   <a href="projekte.html" data-i18n="nav-projekte">Projekte ↗</a>
   <a href="#approach" data-i18n="nav-prinzipien">Prinzipien</a>
   <a href="#werdegang" data-i18n="nav-werdegang">Werdegang</a>
