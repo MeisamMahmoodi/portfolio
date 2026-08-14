@@ -99,6 +99,7 @@ const I18N_PROJEKTE = {
   'group-ai-eyebrow': { de: `Kategorie`, en: `Category` },
   'group-ai-title':   { de: `Mit KI gebaut.`, en: `Built with AI.` },
   'group-ai-sub':     { de: `Ich designe, skizziere und treffe die Entscheidungen — gebaut haben sie Claude und ich gemeinsam.`, en: `I design, sketch and make the decisions — Claude and I built them together.` },
+  'group-ai-skip':    { de: `Ohne KI ansehen ↓`, en: `See without AI ↓` },
 
   'group-solo-eyebrow': { de: `Kategorie`, en: `Category` },
   'group-solo-title':   { de: `Nur ich.`, en: `Just me.` },
