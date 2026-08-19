@@ -18,8 +18,8 @@ const I18N_INDEX = {
          <span class="word-wrap"><span class="word" style="--d:160ms;">Meisam.</span></span>`
   },
   'hero-sub': {
-    de: `Mein Weg zum Softwareentwickler — mit KI gebaut, und Schritt für Schritt auch ganz allein.`,
-    en: `My path to becoming a software developer — built with AI, and step by step on my own too.`
+    de: `Mein Weg zum Softwareentwickler.`,
+    en: `My path to becoming a software developer.`
   },
   'scroll-hint': {
     de: `<span>&#8595;</span> Scrollen`,
