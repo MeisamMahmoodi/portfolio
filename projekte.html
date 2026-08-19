@@ -15,6 +15,7 @@
     --line-dark:rgba(10,10,10,0.14);
     --line-light:rgba(244,242,236,0.14);
     --ease:cubic-bezier(0.16,1,0.3,1);
+    --accent:#d69a3c;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -229,6 +230,28 @@
   .browser-bar .bdot.y{background:#febc2e;}
   .browser-bar .bdot.g{background:#28c840;}
   .browser-frame iframe{width:100%;height:520px;border:0;background:#fff;}
+
+  /* Karten-Look angelehnt an Codecademy-Kurskarten (Badge oben, Titel,
+     Beschreibung, Meta-Zeile unten) — für die "Nur ich"-Lernprojekte. */
+  .course-card{
+    display:block;max-width:340px;
+    background:var(--black);color:var(--white);
+    border:1px solid rgba(244,242,236,0.14);border-radius:14px;
+    padding:1.4rem 1.5rem 1.2rem;text-decoration:none;
+    transition:transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .course-card:hover{transform:translateY(-4px);border-color:rgba(214,154,60,0.55);box-shadow:0 16px 32px -16px rgba(0,0,0,0.5);}
+  .course-card-badge{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+    background:var(--accent);color:#191305;padding:0.32rem 0.75rem;border-radius:99px;margin-bottom:1rem;
+  }
+  .course-card-title{font-size:20px;font-weight:700;margin-bottom:0.5rem;}
+  .course-card-desc{font-size:13px;line-height:1.6;opacity:0.7;}
+  .course-card-meta{
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;
+    margin-top:1.2rem;padding-top:0.9rem;border-top:1px dashed rgba(244,242,236,0.18);
+    font-size:11px;opacity:0.55;
+  }
 
   .close{padding:14vh 8vw;text-align:center;}
   .close .name{font-size:clamp(32px,6vw,60px);font-weight:700;letter-spacing:-0.02em;}
@@ -477,21 +500,18 @@
   <div class="intro-title reveal" style="--d:80ms;font-size:clamp(26px,4vw,40px);" data-i18n="group-solo-title">Nur ich.</div>
   <div class="intro-sub reveal" style="--d:160ms;" data-i18n="group-solo-sub">Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch kleine Übungen, aber das erste eigene Ergebnis kannst du unten direkt ausprobieren. Weiteren Fortschritt siehst du live auf meinem Codecademy-Profil.</div>
 
-  <div class="proj-head reveal" style="--d:200ms;margin-top:2.6rem;"><span class="proj-num" data-i18n="todo-num">Übung · JavaScript</span></div>
-  <div class="proj-name reveal" style="--d:220ms;font-size:clamp(28px,5vw,48px);">To-Do-Liste</div>
-  <div class="proj-tagline reveal" style="--d:240ms;" data-i18n="todo-tagline">Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.</div>
+  <a class="course-card reveal" href="demos/todo/index.html" target="_blank" rel="noopener" style="--d:220ms;margin-top:2.4rem;">
+    <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
+    <div class="course-card-title">To-Do-Liste</div>
+    <div class="course-card-desc" data-i18n="todo-tagline">Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.</div>
+    <div class="course-card-meta">
+      <span>HTML · CSS · JavaScript</span>
+      <span data-i18n="todo-meta-first">Erstes Projekt</span>
+    </div>
+  </a>
 
-  <div class="demo-embed reveal" style="--d:280ms;max-width:480px;height:440px;background:#0a0a0a;">
-    <div class="demo-overlay"><span data-i18n="crm-overlay">Klicken zum Interagieren</span></div>
-    <iframe src="demos/todo/index.html" title="To-Do-Liste Demo" loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
-  </div>
-
-  <div class="proj-links reveal" style="--d:320ms;margin-top:1.4rem;">
-    <a class="proj-link" href="demos/todo/index.html" target="_blank" rel="noopener" data-i18n="todo-link-open">Vollbild öffnen ↗</a>
+  <div class="proj-links reveal" style="--d:260ms;margin-top:1.4rem;">
     <a class="proj-link" href="https://github.com/MeisamMahmoodi/portfolio/tree/master/demos/todo" target="_blank" rel="noopener" data-i18n="todo-link-source">Quellcode ansehen ↗</a>
-  </div>
-
-  <div class="proj-links reveal" style="--d:360ms;margin-top:1rem;">
     <a class="proj-link" href="https://www.codecademy.com/profiles/Meisam.dev" target="_blank" rel="noopener" data-i18n="group-solo-link">Codecademy-Profil ↗</a>
   </div>
 </div>

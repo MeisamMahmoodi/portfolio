@@ -613,6 +613,32 @@
   .offer-note a{color:inherit;padding-bottom:1px;border-bottom:1px solid currentColor;opacity:0.85;transition:opacity .3s var(--ease);}
   .offer-note a:hover{opacity:1;}
 
+  /* Karten-Look angelehnt an Codecademy-Kurskarten (Badge oben, Titel,
+     Beschreibung, Meta-Zeile unten) — für die "Nur ich"-Lernprojekte. */
+  .werdegang-projects-heading{
+    font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+    opacity:0.6;margin-top:2.8rem;margin-bottom:1.2rem;
+  }
+  .course-card{
+    display:block;max-width:340px;
+    background:var(--black);color:var(--white);
+    border:1px solid rgba(244,242,236,0.14);border-radius:14px;
+    padding:1.4rem 1.5rem 1.2rem;text-decoration:none;
+    transition:transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  }
+  .course-card:hover{transform:translateY(-4px);border-color:rgba(214,154,60,0.55);box-shadow:0 16px 32px -16px rgba(0,0,0,0.5);}
+  .course-card-badge{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+    background:var(--accent);color:#191305;padding:0.32rem 0.75rem;border-radius:99px;margin-bottom:1rem;
+  }
+  .course-card-title{font-size:20px;font-weight:700;margin-bottom:0.5rem;}
+  .course-card-desc{font-size:13px;line-height:1.6;opacity:0.7;}
+  .course-card-meta{
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;
+    margin-top:1.2rem;padding-top:0.9rem;border-top:1px dashed rgba(244,242,236,0.18);
+    font-size:11px;opacity:0.55;
+  }
+
   .close{
     align-items:center;
     text-align:center;
@@ -747,6 +773,17 @@
   <div class="link-row reveal" style="--d:180ms;">
     <a class="embed-link" href="https://www.codecademy.com/profiles/Meisam.dev" target="_blank" rel="noopener" data-i18n="werdegang-link">Codecademy-Profil ↗</a>
   </div>
+
+  <div class="werdegang-projects-heading reveal" style="--d:220ms;" data-i18n="werdegang-projects-heading">Meine Lernprojekte ohne KI</div>
+  <a class="course-card reveal" href="demos/todo/index.html" target="_blank" rel="noopener" style="--d:260ms;">
+    <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
+    <div class="course-card-title">To-Do-Liste</div>
+    <div class="course-card-desc" data-i18n="todo-tagline">Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.</div>
+    <div class="course-card-meta">
+      <span>HTML · CSS · JavaScript</span>
+      <span data-i18n="todo-meta-first">Erstes Projekt</span>
+    </div>
+  </a>
   </div>
 </section>
 
