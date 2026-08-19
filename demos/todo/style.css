@@ -1,0 +1,14 @@
+body {
+  background: #000;
+  color: #fff;
+  padding: 25px;
+  font-family: arial, sans-serif;
+}
+
+#addTodo:hover {
+  cursor: pointer;
+}
+
+#todoList:hover {
+  cursor: courser;
+}

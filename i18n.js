@@ -103,8 +103,12 @@ const I18N_PROJEKTE = {
 
   'group-solo-eyebrow': { de: `Kategorie`, en: `Category` },
   'group-solo-title':   { de: `Nur ich.`, en: `Just me.` },
-  'group-solo-sub':     { de: `Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch keine großen Projekte, sondern eigene Übungen. Meinen Fortschritt siehst du live auf meinem Codecademy-Profil.`, en: `This is where I'm actually learning to program myself — no AI involved. No big projects yet, just my own exercises. You can see my progress live on my Codecademy profile.` },
+  'group-solo-sub':     { de: `Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch kleine Übungen, aber das erste eigene Ergebnis kannst du unten direkt ausprobieren. Weiteren Fortschritt siehst du live auf meinem Codecademy-Profil.`, en: `This is where I'm actually learning to program myself — no AI involved. Still small exercises, but you can try out my first real result below. You can see further progress live on my Codecademy profile.` },
   'group-solo-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
+  'todo-num':           { de: `Übung · JavaScript`, en: `Exercise · JavaScript` },
+  'todo-tagline':       { de: `Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.`, en: `My first own app — plain HTML, CSS and JavaScript, entirely written by myself, no AI involved.` },
+  'todo-link-open':     { de: `Vollbild öffnen ↗`, en: `Open fullscreen ↗` },
+  'todo-link-source':   { de: `Quellcode ansehen ↗`, en: `View source code ↗` },
 
   'group-more-eyebrow': { de: `Außerdem`, en: `Also` },
   'group-more-sub':     { de: `Zwei weitere Experimente, aus der Haupt-Auswahl raus, aber noch da.`, en: `Two more experiments — outside the main selection, but still here.` },
