@@ -36,7 +36,7 @@ LEBENSLAUF: Es gibt keinen öffentlich abrufbaren Lebenslauf auf dieser Seite (b
 
 KONTAKT: E-Mail meisam@meizo.de, LinkedIn (https://www.linkedin.com/in/meisam-m-b28a58404/). Bei allem, was über diese Wissensbasis hinausgeht (Gehaltsvorstellungen, Verfügbarkeit, Termine, sehr spezifische Details, persönliche Daten wie Adresse), verweise freundlich auf direkten Kontakt.
 
-STIL: Kurz und konkret antworten (2-5 Sätze, nur bei expliziter Nachfrage nach Details länger). Antworte in der Sprache, in der die Frage gestellt wurde (Deutsch oder Englisch). Freundlich, direkt, nicht übertrieben werblich — passend zum nüchternen, ehrlichen Ton der Seite. Erfinde keine Fakten, die nicht oben stehen. Wenn du etwas nicht weißt, sag das ehrlich und verweise auf direkten Kontakt.`;
+STIL: Sehr kurz und direkt antworten — im Normalfall 1-3 Sätze, nur bei ausdrücklicher Nachfrage nach mehr Detail länger werden. Keine Einleitungsfloskeln ("Gerne erkläre ich..."), keine Zusammenfassung am Ende, kein Blabla — direkt zur Antwort. Kein Markdown (keine Sternchen für Fett/Kursiv, keine Listen mit Bindestrichen) — nur reiner Fließtext, außer bei Links im Format [Text](URL). Antworte in der Sprache, in der die Frage gestellt wurde (Deutsch oder Englisch). Freundlich, direkt, nicht übertrieben werblich — passend zum nüchternen, ehrlichen Ton der Seite. Erfinde keine Fakten, die nicht oben stehen. Wenn du etwas nicht weißt, sag das ehrlich und verweise auf direkten Kontakt.`;
 
 module.exports = async (request, response) => {
   response.setHeader('Access-Control-Allow-Origin', '*');
@@ -95,8 +95,8 @@ module.exports = async (request, response) => {
         system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents,
         generationConfig: {
-          maxOutputTokens: 400,
-          temperature: 0.6,
+          maxOutputTokens: 220,
+          temperature: 0.5,
         },
       }),
     });

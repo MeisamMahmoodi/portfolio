@@ -1063,8 +1063,9 @@
     return Math.min(Math.max(-r.top / vh, 0), 1);
   }
 
-  let rafId = null;
+  let rafId = null, running = false;
   function tick(){
+    if (!running) return;
     const p = scrollTilt();
     ry += (targetRy - ry) * 0.08;
     rx += (targetRx - rx) * 0.08;
@@ -1074,11 +1075,34 @@
     heroName.style.opacity = String(1 - p * 0.9);
     rafId = requestAnimationFrame(tick);
   }
-  tick();
+  function start(){
+    if (running) return;
+    running = true;
+    tick();
+  }
+  function stop(){
+    running = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+
+  /* Läuft nur, solange die Hero-Section überhaupt im Viewport ist — sonst
+     würde der rAF-Loop (mit erzwungenem Layout-Reflow pro Frame durch
+     getBoundingClientRect) permanent im Hintergrund weiterlaufen, auch
+     wenn man längst in einer anderen Section ist. Das kostete auf dem
+     Handy spürbar Haupt-Thread-Zeit und ließ z.B. Tippen im Chat-Eingabefeld
+     verzögert erscheinen. */
+  const visObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { entry.isIntersecting ? start() : stop(); });
+  }, { threshold: 0.05 });
+  visObserver.observe(heroSection);
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden && rafId) { cancelAnimationFrame(rafId); rafId = null; }
-    else if (!document.hidden && !rafId) { tick(); }
+    if (document.hidden) stop();
+    else {
+      const r = heroSection.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) start();
+    }
   });
 })();
 </script>
