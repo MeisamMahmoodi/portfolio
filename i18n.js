@@ -5,7 +5,6 @@
 
 const I18N_INDEX = {
   'nav-projekte':   { de: `Projekte ↗`, en: `Projects ↗` },
-  'nav-prinzipien': { de: `Prinzipien`, en: `Principles` },
   'nav-werdegang':  { de: `Werdegang`, en: `Background` },
   'nav-alle':       { de: `Alle im Detail ↗`, en: `All in detail ↗` },
 
@@ -59,18 +58,6 @@ const I18N_INDEX = {
   'meizo-cap-checkin':     { de: `<strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.`, en: `<strong>Time tracking</strong>GPS check-in and check-out in the employee app.` },
   'meizo-cap-abrechnung':  { de: `<strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.`, en: `<strong>Billing</strong>Ready-made CSV export with GPS-verified hours for DATEV (German payroll).` },
 
-  'prinzipien-eyebrow': { de: `Prinzipien`, en: `Principles` },
-  'prinzipien-h2':      { de: `Wie ich mit KI baue.`, en: `How I build with AI.` },
-  'p1-h3': { de: `Eigener Bedarf`, en: `My own need` },
-  'p1-p':  { de: `Ich baue Apps für meine eigenen Probleme, wenn es auf dem Markt keine passende Lösung gibt.`, en: `I build apps for my own problems when there's no good solution on the market.` },
-  'p2-h3': { de: `Learning by Doing`, en: `Learning by doing` },
-  'p2-p':  { de: `Ich setze Ideen direkt um und lerne das, was ich brauche, während des Programmierens.`, en: `I put ideas into action right away and learn what I need while coding.` },
-  'p3-h3': { de: `KI-Nutzung`, en: `Using AI` },
-  'p3-p':  { de: `Ich nutze Claude zum Schreiben des Codes, teste jedes Ergebnis selbst und behalte die Kontrolle.`, en: `I use Claude to write the code, test every result myself, and stay in control.` },
-  'p4-h3': { de: `Inspiration`, en: `Inspiration` },
-  'p4-p':  { de: `Zur Inspiration nutze ich Pinterest und eigene Ideen.`, en: `For inspiration I use Pinterest and my own ideas.` },
-  'p5-h3': { de: `Fokus`, en: `Focus` },
-  'p5-p':  { de: `Fokus und eine feste tägliche Routine halten das Projekt am Laufen.`, en: `Focus and a fixed daily routine keep the project moving.` },
 
   'werdegang-eyebrow': { de: `Werdegang`, en: `Background` },
   'werdegang-h2':      { de: `Das lerne ich aktuell.`, en: `What I'm learning right now.` },
