@@ -19,8 +19,8 @@ const I18N_INDEX = {
          <span class="word-wrap"><span class="word" style="--d:160ms;">Meisam.</span></span>`
   },
   'hero-sub': {
-    de: `Fehlt mir eine App, bau ich sie mir selbst. Ein paar Beispiele davon findest du hier.`,
-    en: `If an app doesn't exist, I build it myself. Here are a few examples.`
+    de: `Mein Weg zum Softwareentwickler — mit KI gebaut, und Schritt für Schritt auch ganz allein.`,
+    en: `My path to becoming a software developer — built with AI, and step by step on my own too.`
   },
   'scroll-hint': {
     de: `<span>&#8595;</span> Scrollen`,
