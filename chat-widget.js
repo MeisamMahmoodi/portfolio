@@ -128,6 +128,13 @@
     transition:opacity .2s;
   }
   .cw-send:disabled{opacity:0.45;cursor:default;}
+
+  /* iOS zoomt beim Fokussieren automatisch rein, wenn ein Eingabefeld eine
+     Schriftgröße unter 16px hat — auf Mobile daher hier gezielt auf 16px
+     angehoben, damit der Tap ins Feld keinen Zoom mehr auslöst. */
+  @media (max-width:640px){
+    .cw-input{font-size:16px;}
+  }
   `;
 
   function injectStyles() {
