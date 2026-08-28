@@ -233,8 +233,9 @@
 
   /* Karten-Look angelehnt an Codecademy-Kurskarten (Badge oben, Titel,
      Beschreibung, Meta-Zeile unten) — für die "Nur ich"-Lernprojekte. */
+  .course-card-row{display:flex;flex-wrap:wrap;gap:1.2rem;}
   .course-card{
-    display:block;max-width:340px;
+    display:block;max-width:340px;flex:1 1 280px;
     background:var(--black);color:var(--white);
     border:1px solid rgba(244,242,236,0.14);border-radius:14px;
     padding:1.4rem 1.5rem 1.2rem;text-decoration:none;
@@ -300,18 +301,30 @@
   <div class="intro-title reveal" style="--d:80ms;font-size:clamp(26px,4vw,40px);" data-i18n="group-solo-title">Nur ich.</div>
   <div class="intro-sub reveal" style="--d:160ms;" data-i18n="group-solo-sub">Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch kleine Übungen, aber das erste eigene Ergebnis kannst du unten direkt ausprobieren. Weiteren Fortschritt siehst du live auf meinem Codecademy-Profil.</div>
 
-  <a class="course-card reveal" href="demos/todo/view.html" target="_blank" rel="noopener" style="--d:220ms;margin-top:2.4rem;">
-    <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
-    <div class="course-card-title">To-Do-Liste</div>
-    <div class="course-card-desc" data-i18n="todo-tagline">Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.</div>
-    <div class="course-card-meta">
-      <span>HTML · CSS · JavaScript</span>
-      <span data-i18n="todo-meta-first">Erstes Projekt</span>
-    </div>
-  </a>
+  <div class="course-card-row reveal" style="--d:220ms;margin-top:2.4rem;">
+    <a class="course-card" href="demos/todo/view.html" target="_blank" rel="noopener">
+      <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
+      <div class="course-card-title">To-Do-Liste</div>
+      <div class="course-card-desc" data-i18n="todo-tagline">Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.</div>
+      <div class="course-card-meta">
+        <span>HTML · CSS · JavaScript</span>
+        <span data-i18n="todo-meta-first">Erstes Projekt</span>
+      </div>
+    </a>
+    <a class="course-card" href="demos/notizen/view.html" target="_blank" rel="noopener">
+      <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
+      <div class="course-card-title">Notizen</div>
+      <div class="course-card-desc" data-i18n="notizen-tagline">Notizen-App mit React (useState, Vite) — Notizen hinzufügen und löschen, komplett selbst geschrieben, ganz ohne KI.</div>
+      <div class="course-card-meta">
+        <span>React · Vite</span>
+        <span data-i18n="notizen-meta-second">Zweites Projekt</span>
+      </div>
+    </a>
+  </div>
 
   <div class="proj-links reveal" style="--d:260ms;margin-top:1.4rem;">
-    <a class="proj-link" href="https://github.com/MeisamMahmoodi/portfolio/tree/master/demos/todo" target="_blank" rel="noopener" data-i18n="todo-link-source">Quellcode ansehen ↗</a>
+    <a class="proj-link" href="https://github.com/MeisamMahmoodi/portfolio/tree/master/demos/todo" target="_blank" rel="noopener" data-i18n="todo-link-source">To-Do — Quellcode ↗</a>
+    <a class="proj-link" href="https://github.com/MeisamMahmoodi/portfolio/tree/master/demos/notizen" target="_blank" rel="noopener" data-i18n="notizen-link-source">Notizen — Quellcode ↗</a>
     <a class="proj-link" href="https://www.codecademy.com/profiles/Meisam.dev" target="_blank" rel="noopener" data-i18n="group-solo-link">Codecademy-Profil ↗</a>
   </div>
 </div>

@@ -63,6 +63,12 @@ const I18N_INDEX = {
   'werdegang-h2':      { de: `Das lerne ich aktuell.`, en: `What I'm learning right now.` },
   'werdegang-sub':     { de: `Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken.`, en: `I'm learning to program right now — on Codecademy, alongside everything else. Because I want a career in this direction and want to actually understand it, not just assemble things superficially with AI.` },
   'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
+  'werdegang-projects-heading': { de: `Meine Lernprojekte ohne KI`, en: `My learning projects without AI` },
+  'todo-badge':      { de: `Übung · Ohne KI`, en: `Exercise · No AI` },
+  'todo-tagline':    { de: `Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.`, en: `My first own app — plain HTML, CSS and JavaScript, entirely written by myself, no AI involved.` },
+  'todo-meta-first': { de: `Erstes Projekt`, en: `First project` },
+  'notizen-tagline':      { de: `Notizen-App mit React (useState, Vite) — Notizen hinzufügen und löschen, komplett selbst geschrieben, ganz ohne KI.`, en: `Notes app built with React (useState, Vite) — add and delete notes, entirely written by myself, no AI involved.` },
+  'notizen-meta-second':  { de: `Zweites Projekt`, en: `Second project` },
 
   'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
 
@@ -92,9 +98,12 @@ const I18N_PROJEKTE = {
   'group-solo-sub':     { de: `Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch kleine Übungen, aber das erste eigene Ergebnis kannst du unten direkt ausprobieren. Weiteren Fortschritt siehst du live auf meinem Codecademy-Profil.`, en: `This is where I'm actually learning to program myself — no AI involved. Still small exercises, but you can try out my first real result below. You can see further progress live on my Codecademy profile.` },
   'group-solo-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
   'todo-tagline':       { de: `Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.`, en: `My first own app — plain HTML, CSS and JavaScript, entirely written by myself, no AI involved.` },
-  'todo-link-source':   { de: `Quellcode ansehen ↗`, en: `View source code ↗` },
+  'todo-link-source':   { de: `To-Do — Quellcode ↗`, en: `To-Do — source code ↗` },
   'todo-badge':         { de: `Übung · Ohne KI`, en: `Exercise · No AI` },
   'todo-meta-first':    { de: `Erstes Projekt`, en: `First project` },
+  'notizen-tagline':    { de: `Notizen-App mit React (useState, Vite) — Notizen hinzufügen und löschen, komplett selbst geschrieben, ganz ohne KI.`, en: `Notes app built with React (useState, Vite) — add and delete notes, entirely written by myself, no AI involved.` },
+  'notizen-link-source':{ de: `Notizen — Quellcode ↗`, en: `Notes — source code ↗` },
+  'notizen-meta-second':{ de: `Zweites Projekt`, en: `Second project` },
   'werdegang-projects-heading': { de: `Meine Lernprojekte ohne KI`, en: `My learning projects without AI` },
 
   'group-more-eyebrow': { de: `Außerdem`, en: `Also` },

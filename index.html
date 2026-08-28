@@ -613,8 +613,9 @@
     font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
     opacity:0.6;margin-top:2.8rem;margin-bottom:1.2rem;
   }
+  .course-card-row{display:flex;flex-wrap:wrap;gap:1.2rem;}
   .course-card{
-    display:block;max-width:340px;
+    display:block;max-width:340px;flex:1 1 280px;
     background:var(--black);color:var(--white);
     border:1px solid rgba(244,242,236,0.14);border-radius:14px;
     padding:1.4rem 1.5rem 1.2rem;text-decoration:none;
@@ -732,15 +733,26 @@
   </div>
 
   <div class="werdegang-projects-heading reveal" style="--d:220ms;" data-i18n="werdegang-projects-heading">Meine Lernprojekte ohne KI</div>
-  <a class="course-card reveal" href="demos/todo/view.html" target="_blank" rel="noopener" style="--d:260ms;">
-    <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
-    <div class="course-card-title">To-Do-Liste</div>
-    <div class="course-card-desc" data-i18n="todo-tagline">Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.</div>
-    <div class="course-card-meta">
-      <span>HTML · CSS · JavaScript</span>
-      <span data-i18n="todo-meta-first">Erstes Projekt</span>
-    </div>
-  </a>
+  <div class="course-card-row reveal" style="--d:260ms;">
+    <a class="course-card" href="demos/todo/view.html" target="_blank" rel="noopener">
+      <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
+      <div class="course-card-title">To-Do-Liste</div>
+      <div class="course-card-desc" data-i18n="todo-tagline">Meine erste eigene App — reines HTML, CSS und JavaScript, komplett selbst geschrieben, ganz ohne KI.</div>
+      <div class="course-card-meta">
+        <span>HTML · CSS · JavaScript</span>
+        <span data-i18n="todo-meta-first">Erstes Projekt</span>
+      </div>
+    </a>
+    <a class="course-card" href="demos/notizen/view.html" target="_blank" rel="noopener">
+      <div class="course-card-badge" data-i18n="todo-badge">Übung · Ohne KI</div>
+      <div class="course-card-title">Notizen</div>
+      <div class="course-card-desc" data-i18n="notizen-tagline">Notizen-App mit React (useState, Vite) — Notizen hinzufügen und löschen, komplett selbst geschrieben, ganz ohne KI.</div>
+      <div class="course-card-meta">
+        <span>React · Vite</span>
+        <span data-i18n="notizen-meta-second">Zweites Projekt</span>
+      </div>
+    </a>
+  </div>
   </div>
 </section>
 
