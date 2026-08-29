@@ -30,7 +30,7 @@ Weitere, kleinere Experimente (nicht im Hauptfokus, aber erwähnbar wenn gefragt
 - MOL: minimales eigenes Spotify-Interface, OAuth PKCE, Vanilla JS.
 
 NUR ICH (ohne KI, auf Codecademy):
-Hier lernt er gerade, wirklich selbst zu programmieren, ganz ohne KI-Unterstützung. Zwei eigene Ergebnisse bisher: eine To-Do-Liste (reines HTML/CSS/JavaScript — Aufgaben hinzufügen, per Klick abhaken, per Doppelklick löschen) und eine Notizen-App mit React (useState, Vite — Notizen hinzufügen und löschen). Beide direkt auf der Projekte-Seite ausprobierbar, Quellcode öffentlich auf GitHub einsehbar. Weiterer Fortschritt live auf seinem Codecademy-Profil: https://www.codecademy.com/profiles/Meisam.dev
+Hier lernt er gerade, wirklich selbst zu programmieren, ganz ohne KI-Unterstützung. Drei eigene Ergebnisse bisher: eine To-Do-Liste (reines HTML/CSS/JavaScript — Aufgaben hinzufügen, per Klick abhaken, per Doppelklick löschen), eine Notizen-App mit React (useState, Vite — Notizen hinzufügen und löschen) und MoviePicker mit React (useState, Vite, Fetch gegen die OMDb-API — Filme live suchen, Ergebnis anklicken für Details). Alle drei direkt auf der Projekte-Seite ausprobierbar, Quellcode öffentlich auf GitHub einsehbar. Weiterer Fortschritt live auf seinem Codecademy-Profil: https://www.codecademy.com/profiles/Meisam.dev
 
 LEBENSLAUF: Es gibt keinen öffentlich abrufbaren Lebenslauf auf dieser Seite (bewusst, aus Datenschutzgründen — Adresse und Werdegang sollen nicht für jeden Besucher einsehbar sein). Wenn danach gefragt wird, erkläre das kurz und verweise darauf, dass er den Lebenslauf bei einer konkreten Bewerbung direkt mitschickt. Erfinde keinen Link.
 

@@ -69,6 +69,8 @@ const I18N_INDEX = {
   'todo-meta-first': { de: `Erstes Projekt`, en: `First project` },
   'notizen-tagline':      { de: `Notizen-App mit React (useState, Vite) — Notizen hinzufügen und löschen, komplett selbst geschrieben, ganz ohne KI.`, en: `Notes app built with React (useState, Vite) — add and delete notes, entirely written by myself, no AI involved.` },
   'notizen-meta-second':  { de: `Zweites Projekt`, en: `Second project` },
+  'moviepicker-tagline':  { de: `Filmsuche mit React (useState, Vite) — Live-Suche gegen die OMDb-API, Ergebnisse anklicken für Details, komplett selbst geschrieben, ganz ohne KI.`, en: `Movie search built with React (useState, Vite) — live search against the OMDb API, click a result for details, entirely written by myself, no AI involved.` },
+  'moviepicker-meta-third': { de: `Drittes Projekt`, en: `Third project` },
 
   'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
 
@@ -104,6 +106,9 @@ const I18N_PROJEKTE = {
   'notizen-tagline':    { de: `Notizen-App mit React (useState, Vite) — Notizen hinzufügen und löschen, komplett selbst geschrieben, ganz ohne KI.`, en: `Notes app built with React (useState, Vite) — add and delete notes, entirely written by myself, no AI involved.` },
   'notizen-link-source':{ de: `Notizen — Quellcode ↗`, en: `Notes — source code ↗` },
   'notizen-meta-second':{ de: `Zweites Projekt`, en: `Second project` },
+  'moviepicker-tagline':    { de: `Filmsuche mit React (useState, Vite) — Live-Suche gegen die OMDb-API, Ergebnisse anklicken für Details, komplett selbst geschrieben, ganz ohne KI.`, en: `Movie search built with React (useState, Vite) — live search against the OMDb API, click a result for details, entirely written by myself, no AI involved.` },
+  'moviepicker-link-source':{ de: `MoviePicker — Quellcode ↗`, en: `MoviePicker — source code ↗` },
+  'moviepicker-meta-third': { de: `Drittes Projekt`, en: `Third project` },
   'werdegang-projects-heading': { de: `Meine Lernprojekte ohne KI`, en: `My learning projects without AI` },
 
   'group-more-eyebrow': { de: `Außerdem`, en: `Also` },
