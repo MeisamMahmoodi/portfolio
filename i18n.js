@@ -71,6 +71,8 @@ const I18N_INDEX = {
   'notizen-meta-second':  { de: `Zweites Projekt`, en: `Second project` },
   'moviepicker-tagline':  { de: `Filmsuche mit React (useState, Vite) — Live-Suche gegen die OMDb-API, Ergebnisse anklicken für Details, komplett selbst geschrieben, ganz ohne KI.`, en: `Movie search built with React (useState, Vite) — live search against the OMDb API, click a result for details, entirely written by myself, no AI involved.` },
   'moviepicker-meta-third': { de: `Drittes Projekt`, en: `Third project` },
+  'weatherapp-tagline':    { de: `Wetter-App mit React (useState, useEffect, Vite) — Stadt eingeben, aktuelles Wetter über die OpenWeatherMap-API abrufen, komplett selbst geschrieben, ganz ohne KI.`, en: `Weather app built with React (useState, useEffect, Vite) — enter a city, fetch current weather via the OpenWeatherMap API, entirely written by myself, no AI involved.` },
+  'weatherapp-meta-fourth': { de: `Viertes Projekt`, en: `Fourth project` },
 
   'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
 
@@ -109,6 +111,9 @@ const I18N_PROJEKTE = {
   'moviepicker-tagline':    { de: `Filmsuche mit React (useState, Vite) — Live-Suche gegen die OMDb-API, Ergebnisse anklicken für Details, komplett selbst geschrieben, ganz ohne KI.`, en: `Movie search built with React (useState, Vite) — live search against the OMDb API, click a result for details, entirely written by myself, no AI involved.` },
   'moviepicker-link-source':{ de: `MoviePicker — Quellcode ↗`, en: `MoviePicker — source code ↗` },
   'moviepicker-meta-third': { de: `Drittes Projekt`, en: `Third project` },
+  'weatherapp-tagline':      { de: `Wetter-App mit React (useState, useEffect, Vite) — Stadt eingeben, aktuelles Wetter über die OpenWeatherMap-API abrufen, komplett selbst geschrieben, ganz ohne KI.`, en: `Weather app built with React (useState, useEffect, Vite) — enter a city, fetch current weather via the OpenWeatherMap API, entirely written by myself, no AI involved.` },
+  'weatherapp-link-source':  { de: `Wetter App — Quellcode ↗`, en: `Weather app — source code ↗` },
+  'weatherapp-meta-fourth':  { de: `Viertes Projekt`, en: `Fourth project` },
   'werdegang-projects-heading': { de: `Meine Lernprojekte ohne KI`, en: `My learning projects without AI` },
 
   'group-more-eyebrow': { de: `Außerdem`, en: `Also` },
