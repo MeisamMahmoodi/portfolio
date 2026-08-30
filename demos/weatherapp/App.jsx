@@ -26,7 +26,7 @@ function App() {
       {city && (
         <>
           <h1>{city.name}</h1>
-        <h2>{city.main.temp}</h2>
+        <h2>{Math.round(city.main.temp)} ° Celsius</h2>
           <p>{city.weather[0].description}</p>
         </>
       )}
