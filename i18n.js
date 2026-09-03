@@ -120,6 +120,7 @@ const I18N_PROJEKTE = {
   'leadflow-badge':          { de: `Eigenes Projekt · CSS mit KI`, en: `Own project · CSS with AI` },
   'leadflow-tagline':        { de: `Kleines Lead-Management mit React und TypeScript: Leads anlegen, suchen, bearbeiten und löschen. Das CSS ist bewusst schlicht und mit KI entstanden — mein Fokus lag auf der Programmierlogik.`, en: `A small lead-management app built with React and TypeScript: add, search, edit and delete leads. The CSS is deliberately simple and was created with AI — my focus was on the programming logic.` },
   'leadflow-meta':           { de: `Programmierung im Fokus`, en: `Programming-focused` },
+  'leadflow-link-source':    { de: `LeadFlow — Quellcode ↗`, en: `LeadFlow — source code ↗` },
   'werdegang-projects-heading': { de: `Meine Lernprojekte ohne KI`, en: `My learning projects without AI` },
 
   'group-more-eyebrow': { de: `Außerdem`, en: `Also` },
