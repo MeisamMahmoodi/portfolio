@@ -63,7 +63,7 @@ const I18N_INDEX = {
   'werdegang-h2':      { de: `Das lerne ich aktuell.`, en: `What I'm learning right now.` },
   'werdegang-sub':     { de: `Ich lerne gerade programmieren — auf Codecademy, nebenbei. Weil ich später beruflich in diese Richtung will und es wirklich verstehen möchte, nicht nur oberflächlich mit KI zusammenklicken.`, en: `I'm learning to program right now — on Codecademy, alongside everything else. Because I want a career in this direction and want to actually understand it, not just assemble things superficially with AI.` },
   'werdegang-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
-  'werdegang-projects-heading': { de: `Meine Lernprojekte ohne KI`, en: `My learning projects without AI` },
+  'werdegang-projects-heading': { de: `Meine Lernprojekte`, en: `My learning projects` },
   'todo-badge':      { de: `Übung · Ohne KI`, en: `Exercise · No AI` },
   'todo-tagline':    { de: `Meine erste eigene App — reines HTML, CSS und JavaScript.`, en: `My first own app — plain HTML, CSS and JavaScript.` },
   'todo-meta-first': { de: `Erstes Projekt`, en: `First project` },
@@ -73,6 +73,9 @@ const I18N_INDEX = {
   'moviepicker-meta-third': { de: `Drittes Projekt`, en: `Third project` },
   'weatherapp-tagline':    { de: `Wetter-App mit React (useState, useEffect, Vite) — Stadt eingeben, aktuelles Wetter über die OpenWeatherMap-API abrufen.`, en: `Weather app built with React (useState, useEffect, Vite) — enter a city, fetch current weather via the OpenWeatherMap API.` },
   'weatherapp-meta-fourth': { de: `Viertes Projekt`, en: `Fourth project` },
+  'leadflow-badge': { de: `Eigenes Projekt · CSS mit KI`, en: `Own project · CSS with AI` },
+  'leadflow-tagline': { de: `Kleines Lead-Management mit React und TypeScript: Leads anlegen, suchen, bearbeiten und löschen. Das CSS ist bewusst schlicht und mit KI entstanden — mein Fokus lag auf der Programmierlogik.`, en: `A small lead-management app built with React and TypeScript: add, search, edit and delete leads. The CSS is deliberately simple and was created with AI — my focus was on the programming logic.` },
+  'leadflow-meta': { de: `Programmierung im Fokus`, en: `Programming-focused` },
 
   'kontakt-eyebrow': { de: `Kontakt`, en: `Contact` },
 
@@ -98,8 +101,8 @@ const I18N_PROJEKTE = {
   'group-ai-sub':     { de: `Ich designe, skizziere und treffe die Entscheidungen — gebaut haben sie Claude und ich gemeinsam.`, en: `I design, sketch and make the decisions — Claude and I built them together.` },
 
   'group-solo-eyebrow': { de: `Kategorie`, en: `Category` },
-  'group-solo-title':   { de: `Nur ich.`, en: `Just me.` },
-  'group-solo-sub':     { de: `Hier lerne ich gerade, wirklich selbst zu programmieren — ganz ohne KI. Noch kleine Übungen, aber das erste eigene Ergebnis kannst du unten direkt ausprobieren. Weiteren Fortschritt siehst du live auf meinem Codecademy-Profil.`, en: `This is where I'm actually learning to program myself — no AI involved. Still small exercises, but you can try out my first real result below. You can see further progress live on my Codecademy profile.` },
+  'group-solo-title':   { de: `Eigene Lernprojekte.`, en: `My own learning projects.` },
+  'group-solo-sub':     { de: `Hier lerne ich, wirklich selbst zu programmieren. Die ersten vier Übungen sind ganz ohne KI entstanden; bei LeadFlow ist nur das schlichte CSS mit KI entstanden — der Fokus lag auf meiner Programmierlogik.`, en: `This is where I'm learning to program for real. The first four exercises were made without AI; for LeadFlow, only the simple CSS was created with AI — my focus was on the programming logic.` },
   'group-solo-link':    { de: `Codecademy-Profil ↗`, en: `Codecademy Profile ↗` },
   'todo-tagline':       { de: `Meine erste eigene App — reines HTML, CSS und JavaScript.`, en: `My first own app — plain HTML, CSS and JavaScript.` },
   'todo-link-source':   { de: `To-Do — Quellcode ↗`, en: `To-Do — source code ↗` },
@@ -114,6 +117,9 @@ const I18N_PROJEKTE = {
   'weatherapp-tagline':      { de: `Wetter-App mit React (useState, useEffect, Vite) — Stadt eingeben, aktuelles Wetter über die OpenWeatherMap-API abrufen.`, en: `Weather app built with React (useState, useEffect, Vite) — enter a city, fetch current weather via the OpenWeatherMap API.` },
   'weatherapp-link-source':  { de: `Wetter App — Quellcode ↗`, en: `Weather app — source code ↗` },
   'weatherapp-meta-fourth':  { de: `Viertes Projekt`, en: `Fourth project` },
+  'leadflow-badge':          { de: `Eigenes Projekt · CSS mit KI`, en: `Own project · CSS with AI` },
+  'leadflow-tagline':        { de: `Kleines Lead-Management mit React und TypeScript: Leads anlegen, suchen, bearbeiten und löschen. Das CSS ist bewusst schlicht und mit KI entstanden — mein Fokus lag auf der Programmierlogik.`, en: `A small lead-management app built with React and TypeScript: add, search, edit and delete leads. The CSS is deliberately simple and was created with AI — my focus was on the programming logic.` },
+  'leadflow-meta':           { de: `Programmierung im Fokus`, en: `Programming-focused` },
   'werdegang-projects-heading': { de: `Meine Lernprojekte ohne KI`, en: `My learning projects without AI` },
 
   'group-more-eyebrow': { de: `Außerdem`, en: `Also` },
