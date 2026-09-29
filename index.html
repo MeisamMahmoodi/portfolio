@@ -31,9 +31,9 @@
   .eyebrow{font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
   h1,h2,.display{font-family:var(--display);font-weight:500;letter-spacing:-0.01em;}
 
-  .reveal{opacity:0;transition:opacity .6s ease;}
-  .reveal.in-view{opacity:1;}
-  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}.reveal{opacity:1;transition:none;}}
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease, transform .7s cubic-bezier(0.16,1,0.3,1);}
+  .reveal.in-view{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}.reveal{opacity:1;transform:none;transition:none;}}
 
   /* Navigation */
   nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(26,27,31,0.88);
@@ -57,19 +57,29 @@
   .circle-btn:hover .ring{background:var(--ink);color:var(--bg);border-color:var(--ink);}
 
   /* Über mich */
-  .about{padding:calc(72px + clamp(64px,10vw,120px)) 0 clamp(72px,10vw,128px);}
-  .about-grid{display:grid;grid-template-columns:1fr 220px;gap:clamp(32px,7vw,96px);align-items:start;}
-  .about-title{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:1.4rem 0 2rem;text-wrap:balance;}
-  .about p{font-size:14px;line-height:1.75;color:#c9cad0;max-width:52ch;margin-bottom:1rem;}
-  .about .circle-btn{margin-top:1.6rem;}
-  .about-photo-wrap{width:220px;aspect-ratio:4/5;overflow:hidden;background:#b9b0a4;margin-top:1.6rem;
-    border-radius:28px;border:1px solid rgba(255,255,255,0.14);box-shadow:0 24px 48px -24px rgba(0,0,0,0.6);}
-  .about-photo{width:100%;height:114%;object-fit:cover;object-position:50% 0;display:block;
+  .hero{padding:calc(72px + clamp(72px,11vw,140px)) 0 clamp(64px,9vw,112px);}
+  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:clamp(32px,7vw,96px);align-items:end;}
+  .hero-title{font-size:clamp(34px,5.6vw,72px);line-height:1.08;text-wrap:balance;max-width:14ch;}
+  .hero-sub{font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:#c9cad0;max-width:44ch;margin-top:1.6rem;}
+  .hero-proof{display:flex;flex-wrap:wrap;gap:0.4rem 0;margin-top:2.4rem;font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;}
+  .hero-proof a{color:var(--muted);text-decoration:none;transition:color .2s;}
+  .hero-proof a:hover{color:var(--ink);}
+  .hero-proof a + a::before{content:"·";margin:0 0.9em;color:var(--muted);opacity:0.6;}
+  .hero-photo-wrap{width:170px;aspect-ratio:4/5;overflow:hidden;background:#b9b0a4;border-radius:26px;margin-bottom:0.4rem;will-change:transform;}
+  .hero-photo{width:100%;height:114%;object-fit:cover;object-position:50% 0;display:block;
     filter:grayscale(0.55) sepia(0.2) contrast(0.96) brightness(0.98);mix-blend-mode:multiply;}
   @media (max-width:760px){
-    .about-grid{grid-template-columns:1fr;}
-    .about-photo-wrap{width:150px;order:-1;margin-top:0;}
+    .hero-grid{grid-template-columns:1fr;align-items:start;}
+    .hero-photo-wrap{width:120px;order:-1;}
   }
+  .about{border-top:1px solid var(--line);padding:clamp(56px,8vw,96px) 0;}
+  .about-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;}
+  .about-side{grid-column:1 / span 3;}
+  .about-main{grid-column:4 / -1;}
+  .about-title{font-size:clamp(24px,3.2vw,40px);line-height:1.15;margin-bottom:1.6rem;max-width:18ch;}
+  .about p{font-size:14px;line-height:1.75;color:#c9cad0;max-width:52ch;margin-bottom:1rem;}
+  .about .circle-btn{margin-top:1.4rem;}
+  @media (max-width:900px){.about-side,.about-main{grid-column:1 / -1;}.about-side{margin-bottom:1rem;}}
 
   /* Projekte */
   .intro{border-top:1px solid var(--line);padding:clamp(56px,8vw,96px) 0 clamp(32px,5vw,56px);}
@@ -77,8 +87,25 @@
   .intro-sub{font-size:14px;color:#c9cad0;max-width:52ch;margin-top:1.2rem;line-height:1.75;}
   .proj{padding:clamp(48px,7vw,88px) 0;border-top:1px solid var(--line);}
   .proj-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;}
-  .side{grid-column:1 / span 3;position:sticky;top:104px;align-self:start;}
-  .main{grid-column:4 / span 9;min-width:0;}
+  .side{grid-column:1 / span 3;grid-row:1;align-self:start;}
+  .main{grid-column:4 / -1;grid-row:1;min-width:0;}
+  .proj-media{grid-column:1 / -1;grid-row:2;margin-top:clamp(28px,4vw,48px);min-width:0;}
+  .proj-media .video-grid,.proj-media .media-single{margin-top:0;}
+  .details{grid-column:4 / -1;grid-row:3;min-width:0;}
+  .proof{display:flex;flex-wrap:wrap;gap:0.35rem 0;margin-top:1.6rem;font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
+  .proof span + span::before{content:"·";margin:0 0.9em;opacity:0.6;}
+  .proof .hot{color:var(--ink);}
+  .video-item img,.video-item video,.media-single img{transition:transform .5s cubic-bezier(0.16,1,0.3,1);}
+  .video-item:hover img,.video-item:hover video,.media-single:hover img{transform:translateY(-4px);}
+  .proj-link{transition:opacity .2s, transform .25s;}
+  .proj-link:hover{transform:translateX(3px);}
+  .circle-btn .ring{transition:background .25s,color .25s,border-color .25s,transform .25s;}
+  .circle-btn:hover .ring{transform:translateX(3px);}
+  .float-cta{position:fixed;right:1.8rem;bottom:1.8rem;z-index:120;font-size:13px;font-weight:500;text-decoration:none;
+    background:var(--ink);color:var(--bg);padding:0.8rem 1.3rem;border-radius:99px;box-shadow:0 10px 30px -8px rgba(0,0,0,0.5);
+    opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease, transform .35s ease;}
+  .float-cta.show{opacity:1;transform:none;pointer-events:auto;}
+  .float-cta:hover{opacity:0.88;}
   .proj-head{margin-bottom:1.2rem;}
   .proj-num{font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
   .proj-name{font-family:var(--display);font-size:clamp(34px,5.2vw,64px);font-weight:500;letter-spacing:-0.02em;line-height:1.05;}
@@ -111,7 +138,7 @@
   .demo-note{margin-top:1.4rem;font-size:12px;color:var(--muted);max-width:60ch;}
 
   @media (max-width:900px){
-    .side,.main{grid-column:1 / -1;}
+    .side,.main,.proj-media,.details{grid-column:1 / -1;grid-row:auto;}
     .side{position:static;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.6rem;}
     .side .proj-head{margin:0;}
     .side .proj-links{flex-direction:row;gap:1rem;}
@@ -125,7 +152,7 @@
   /* Kontakt */
   .cta{background:var(--bg-2);border-top:1px solid var(--line);padding:clamp(64px,9vw,112px) 0;}
   .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,88px);align-items:start;}
-  .cta-title{font-size:clamp(24px,3.4vw,40px);line-height:1.2;max-width:16ch;margin:1.2rem 0 1.2rem;}
+  .cta-title{font-size:clamp(22px,2.7vw,34px);line-height:1.2;margin:1.2rem 0 1.2rem;}
   .cta-sub{font-size:14px;line-height:1.75;color:#c9cad0;max-width:40ch;margin-bottom:2rem;}
   .contact-form{display:flex;flex-direction:column;gap:1.1rem;}
   .contact-form label{display:flex;flex-direction:column;gap:0.45rem;font-size:10.5px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
@@ -161,7 +188,8 @@
 <nav>
   <div class="nav-inner">
     <a class="brand" href="#start" aria-label="Meisam – Start"><img src="logo-meisam-white.png" alt="Meisam" width="155" height="34"></a>
-    <a class="navlink" href="#projekte" data-i18n="nav-projekte">Projekte</a>
+    <a class="navlink" href="#work" data-i18n="nav-work">Work</a>
+    <a class="navlink" href="#about" data-i18n="nav-about">Über mich</a>
     <a class="navlink" href="#kontakt" data-i18n="kontakt-eyebrow">Kontakt</a>
     <button class="lang-switch" type="button" aria-label="Sprache wechseln / Switch language">
       <span class="lang-opt active" data-lang="de">DE</span>
@@ -170,89 +198,25 @@
   </div>
 </nav>
 
-<header class="about" id="start">
-  <div class="wrap about-grid">
+<header class="hero" id="start">
+  <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow" data-i18n="about-eyebrow">Über mich</div>
-      <h1 class="about-title" data-i18n="about-title">Ich baue digitale Produkte, die live gehen.</h1>
-      <p data-i18n="about-p1">Ich bin Meisam. Von der ersten Planung bis zur fertigen Umsetzung baue ich digitale Produkte — Apps, Plattformen, Websites und SaaS-Systeme.</p>
-      <p data-i18n="about-p2">Alles aus einer Hand: Konzept, Entwicklung, Veröffentlichung und der laufende Betrieb.</p>
-      <a class="circle-btn" href="mailto:meisam.projects@gmail.com"><span class="ring">↗</span>meisam.projects@gmail.com</a>
+      <h1 class="hero-title" data-i18n="about-title">Ich baue digitale Produkte, die live gehen.</h1>
+      <p class="hero-sub" data-i18n="hero-sub">Apps, SaaS-Plattformen und Websites — von der Idee bis zum laufenden Produkt.</p>
+      <div class="hero-proof"><a href="#max">MAX</a><a href="#civillink">CivilLink</a><a href="#meizo">Meizo</a><a href="#civilcmc">CivilCMC</a><a href="#axis">Axis</a></div>
     </div>
-    <div class="about-photo-wrap"><img class="about-photo" src="profilBild-crop.png" alt="Meisam Mahmoodi" width="220" height="275"></div>
+    <div class="hero-photo-wrap" id="hero-photo"><img class="hero-photo" src="profilBild-crop.png" alt="Meisam Mahmoodi" width="220" height="275"></div>
   </div>
 </header>
 
-<section class="intro" id="projekte">
+<section class="intro" id="work">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="intro-eyebrow">Projekte</div>
-    <h2 class="intro-title reveal" data-i18n="intro-title">Laufende Projekte.</h2>
-    <p class="intro-sub reveal" data-i18n="intro-sub">Woran ich gerade arbeite.</p>
+    <div class="eyebrow" data-i18n="intro-eyebrow">Work</div>
+    <h2 class="intro-title reveal" data-i18n="intro-title">Aktuell in Arbeit.</h2>
+    <p class="intro-sub reveal" data-i18n="intro-sub">Woran ich gerade baue.</p>
   </div>
 </section>
 
-<section class="proj" id="civillink">
-  <div class="wrap proj-grid">
-    <aside class="side">
-      <div class="proj-head"><span class="proj-num" data-i18n="cl-num">02 · Eigenes Produkt</span></div>
-      <div class="proj-links">
-        <a class="proj-link" href="https://apps.apple.com/de/app/civillink/id6814870600" target="_blank" rel="noopener" data-i18n="cl-link-store">Im App Store ↗</a>
-        <a class="proj-link" href="https://civilcmc.com/civillink" target="_blank" rel="noopener" data-i18n="cl-link-web">Zur Webseite ↗</a>
-      </div>
-    </aside>
-    <div class="main">
-      <div class="proj-name reveal">CivilLink</div>
-      <div class="proj-tagline reveal" data-i18n="cl-tagline">Eine iOS-App für Aufträge am Bau — allein entwickelt, im App Store und mit ersten Nutzern.</div>
-      <div class="proj-copy">
-        <div class="reveal">
-          <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
-          <p data-i18n="cl-ausgangslage-p">Aufträge am Bau laufen oft über Anrufe, E-Mails und Empfehlungen: Angebote sind schwer zu vergleichen, Absprachen verstreut. CivilLink bringt Ausschreibung, Angebote, Chat und Zahlung an einen Ort.</p>
-        </div>
-        <div class="reveal">
-          <h3 data-i18n="h-loesung">Lösung</h3>
-          <p data-i18n="cl-loesung-p">Eine App für Auftraggeber und Fachbetriebe: Auftrag mit Fotos, Ort und Budget beschreiben, Angebote vergleichen, im Chat klären und über Stripe bezahlen. Konzept, Entwicklung und Veröffentlichung im App Store habe ich allein umgesetzt, in Partnerschaft mit CivilCMC.</p>
-        </div>
-      </div>
-      <div class="feature-grid reveal">
-          <div class="feature-item"><p data-i18n="cl-feat-1">Aufträge ausschreiben mit Beschreibung, Fotos, Standort und Budgetrahmen</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-2">Angebote vergleichen: Preis, Dauer, Bewertungen und Nachricht auf einen Blick</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-3">Direkter Chat zwischen Auftraggeber und Fachbetrieb</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-4">Sichere Zahlung über Stripe — Freigabe erst, wenn der Auftrag abgeschlossen ist</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-5">Auszahlung an Fachbetriebe über Stripe Connect</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-6">Bewertungen aus abgeschlossenen Aufträgen</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-7">Melden und Blockieren von Inhalten und Nutzern, jede Meldung wird geprüft</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-8">Profile mit Gewerk, Stärken und Sprachen; Aufträge aus der Region entdecken</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-9">Für Fachbetriebe kostenlos: keine Provision, keine Grundgebühr</p></div>
-      </div>
-      <div class="stack-row reveal">
-        <span class="stack-pill">React Native</span>
-        <span class="stack-pill">Expo</span>
-        <span class="stack-pill">Supabase</span>
-        <span class="stack-pill">Stripe (Zahlung &amp; Connect)</span>
-        <span class="stack-pill">iOS</span>
-      </div>
-      <div class="video-grid reveal">
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-feed.webp" alt="CivilLink Feed" loading="lazy">
-            <div class="video-caption"><strong>Feed</strong><span data-i18n="cl-cap-feed">Auftrag beschreiben und veröffentlichen.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-job.webp" alt="CivilLink Auftrag" loading="lazy">
-            <div class="video-caption"><strong>Auftrag</strong><span data-i18n="cl-cap-job">Details mit Fotos und Budget.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-offers.webp" alt="CivilLink Angebote" loading="lazy">
-            <div class="video-caption"><strong>Angebote</strong><span data-i18n="cl-cap-offers">Angebote von Fachkräften vergleichen.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-chat.webp" alt="CivilLink Chat" loading="lazy">
-            <div class="video-caption"><strong>Chat</strong><span data-i18n="cl-cap-chat">Direkt mit dem Fachbetrieb schreiben.</span></div>
-          </div>
-      </div>
-      <p class="demo-note reveal" data-i18n="cl-demonote">App-Store-Screenshots. Aktuell 5+ Nutzer, Android folgt.</p>
-    </div>
-  </div>
-</section>
 <section class="proj" id="max">
   <div class="wrap proj-grid">
     <aside class="side">
@@ -261,6 +225,15 @@
     <div class="main">
       <div class="proj-name reveal">MAX</div>
       <div class="proj-tagline reveal" data-i18n="max-tagline">Your Second Mind: ein KI-System, das Mails, Chats, Sprache, Rechnungen und Dateien versteht, verknüpft und daraus Aktionen macht.</div>
+      <div class="proof reveal"><span class="hot" data-i18n="prf-dev">IN ENTWICKLUNG</span><span>DESKTOP</span><span>MOBILE</span><span data-i18n="prf-ai">KI</span></div>
+    </div>
+    <div class="proj-media">
+      <div class="media-single reveal">
+        <img src="images/max/concept.jpg" alt="MAX – Design-Entwurf des Workspace mit Home-Übersicht, KI-Assistent, Mails, Aufgaben, Projekten, Finanzen und Website" loading="lazy">
+      </div>
+      <p class="demo-note reveal" data-i18n="max-note">Design-Entwurf des Workspace. Das Produkt befindet sich in Entwicklung.</p>
+    </div>
+    <div class="details">
       <div class="proj-copy">
         <div class="reveal">
           <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
@@ -286,22 +259,156 @@
         <span class="stack-pill" data-i18n="max-pill-2">Mobile App</span>
         <span class="stack-pill" data-i18n="max-pill-3">KI-Assistent</span>
       </div>
-      <div class="media-single reveal">
-        <img src="images/max/concept.jpg" alt="MAX – Design-Entwurf des Workspace mit Home-Übersicht, KI-Assistent, Mails, Aufgaben, Projekten, Finanzen und Website" loading="lazy">
-      </div>
-      <p class="demo-note reveal" data-i18n="max-note">Design-Entwurf des Workspace. Das Produkt befindet sich in Entwicklung.</p>
     </div>
   </div>
 </section>
 
-<section class="intro" id="umgesetzt">
+<section class="intro" id="live">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="grp2-eyebrow">Referenzen</div>
-    <h2 class="intro-title reveal" data-i18n="grp2-title">Umgesetzte Projekte.</h2>
-    <p class="intro-sub reveal" data-i18n="grp2-sub">Ausgangslage, Entscheidungen, Tech-Stack und Einblicke in die laufende Anwendung.</p>
+    <div class="eyebrow" data-i18n="grp2-eyebrow">Live</div>
+    <h2 class="intro-title reveal" data-i18n="grp2-title">Live-Produkte.</h2>
+    <p class="intro-sub reveal" data-i18n="grp2-sub">Produkte und Projekte, die laufen.</p>
   </div>
 </section>
 
+<section class="proj" id="civillink">
+  <div class="wrap proj-grid">
+    <aside class="side">
+      <div class="proj-head"><span class="proj-num" data-i18n="cl-num">02 · Kundenprojekt · Live</span></div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://apps.apple.com/de/app/civillink/id6814870600" target="_blank" rel="noopener" data-i18n="cl-link-store">Im App Store ↗</a>
+        <a class="proj-link" href="https://civilcmc.com/civillink" target="_blank" rel="noopener" data-i18n="cl-link-web">Zur Webseite ↗</a>
+      </div>
+    </aside>
+    <div class="main">
+      <div class="proj-name reveal">CivilLink</div>
+      <div class="proj-tagline reveal" data-i18n="cl-tagline">Eine iOS-App für Aufträge am Bau — für CivilCMC allein entwickelt, im App Store und mit ersten Nutzern.</div>
+      <div class="proof reveal"><span class="hot" data-i18n="prf-live">LIVE</span><span data-i18n="prf-appstore">APP STORE</span><span data-i18n="prf-users">5+ NUTZER</span><span data-i18n="prf-client">KUNDENPROJEKT</span><span data-i18n="prf-solo">ALLEIN ENTWICKELT</span><span>STRIPE</span><span>SUPABASE</span></div>
+    </div>
+    <div class="proj-media">
+      <div class="video-grid reveal">
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-feed.webp" alt="CivilLink Feed" loading="lazy">
+            <div class="video-caption"><strong>Feed</strong><span data-i18n="cl-cap-feed">Auftrag beschreiben und veröffentlichen.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-job.webp" alt="CivilLink Auftrag" loading="lazy">
+            <div class="video-caption"><strong>Auftrag</strong><span data-i18n="cl-cap-job">Details mit Fotos und Budget.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-offers.webp" alt="CivilLink Angebote" loading="lazy">
+            <div class="video-caption"><strong>Angebote</strong><span data-i18n="cl-cap-offers">Angebote von Fachkräften vergleichen.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-chat.webp" alt="CivilLink Chat" loading="lazy">
+            <div class="video-caption"><strong>Chat</strong><span data-i18n="cl-cap-chat">Direkt mit dem Fachbetrieb schreiben.</span></div>
+          </div>
+      </div>
+      <p class="demo-note reveal" data-i18n="cl-demonote">App-Store-Screenshots. Aktuell 5+ Nutzer, Android folgt.</p>
+    </div>
+    <div class="details">
+      <div class="proj-copy">
+        <div class="reveal">
+          <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+          <p data-i18n="cl-ausgangslage-p">Aufträge am Bau laufen oft über Anrufe, E-Mails und Empfehlungen: Angebote sind schwer zu vergleichen, Absprachen verstreut. CivilLink bringt Ausschreibung, Angebote, Chat und Zahlung an einen Ort.</p>
+        </div>
+        <div class="reveal">
+          <h3 data-i18n="h-loesung">Lösung</h3>
+          <p data-i18n="cl-loesung-p">Eine App für Auftraggeber und Fachbetriebe: Auftrag mit Fotos, Ort und Budget beschreiben, Angebote vergleichen, im Chat klären und über Stripe bezahlen. Konzept, Entwicklung und Veröffentlichung im App Store habe ich allein umgesetzt — als Projekt für CivilCMC.</p>
+        </div>
+      </div>
+      <div class="feature-grid reveal">
+          <div class="feature-item"><p data-i18n="cl-feat-1">Aufträge ausschreiben mit Beschreibung, Fotos, Standort und Budgetrahmen</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-2">Angebote vergleichen: Preis, Dauer, Bewertungen und Nachricht auf einen Blick</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-3">Direkter Chat zwischen Auftraggeber und Fachbetrieb</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-4">Sichere Zahlung über Stripe — Freigabe erst, wenn der Auftrag abgeschlossen ist</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-5">Auszahlung an Fachbetriebe über Stripe Connect</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-6">Bewertungen aus abgeschlossenen Aufträgen</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-7">Melden und Blockieren von Inhalten und Nutzern, jede Meldung wird geprüft</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-8">Profile mit Gewerk, Stärken und Sprachen; Aufträge aus der Region entdecken</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-9">Für Fachbetriebe kostenlos: keine Provision, keine Grundgebühr</p></div>
+      </div>
+      <div class="stack-row reveal">
+        <span class="stack-pill">React Native</span>
+        <span class="stack-pill">Expo</span>
+        <span class="stack-pill">Supabase</span>
+        <span class="stack-pill">Stripe (Zahlung &amp; Connect)</span>
+        <span class="stack-pill">iOS</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="proj" id="meizo">
+  <div class="wrap proj-grid">
+    <aside class="side">
+      <div class="proj-head reveal"><span class="proj-num" data-i18n="meizo-num">03 · Operations</span></div>
+      <div class="proj-links reveal">
+        <a class="proj-link" href="https://meizo.de" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
+      </div>
+
+    </aside>
+    <div class="main">
+      <div class="proj-name reveal">Meizo</div>
+      <div class="proj-tagline reveal" data-i18n="meizo-tagline">Eine SaaS-Plattform für Einsatzplanung, Zeiterfassung und Abrechnung im Reinigungs-Business.</div>
+
+      <div class="proof reveal"><span class="hot" data-i18n="prf-live">LIVE</span><span>SAAS</span><span>STRIPE</span><span>SUPABASE</span></div>
+    </div>
+    <div class="proj-media">
+      <div class="video-grid video-grid--wide reveal">
+        <div class="video-item">
+          <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" controls loop muted playsinline preload="metadata"></video>
+          <div class="video-caption" data-i18n="meizo-cap-einsaetze"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
+        </div>
+        <div class="video-item">
+          <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" controls loop muted playsinline preload="metadata"></video>
+          <div class="video-caption" data-i18n="meizo-cap-krankmeldung"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
+        </div>
+        <div class="video-item">
+          <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" controls loop muted playsinline preload="metadata"></video>
+          <div class="video-caption" data-i18n="meizo-cap-checkin"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
+        </div>
+        <div class="video-item">
+          <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" controls loop muted playsinline preload="metadata"></video>
+          <div class="video-caption" data-i18n="meizo-cap-abrechnung"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
+        </div>
+      </div>
+      <p class="demo-note reveal" data-i18n="meizo-demonote">Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.</p>
+    </div>
+    <div class="details">
+      <div class="proj-copy">
+        <div class="reveal">
+          <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+          <p data-i18n="meizo-ausgangslage-p">Reinigungs-Betriebe brauchen Einsatzplanung, Zeiterfassung mit Nachweis und eine saubere Lohnabrechnung. Ich wollte eine Software bauen, die das für ein kleines Team abdeckt — inklusive echter DATEV-Anbindung.</p>
+        </div>
+        <div class="reveal">
+          <h3 data-i18n="h-loesung">Lösung</h3>
+          <p data-i18n="meizo-loesung-p">Eine mandantenfähige SaaS-Plattform mit vier Oberflächen in einem System: Dashboard für den Inhaber, eigene App für die Mitarbeiter, ein Kunden-Portal ohne Login und Verwaltung für den Plattform-Betreiber. Mit Stripe-Abrechnung und automatischem Seat-Sync, ausgelegt auf mehrere Firmen gleichzeitig.</p>
+        </div>
+      </div>
+
+      <div class="feature-grid reveal">
+        <div class="feature-item"><p data-i18n="meizo-feat-1">Live-Dashboard: Mitarbeiter, Einsätze und Krankmeldungen auf einen Blick</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-2">Einsatzplanung per Drag & Drop, automatischer Ersatz-Dispatch bei Krankmeldung</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-3">Zeiterfassung mit GPS & Foto — funktioniert auch offline</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-4">Echter DATEV-Export: Soll-Ist-Stunden, Bewegungsdaten, PDF & CSV</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-5">Kunden-Portal ohne Login: Nachweise, Checkliste, nächster Termin</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-6">Mitarbeiter-App in 7 Sprachen mit Push-Benachrichtigungen</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-7">Controlling: Umsatz, Kosten und Marge pro Objekt</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-8">Plattform-Admin für mehrere Firmen gleichzeitig</p></div>
+        <div class="feature-item"><p data-i18n="meizo-feat-9">Stripe-Abrechnung mit automatischem Seat-Sync, installierbare PWA</p></div>
+      </div>
+
+      <div class="stack-row reveal">
+        <span class="stack-pill">React · Vite</span>
+        <span class="stack-pill">TypeScript</span>
+        <span class="stack-pill">Supabase (Postgres, Auth, Edge Functions)</span>
+        <span class="stack-pill">Stripe</span>
+        <span class="stack-pill">Progressive Web App</span>
+      </div>
+
+    </div>
+  </div>
+</section>
 <section class="proj" id="civilcmc">
   <div class="wrap proj-grid">
     <aside class="side">
@@ -313,6 +420,30 @@
     <div class="main">
       <div class="proj-name reveal">CivilCMC</div>
       <div class="proj-tagline reveal" data-i18n="civ-tagline">Die Website eines Bauingenieurbüros — live, mit Kontaktformular, Projektseiten und SEO.</div>
+      <div class="proof reveal"><span class="hot" data-i18n="prf-live">LIVE</span><span data-i18n="prf-client">KUNDENPROJEKT</span><span>NEXT.JS</span><span>SEO</span></div>
+    </div>
+    <div class="proj-media">
+      <div class="video-grid video-grid--wide reveal">
+          <div class="video-item">
+            <img src="images/civilcmc/home.jpg" alt="civilcmc.com – Startseite" loading="lazy">
+            <div class="video-caption"><strong>Startseite</strong><span data-i18n="civ-cap-home">Hero mit Leistungsübersicht und direktem Kontakt.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/projects.jpg" alt="civilcmc.com – Referenzen" loading="lazy">
+            <div class="video-caption"><strong>Referenzen</strong><span data-i18n="civ-cap-projects">Übersicht der Referenzprojekte.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/detail.jpg" alt="civilcmc.com – Projektseite" loading="lazy">
+            <div class="video-caption"><strong>Projektseite</strong><span data-i18n="civ-cap-detail">Detailseite mit Standort, Projekttyp und Leistungen.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/civillink.jpg" alt="civilcmc.com – CivilLink" loading="lazy">
+            <div class="video-caption"><strong>CivilLink</strong><span data-i18n="civ-cap-civillink">Landingpage für die App mit App-Store-Anbindung.</span></div>
+          </div>
+      </div>
+      <p class="demo-note reveal" data-i18n="civ-demonote">Screenshots der Live-Website civilcmc.com — Auftragsarbeit für die CivilCMC-Bauservice GmbH.</p>
+    </div>
+    <div class="details">
       <div class="proj-copy">
         <div class="reveal">
           <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
@@ -342,25 +473,6 @@
         <span class="stack-pill">Framer Motion</span>
         <span class="stack-pill">Resend (E-Mail)</span>
       </div>
-      <div class="video-grid video-grid--wide reveal">
-          <div class="video-item">
-            <img src="images/civilcmc/home.jpg" alt="civilcmc.com – Startseite" loading="lazy">
-            <div class="video-caption"><strong>Startseite</strong><span data-i18n="civ-cap-home">Hero mit Leistungsübersicht und direktem Kontakt.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/projects.jpg" alt="civilcmc.com – Referenzen" loading="lazy">
-            <div class="video-caption"><strong>Referenzen</strong><span data-i18n="civ-cap-projects">Übersicht der Referenzprojekte.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/detail.jpg" alt="civilcmc.com – Projektseite" loading="lazy">
-            <div class="video-caption"><strong>Projektseite</strong><span data-i18n="civ-cap-detail">Detailseite mit Standort, Projekttyp und Leistungen.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/civillink.jpg" alt="civilcmc.com – CivilLink" loading="lazy">
-            <div class="video-caption"><strong>CivilLink</strong><span data-i18n="civ-cap-civillink">Landingpage für die App mit App-Store-Anbindung.</span></div>
-          </div>
-      </div>
-      <p class="demo-note reveal" data-i18n="civ-demonote">Screenshots der Live-Website civilcmc.com — Auftragsarbeit für die CivilCMC-Bauservice GmbH.</p>
     </div>
   </div>
 </section>
@@ -377,6 +489,30 @@
       <div class="proj-name reveal">Axis</div>
       <div class="proj-tagline reveal" data-i18n="axis-tagline">Ein privates Finance-Cockpit mit echter Bank-Anbindung und einem KI-Assistenten, der mitschreibt.</div>
 
+      <div class="proof reveal"><span class="hot" data-i18n="prf-live">LIVE</span><span data-i18n="prf-private">PRIVAT</span><span>OPEN BANKING</span><span>SUPABASE</span></div>
+    </div>
+    <div class="proj-media">
+      <div class="video-grid reveal">
+        <div class="video-item">
+          <img src="images/axis/home.svg" alt="Axis Home">
+          <div class="video-caption"><strong>Home</strong><span data-i18n="axis-cap-home">Echter Kontostand, Konten & Boxes, Transaktionen im Blick.</span></div>
+        </div>
+        <div class="video-item">
+          <img src="images/axis/debts.svg" alt="Axis Debts">
+          <div class="video-caption"><strong>Debts</strong><span data-i18n="axis-cap-debts">Abos, Rechnungen und Raten mit Fortschritts-Gauge.</span></div>
+        </div>
+        <div class="video-item">
+          <img src="images/axis/chat.svg" alt="Axis Chat">
+          <div class="video-caption"><strong>Chat</strong><span data-i18n="axis-cap-chat">KI-Assistent mit Function-Calling, liest auch Belegfotos.</span></div>
+        </div>
+        <div class="video-item">
+          <img src="images/axis/settings.svg" alt="Axis Settings">
+          <div class="video-caption"><strong>Settings</strong><span data-i18n="axis-cap-settings">Bank & Gmail verbinden, trennen, Einkommen setzen.</span></div>
+        </div>
+      </div>
+      <p class="demo-note reveal" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
+    </div>
+    <div class="details">
       <div class="proj-copy">
         <div class="reveal">
           <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
@@ -409,99 +545,27 @@
         <span class="stack-pill">Progressive Web App</span>
       </div>
 
-      <div class="video-grid reveal">
-        <div class="video-item">
-          <img src="images/axis/home.svg" alt="Axis Home">
-          <div class="video-caption"><strong>Home</strong><span data-i18n="axis-cap-home">Echter Kontostand, Konten & Boxes, Transaktionen im Blick.</span></div>
-        </div>
-        <div class="video-item">
-          <img src="images/axis/debts.svg" alt="Axis Debts">
-          <div class="video-caption"><strong>Debts</strong><span data-i18n="axis-cap-debts">Abos, Rechnungen und Raten mit Fortschritts-Gauge.</span></div>
-        </div>
-        <div class="video-item">
-          <img src="images/axis/chat.svg" alt="Axis Chat">
-          <div class="video-caption"><strong>Chat</strong><span data-i18n="axis-cap-chat">KI-Assistent mit Function-Calling, liest auch Belegfotos.</span></div>
-        </div>
-        <div class="video-item">
-          <img src="images/axis/settings.svg" alt="Axis Settings">
-          <div class="video-caption"><strong>Settings</strong><span data-i18n="axis-cap-settings">Bank & Gmail verbinden, trennen, Einkommen setzen.</span></div>
-        </div>
-      </div>
-      <p class="demo-note reveal" data-i18n="axis-demonote">Screenshots mit frei erfundenen Kontoständen, Namen und Beträgen — keine echten Finanzdaten. Privates Tool für mich und meine Familie, kein öffentlicher Zugang.</p>
     </div>
   </div>
 </section>
-<section class="proj" id="meizo">
-  <div class="wrap proj-grid">
-    <aside class="side">
-      <div class="proj-head reveal"><span class="proj-num" data-i18n="meizo-num">03 · Operations</span></div>
-      <div class="proj-links reveal">
-        <a class="proj-link" href="https://meizo.de" target="_blank" rel="noopener" data-i18n="link-live">Live im Einsatz ↗</a>
-      </div>
 
-    </aside>
-    <div class="main">
-      <div class="proj-name reveal">Meizo</div>
-      <div class="proj-tagline reveal" data-i18n="meizo-tagline">Eine SaaS-Plattform für Einsatzplanung, Zeiterfassung und Abrechnung im Reinigungs-Business.</div>
-
-      <div class="proj-copy">
-        <div class="reveal">
-          <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
-          <p data-i18n="meizo-ausgangslage-p">Reinigungs-Betriebe brauchen Einsatzplanung, Zeiterfassung mit Nachweis und eine saubere Lohnabrechnung. Ich wollte eine Software bauen, die das für ein kleines Team abdeckt — inklusive echter DATEV-Anbindung.</p>
-        </div>
-        <div class="reveal">
-          <h3 data-i18n="h-loesung">Lösung</h3>
-          <p data-i18n="meizo-loesung-p">Eine mandantenfähige SaaS-Plattform mit vier Oberflächen in einem System: Dashboard für den Inhaber, eigene App für die Mitarbeiter, ein Kunden-Portal ohne Login und Verwaltung für den Plattform-Betreiber. Mit Stripe-Abrechnung und automatischem Seat-Sync, ausgelegt auf mehrere Firmen gleichzeitig.</p>
-        </div>
-      </div>
-
-      <div class="feature-grid reveal">
-        <div class="feature-item"><p data-i18n="meizo-feat-1">Live-Dashboard: Mitarbeiter, Einsätze und Krankmeldungen auf einen Blick</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-2">Einsatzplanung per Drag & Drop, automatischer Ersatz-Dispatch bei Krankmeldung</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-3">Zeiterfassung mit GPS & Foto — funktioniert auch offline</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-4">Echter DATEV-Export: Soll-Ist-Stunden, Bewegungsdaten, PDF & CSV</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-5">Kunden-Portal ohne Login: Nachweise, Checkliste, nächster Termin</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-6">Mitarbeiter-App in 7 Sprachen mit Push-Benachrichtigungen</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-7">Controlling: Umsatz, Kosten und Marge pro Objekt</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-8">Plattform-Admin für mehrere Firmen gleichzeitig</p></div>
-        <div class="feature-item"><p data-i18n="meizo-feat-9">Stripe-Abrechnung mit automatischem Seat-Sync, installierbare PWA</p></div>
-      </div>
-
-      <div class="stack-row reveal">
-        <span class="stack-pill">React · Vite</span>
-        <span class="stack-pill">TypeScript</span>
-        <span class="stack-pill">Supabase (Postgres, Auth, Edge Functions)</span>
-        <span class="stack-pill">Stripe</span>
-        <span class="stack-pill">Progressive Web App</span>
-      </div>
-
-      <div class="video-grid video-grid--wide reveal">
-        <div class="video-item">
-          <video src="videos/meizo/dashboard.mp4" poster="videos/meizo/dashboard-poster.jpg" controls loop muted playsinline preload="metadata"></video>
-          <div class="video-caption" data-i18n="meizo-cap-einsaetze"><strong>Einsätze</strong>Dashboard mit Live-Übersicht über Mitarbeiter und geplante Einsätze.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/meizo/krankmeldung.mp4" poster="videos/meizo/krankmeldung-poster.jpg" controls loop muted playsinline preload="metadata"></video>
-          <div class="video-caption" data-i18n="meizo-cap-krankmeldung"><strong>Krankmeldung</strong>Automatischer Ersatz-Dispatch — freien Mitarbeiter finden und zuweisen.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/meizo/checkin.mp4" poster="videos/meizo/checkin-poster.jpg" controls loop muted playsinline preload="metadata"></video>
-          <div class="video-caption" data-i18n="meizo-cap-checkin"><strong>Zeiterfassung</strong>Ein- und Auschecken per GPS in der Mitarbeiter-App.</div>
-        </div>
-        <div class="video-item">
-          <video src="videos/meizo/abrechnung.mp4" poster="videos/meizo/abrechnung-poster.jpg" controls loop muted playsinline preload="metadata"></video>
-          <div class="video-caption" data-i18n="meizo-cap-abrechnung"><strong>Abrechnung</strong>Fertiger CSV-Export mit GPS-verifizierten Stunden für DATEV.</div>
-        </div>
-      </div>
-      <p class="demo-note reveal" data-i18n="meizo-demonote">Aufnahmen aus der echten Anwendung — Dashboard, Krankmeldung-Dispatch, Mitarbeiter-App und Abrechnung.</p>
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-side"><span class="eyebrow" data-i18n="about-eyebrow">Über mich</span></div>
+    <div class="about-main">
+      <h2 class="about-title reveal" data-i18n="about-h2">Die Person hinter den Produkten.</h2>
+      <p class="reveal" data-i18n="about-p1">Ich bin Meisam.</p>
+      <p class="reveal" data-i18n="about-p2">Alles aus einer Hand.</p>
+      <a class="circle-btn reveal" href="mailto:meisam.projects@gmail.com"><span class="ring">↗</span>meisam.projects@gmail.com</a>
     </div>
   </div>
 </section>
+
 <section class="cta" id="kontakt">
   <div class="wrap cta-grid">
     <div>
       <div class="eyebrow" data-i18n="kontakt-eyebrow">Kontakt</div>
-      <h2 class="cta-title" data-i18n="cta-title">Projekt in Planung? Schreib mir.</h2>
+      <h2 class="cta-title" data-i18n="cta-title">Projekt in Planung?<br>Schreib mir.</h2>
       <p class="cta-sub" data-i18n="cta-sub">Beschreib kurz, was du vorhast. Ich melde mich mit einer ehrlichen Einschätzung.</p>
       <a class="circle-btn" href="mailto:meisam.projects@gmail.com"><span class="ring">↗</span>meisam.projects@gmail.com</a>
     </div>
@@ -524,14 +588,14 @@
     <div class="footer-grid">
       <div class="footer-col"><h4 data-i18n="footer-mail">E-Mail</h4><a href="mailto:meisam.projects@gmail.com">meisam.projects@gmail.com</a></div>
       <div class="footer-col"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/meisam-m-b28a58404/" target="_blank" rel="noopener">Meisam M. ↗</a></div>
-      <div class="footer-col"><h4 data-i18n="footer-projects">Projekte</h4><a href="#civillink">CivilLink</a><a href="#max">MAX</a><a href="#civilcmc">CivilCMC</a><a href="#axis">Axis</a><a href="#meizo">Meizo</a></div>
+      <div class="footer-col"><h4 data-i18n="footer-projects">Projekte</h4><a href="#max">MAX</a><a href="#civillink">CivilLink</a><a href="#meizo">Meizo</a><a href="#civilcmc">CivilCMC</a><a href="#axis">Axis</a></div>
     </div>
     <div class="visit-counter" data-visit-counter></div>
   </div>
 </footer>
 
 <script src="i18n.js"></script>
-<script src="chat-widget.js"></script>
+<a class="float-cta" id="float-cta" href="#kontakt" data-i18n="float-cta">Projekt besprechen ↗</a>
 <script src="visit-counter.js"></script>
 <script>
   initI18n(I18N_INDEX);
@@ -575,6 +639,31 @@
         show('err', t().err);
       } finally { btn.disabled = false; }
     });
+  })();
+
+  /* Schwebender Kontakt-Link: erscheint nach dem Hero, verschwindet im Kontaktbereich */
+  (() => {
+    const cta = document.getElementById('float-cta');
+    const contact = document.getElementById('kontakt');
+    if (!cta || !contact) return;
+    const update = () => {
+      const past = window.scrollY > window.innerHeight * 0.7;
+      const r = contact.getBoundingClientRect();
+      cta.classList.toggle('show', past && r.top >= window.innerHeight * 0.6);
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+
+  /* Foto: sehr dezente Scroll-Bewegung */
+  (() => {
+    const el = document.getElementById('hero-photo');
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let tick = false;
+    window.addEventListener('scroll', () => {
+      if (tick) return; tick = true;
+      requestAnimationFrame(() => { el.style.transform = 'translateY(' + Math.min(window.scrollY * 0.05, 30) + 'px)'; tick = false; });
+    }, { passive: true });
   })();
 </script>
 
