@@ -2,8 +2,12 @@
    basierend antwortet. Läuft komplett client-seitig gegen /api/chat (der
    eigentliche Gemini-Call passiert serverseitig, Key bleibt geheim).
    Selbstständiges Script, injiziert eigenes CSS + Markup — einfach auf
-   beiden Seiten (index.html, projekte.html) per <script> einbinden. */
+   beiden Seiten (index.html) per <script> einbinden. */
 (() => {
+  // Lokal (file:// bzw. localhost) gibt es keine Serverless-Funktionen —
+  // dann läuft der Chat gegen die Live-Seite.
+  const API_BASE = (location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'https://portfolio-meisam.com' : '';
   const STRINGS = {
     de: {
       launcher: 'Frag mich etwas',
@@ -12,13 +16,13 @@
       placeholder: 'Frag etwas zu Meisam oder seinen Projekten…',
       send: 'Senden',
       close: 'Schließen',
-      greeting: 'Hi! Ich kenne Meisams Projekte, Arbeitsweise und Werdegang — frag mich einfach.',
+      greeting: 'Hi! Ich kenne Meisams Projekte und seine Arbeitsweise — frag mich einfach.',
       suggestions: [
         'Was hat er gebaut?',
         'Wie arbeitet er mit KI?',
         'Wie erreiche ich ihn?',
       ],
-      error: 'Etwas ist schiefgelaufen. Versuch es gleich nochmal oder schreib direkt: meisam@meizo.de',
+      error: 'Etwas ist schiefgelaufen. Versuch es gleich nochmal oder schreib direkt: meisam.projects@gmail.com',
       thinking: '…',
     },
     en: {
@@ -34,7 +38,7 @@
         'How does he work with AI?',
         'How can I reach him?',
       ],
-      error: 'Something went wrong. Try again in a moment, or write directly: meisam@meizo.de',
+      error: 'Something went wrong. Try again in a moment, or write directly: meisam.projects@gmail.com',
       thinking: '…',
     },
   };
@@ -51,7 +55,7 @@
   .cw-launcher{
     position:fixed;right:1.8rem;bottom:1.8rem;z-index:120;
     display:flex;align-items:center;gap:10px;
-    background:#0a0a0a;color:#f4f2ec;border:none;border-radius:99px;
+    background:#f2f2f0;color:#0b0b0c;border:none;border-radius:99px;
     padding:0.85rem 1.3rem 0.85rem 1rem;cursor:pointer;
     box-shadow:0 10px 30px -8px rgba(0,0,0,0.5);
     font-family:'Helvetica Neue',Arial,sans-serif;
@@ -62,7 +66,7 @@
   .cw-launcher span{font-size:12.5px;font-weight:700;letter-spacing:0.02em;white-space:nowrap;}
   .cw-launcher .cw-dot{
     position:absolute;top:-2px;right:-2px;width:9px;height:9px;border-radius:50%;
-    background:#d69a3c;border:2px solid #f4f2ec;
+    background:#0b0b0c;border:2px solid #f2f2f0;
   }
   @media (max-width:640px){
     .cw-launcher span{display:none;}
@@ -73,7 +77,7 @@
     position:fixed;right:1.8rem;bottom:1.8rem;z-index:121;
     width:min(380px, calc(100vw - 2.4rem));
     height:min(560px, calc(100vh - 3.6rem));
-    background:#f4f2ec;color:#0a0a0a;border-radius:18px;
+    background:#ffffff;color:#0a0a0a;border-radius:18px;
     box-shadow:0 24px 60px -12px rgba(0,0,0,0.5);
     display:flex;flex-direction:column;overflow:hidden;
     font-family:'Helvetica Neue',Arial,sans-serif;
@@ -83,14 +87,14 @@
   .cw-panel.is-open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
 
   .cw-head{
-    background:#0a0a0a;color:#f4f2ec;padding:1.1rem 1.2rem;
+    background:#0a0a0a;color:#ffffff;padding:1.1rem 1.2rem;
     display:flex;align-items:flex-start;justify-content:space-between;gap:0.6rem;
     flex-shrink:0;
   }
   .cw-head-title{font-size:14px;font-weight:700;}
   .cw-head-sub{font-size:10.5px;opacity:0.55;margin-top:3px;letter-spacing:0.02em;}
   .cw-close{
-    background:none;border:none;color:#f4f2ec;opacity:0.6;cursor:pointer;
+    background:none;border:none;color:#ffffff;opacity:0.6;cursor:pointer;
     font-size:18px;line-height:1;padding:2px;flex-shrink:0;
     transition:opacity .2s;
   }
@@ -98,7 +102,7 @@
 
   .cw-body{flex:1;overflow-y:auto;padding:1.1rem 1.1rem 0.6rem;display:flex;flex-direction:column;gap:0.7rem;}
   .cw-msg{font-size:13px;line-height:1.55;max-width:86%;padding:0.65rem 0.85rem;border-radius:12px;white-space:pre-wrap;word-wrap:break-word;}
-  .cw-msg.user{align-self:flex-end;background:#0a0a0a;color:#f4f2ec;border-bottom-right-radius:3px;}
+  .cw-msg.user{align-self:flex-end;background:#0a0a0a;color:#ffffff;border-bottom-right-radius:3px;}
   .cw-msg.bot{align-self:flex-start;background:rgba(10,10,10,0.06);color:#0a0a0a;border-bottom-left-radius:3px;}
   .cw-msg.bot a{color:#0a0a0a;text-decoration:underline;}
   .cw-msg.typing{display:flex;align-items:center;gap:4px;padding:0.75rem 0.9rem;}
@@ -113,7 +117,7 @@
     border:1px solid rgba(10,10,10,0.18);background:none;color:#0a0a0a;
     cursor:pointer;opacity:0.75;transition:opacity .2s, border-color .2s;
   }
-  .cw-suggestion:hover{opacity:1;border-color:#d69a3c;}
+  .cw-suggestion:hover{opacity:1;border-color:#0b0b0c;}
 
   .cw-inputrow{display:flex;gap:0.6rem;padding:0.9rem 1.1rem;border-top:1px solid rgba(10,10,10,0.1);flex-shrink:0;}
   .cw-input{
@@ -121,9 +125,9 @@
     padding:0.6rem 0.75rem;font-size:13px;font-family:inherit;background:#fff;color:#0a0a0a;
     max-height:88px;line-height:1.4;
   }
-  .cw-input:focus{outline:none;border-color:#d69a3c;}
+  .cw-input:focus{outline:none;border-color:#0b0b0c;}
   .cw-send{
-    background:#d69a3c;color:#191305;border:none;border-radius:10px;
+    background:#0b0b0c;color:#ffffff;border:none;border-radius:10px;
     padding:0 1rem;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;
     transition:opacity .2s;
   }
@@ -153,7 +157,7 @@
   function formatBotText(text) {
     let safe = escapeHtml(text);
     safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    safe = safe.replace(/(meisam@meizo\.de)/g, '<a href="mailto:$1">$1</a>');
+    safe = safe.replace(/(meisam\.projects@gmail\.com)/g, '<a href="mailto:$1">$1</a>');
     return safe;
   }
 
@@ -167,8 +171,8 @@
     launcher.setAttribute('aria-label', t.launcher);
     launcher.innerHTML = `
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2.5l1.9 4.9 4.9 1.9-4.9 1.9L12 16 10.1 11.2 5.2 9.3l4.9-1.9L12 2.5z" fill="#d69a3c"/>
-        <path d="M19 14l.95 2.45L22.4 17.4l-2.45.95L19 20.8l-.95-2.45L15.6 17.4l2.45-.95L19 14z" fill="#f4f2ec" opacity="0.85"/>
+        <path d="M12 2.5l1.9 4.9 4.9 1.9-4.9 1.9L12 16 10.1 11.2 5.2 9.3l4.9-1.9L12 2.5z" fill="#0b0b0c"/>
+        <path d="M19 14l.95 2.45L22.4 17.4l-2.45.95L19 20.8l-.95-2.45L15.6 17.4l2.45-.95L19 14z" fill="#ffffff" opacity="0.85"/>
       </svg>
       <span>${t.launcher}</span>
     `;
@@ -277,7 +281,7 @@
       const typingEl = addTyping();
 
       try {
-        const res = await fetch('/api/chat', {
+        const res = await fetch(API_BASE + '/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ messages: history }),
