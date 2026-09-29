@@ -106,6 +106,8 @@
   .video-grid--wide{grid-template-columns:repeat(2,1fr);}
   .video-grid--wide .video-item video{aspect-ratio:16/9;object-fit:contain;}
   .video-grid--wide .video-item img{aspect-ratio:16/9;object-fit:cover;}
+  .media-single{margin-top:2.8rem;}
+  .media-single img{width:100%;display:block;border-radius:12px;border:1px solid var(--line);}
   .demo-note{margin-top:1.4rem;font-size:12px;color:var(--muted);max-width:60ch;}
 
   @media (max-width:900px){
@@ -173,8 +175,8 @@
     <div>
       <div class="eyebrow" data-i18n="about-eyebrow">Über mich</div>
       <h1 class="about-title" data-i18n="about-title">Ich baue digitale Produkte, die live gehen.</h1>
-      <p data-i18n="about-p1">Ich bin Meisam. Für die CivilCMC-Bauservice GmbH habe ich die Website gebaut, mit CivilLink, Axis und Meizo entwickle ich eigene Produkte — von der App bis zu SaaS-Workflows.</p>
-      <p data-i18n="about-p2">Beim Schreiben des Codes nutze ich KI, teste aber jedes Ergebnis selbst und treffe die Entscheidungen.</p>
+      <p data-i18n="about-p1">Ich bin Meisam. Von der ersten Planung bis zur fertigen Umsetzung baue ich digitale Produkte — Apps, Plattformen, Websites und SaaS-Systeme.</p>
+      <p data-i18n="about-p2">Alles aus einer Hand: Konzept, Entwicklung, Veröffentlichung und der laufende Betrieb.</p>
       <a class="circle-btn" href="mailto:meisam.projects@gmail.com"><span class="ring">↗</span>meisam.projects@gmail.com</a>
     </div>
     <div class="about-photo-wrap"><img class="about-photo" src="profilBild-crop.png" alt="Meisam Mahmoodi" width="220" height="275"></div>
@@ -184,8 +186,116 @@
 <section class="intro" id="projekte">
   <div class="wrap">
     <div class="eyebrow" data-i18n="intro-eyebrow">Projekte</div>
-    <h2 class="intro-title reveal" data-i18n="intro-title">Ausgewählte Projekte.</h2>
-    <p class="intro-sub reveal" data-i18n="intro-sub">Ausgangslage, Entscheidungen, Tech-Stack und Einblicke in die laufende Anwendung.</p>
+    <h2 class="intro-title reveal" data-i18n="intro-title">Laufende Projekte.</h2>
+    <p class="intro-sub reveal" data-i18n="intro-sub">Woran ich gerade arbeite.</p>
+  </div>
+</section>
+
+<section class="proj" id="civillink">
+  <div class="wrap proj-grid">
+    <aside class="side">
+      <div class="proj-head"><span class="proj-num" data-i18n="cl-num">02 · Eigenes Produkt</span></div>
+      <div class="proj-links">
+        <a class="proj-link" href="https://apps.apple.com/de/app/civillink/id6814870600" target="_blank" rel="noopener" data-i18n="cl-link-store">Im App Store ↗</a>
+        <a class="proj-link" href="https://civilcmc.com/civillink" target="_blank" rel="noopener" data-i18n="cl-link-web">Zur Webseite ↗</a>
+      </div>
+    </aside>
+    <div class="main">
+      <div class="proj-name reveal">CivilLink</div>
+      <div class="proj-tagline reveal" data-i18n="cl-tagline">Eine iOS-App für Aufträge am Bau — allein entwickelt, im App Store und mit ersten Nutzern.</div>
+      <div class="proj-copy">
+        <div class="reveal">
+          <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+          <p data-i18n="cl-ausgangslage-p">Aufträge am Bau laufen oft über Anrufe, E-Mails und Empfehlungen: Angebote sind schwer zu vergleichen, Absprachen verstreut. CivilLink bringt Ausschreibung, Angebote, Chat und Zahlung an einen Ort.</p>
+        </div>
+        <div class="reveal">
+          <h3 data-i18n="h-loesung">Lösung</h3>
+          <p data-i18n="cl-loesung-p">Eine App für Auftraggeber und Fachbetriebe: Auftrag mit Fotos, Ort und Budget beschreiben, Angebote vergleichen, im Chat klären und über Stripe bezahlen. Konzept, Entwicklung und Veröffentlichung im App Store habe ich allein umgesetzt, in Partnerschaft mit CivilCMC.</p>
+        </div>
+      </div>
+      <div class="feature-grid reveal">
+          <div class="feature-item"><p data-i18n="cl-feat-1">Aufträge ausschreiben mit Beschreibung, Fotos, Standort und Budgetrahmen</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-2">Angebote vergleichen: Preis, Dauer, Bewertungen und Nachricht auf einen Blick</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-3">Direkter Chat zwischen Auftraggeber und Fachbetrieb</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-4">Sichere Zahlung über Stripe — Freigabe erst, wenn der Auftrag abgeschlossen ist</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-5">Auszahlung an Fachbetriebe über Stripe Connect</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-6">Bewertungen aus abgeschlossenen Aufträgen</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-7">Melden und Blockieren von Inhalten und Nutzern, jede Meldung wird geprüft</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-8">Profile mit Gewerk, Stärken und Sprachen; Aufträge aus der Region entdecken</p></div>
+          <div class="feature-item"><p data-i18n="cl-feat-9">Für Fachbetriebe kostenlos: keine Provision, keine Grundgebühr</p></div>
+      </div>
+      <div class="stack-row reveal">
+        <span class="stack-pill">iOS-App</span>
+        <span class="stack-pill">Stripe (Zahlung &amp; Connect)</span>
+      </div>
+      <div class="video-grid reveal">
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-feed.webp" alt="CivilLink Feed" loading="lazy">
+            <div class="video-caption"><strong>Feed</strong><span data-i18n="cl-cap-feed">Auftrag beschreiben und veröffentlichen.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-job.webp" alt="CivilLink Auftrag" loading="lazy">
+            <div class="video-caption"><strong>Auftrag</strong><span data-i18n="cl-cap-job">Details mit Fotos und Budget.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-offers.webp" alt="CivilLink Angebote" loading="lazy">
+            <div class="video-caption"><strong>Angebote</strong><span data-i18n="cl-cap-offers">Angebote von Fachkräften vergleichen.</span></div>
+          </div>
+          <div class="video-item">
+            <img src="images/civilcmc/civillink-chat.webp" alt="CivilLink Chat" loading="lazy">
+            <div class="video-caption"><strong>Chat</strong><span data-i18n="cl-cap-chat">Direkt mit dem Fachbetrieb schreiben.</span></div>
+          </div>
+      </div>
+      <p class="demo-note reveal" data-i18n="cl-demonote">App-Store-Screenshots. Aktuell 5+ Nutzer, Android folgt.</p>
+    </div>
+  </div>
+</section>
+<section class="proj" id="max">
+  <div class="wrap proj-grid">
+    <aside class="side">
+      <div class="proj-head"><span class="proj-num" data-i18n="max-num">02 · In Entwicklung</span></div>
+    </aside>
+    <div class="main">
+      <div class="proj-name reveal">MAX</div>
+      <div class="proj-tagline reveal" data-i18n="max-tagline">Your Second Mind: ein KI-System, das Mails, Chats, Sprache, Rechnungen und Dateien versteht, verknüpft und daraus Aktionen macht.</div>
+      <div class="proj-copy">
+        <div class="reveal">
+          <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
+          <p data-i18n="max-ausgangslage-p">Informationen liegen verstreut in Mails, Chats, Notizen, Dateien und Kalendern. Wichtiges geht unter, Rechnungen und Fristen werden vergessen, der Kontext zu Personen und Projekten fehlt.</p>
+        </div>
+        <div class="reveal">
+          <h3 data-i18n="h-loesung">Lösung</h3>
+          <p data-i18n="max-loesung-p">MAX ist ein Workspace mit KI im Kern. Alles, was hereinkommt — Mail, Chat, Voice, Rechnung, Datei, Meeting, Screenshot — wird verstanden, verknüpft und gespeichert und kann anschließend Aktionen auslösen. Kein Sammelsurium einzelner Funktionen, sondern ein System, das die gesamte Arbeitsumgebung verbindet.</p>
+        </div>
+      </div>
+      <div class="feature-grid reveal">
+          <div class="feature-item"><p data-i18n="max-feat-1">KI-Kern: Assistent, Command Center per Text oder Sprache, persönliches Gedächtnis, Knowledge Graph und Daily Briefing</p></div>
+          <div class="feature-item"><p data-i18n="max-feat-2">Kommunikation: Mails, Chats, Todos, Kalender, Notizen und Dateien in einer Universal Inbox mit globaler Suche</p></div>
+          <div class="feature-item"><p data-i18n="max-feat-3">Capture: Voice Notes mit Transkription, Meeting Memory, Screenshot-Analyse und Quick Capture</p></div>
+          <div class="feature-item"><p data-i18n="max-feat-4">Finance & Tax: Rechnungs- und Fälligkeitserkennung, Vorsteuer, absetzbare Ausgaben, DATEV-Export</p></div>
+          <div class="feature-item"><p data-i18n="max-feat-5">Projekte: Dateien, Mails, Chats, Meetings und Todos automatisch im Projektkontext verbunden</p></div>
+          <div class="feature-item"><p data-i18n="max-feat-6">Website-Integration: Projekte und Inhalte direkt auf die Unternehmenswebsite veröffentlichen, mit Live-Vorschau und Freigabe</p></div>
+          <div class="feature-item"><p data-i18n="max-feat-7">Plattform: Desktop-Workspace und Mobile App „Pocket Mind“, synchron</p></div>
+          <div class="feature-item"><p data-i18n="max-feat-8">Prinzip: Capture → Understand → Connect → Remember → Act</p></div>
+      </div>
+      <div class="stack-row reveal">
+        <span class="stack-pill" data-i18n="max-pill-1">Desktop-Workspace</span>
+        <span class="stack-pill" data-i18n="max-pill-2">Mobile App</span>
+        <span class="stack-pill" data-i18n="max-pill-3">KI-Assistent</span>
+      </div>
+      <div class="media-single reveal">
+        <img src="images/max/concept.jpg" alt="MAX – Design-Entwurf des Workspace mit Home-Übersicht, KI-Assistent, Mails, Aufgaben, Projekten, Finanzen und Website" loading="lazy">
+      </div>
+      <p class="demo-note reveal" data-i18n="max-note">Design-Entwurf des Workspace. Das Produkt befindet sich in Entwicklung.</p>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="umgesetzt">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="grp2-eyebrow">Referenzen</div>
+    <h2 class="intro-title reveal" data-i18n="grp2-title">Umgesetzte Projekte.</h2>
+    <p class="intro-sub reveal" data-i18n="grp2-sub">Ausgangslage, Entscheidungen, Tech-Stack und Einblicke in die laufende Anwendung.</p>
   </div>
 </section>
 
@@ -248,65 +358,6 @@
           </div>
       </div>
       <p class="demo-note reveal" data-i18n="civ-demonote">Screenshots der Live-Website civilcmc.com — Auftragsarbeit für die CivilCMC-Bauservice GmbH.</p>
-    </div>
-  </div>
-</section>
-<section class="proj" id="civillink">
-  <div class="wrap proj-grid">
-    <aside class="side">
-      <div class="proj-head"><span class="proj-num" data-i18n="cl-num">02 · Eigenes Produkt</span></div>
-      <div class="proj-links">
-        <a class="proj-link" href="https://apps.apple.com/de/app/civillink/id6814870600" target="_blank" rel="noopener" data-i18n="cl-link-store">Im App Store ↗</a>
-        <a class="proj-link" href="https://civilcmc.com/civillink" target="_blank" rel="noopener" data-i18n="cl-link-web">Zur Webseite ↗</a>
-      </div>
-    </aside>
-    <div class="main">
-      <div class="proj-name reveal">CivilLink</div>
-      <div class="proj-tagline reveal" data-i18n="cl-tagline">Eine iOS-App für Aufträge am Bau — allein entwickelt, im App Store und mit ersten Nutzern.</div>
-      <div class="proj-copy">
-        <div class="reveal">
-          <h3 data-i18n="h-ausgangslage">Ausgangslage</h3>
-          <p data-i18n="cl-ausgangslage-p">Aufträge am Bau laufen oft über Anrufe, E-Mails und Empfehlungen: Angebote sind schwer zu vergleichen, Absprachen verstreut. CivilLink bringt Ausschreibung, Angebote, Chat und Zahlung an einen Ort.</p>
-        </div>
-        <div class="reveal">
-          <h3 data-i18n="h-loesung">Lösung</h3>
-          <p data-i18n="cl-loesung-p">Eine App für Auftraggeber und Fachbetriebe: Auftrag mit Fotos, Ort und Budget beschreiben, Angebote vergleichen, im Chat klären und über Stripe bezahlen. Konzept, Entwicklung und Veröffentlichung im App Store habe ich allein umgesetzt, in Partnerschaft mit CivilCMC.</p>
-        </div>
-      </div>
-      <div class="feature-grid reveal">
-          <div class="feature-item"><p data-i18n="cl-feat-1">Aufträge ausschreiben mit Beschreibung, Fotos, Standort und Budgetrahmen</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-2">Angebote vergleichen: Preis, Dauer, Bewertungen und Nachricht auf einen Blick</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-3">Direkter Chat zwischen Auftraggeber und Fachbetrieb</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-4">Sichere Zahlung über Stripe — Freigabe erst, wenn der Auftrag abgeschlossen ist</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-5">Auszahlung an Fachbetriebe über Stripe Connect</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-6">Bewertungen aus abgeschlossenen Aufträgen</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-7">Melden und Blockieren von Inhalten und Nutzern, jede Meldung wird geprüft</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-8">Profile mit Gewerk, Stärken und Sprachen; Aufträge aus der Region entdecken</p></div>
-          <div class="feature-item"><p data-i18n="cl-feat-9">Für Fachbetriebe kostenlos: keine Provision, keine Grundgebühr</p></div>
-      </div>
-      <div class="stack-row reveal">
-        <span class="stack-pill">iOS-App</span>
-        <span class="stack-pill">Stripe (Zahlung &amp; Connect)</span>
-      </div>
-      <div class="video-grid reveal">
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-feed.webp" alt="CivilLink Feed" loading="lazy">
-            <div class="video-caption"><strong>Feed</strong><span data-i18n="cl-cap-feed">Auftrag beschreiben und veröffentlichen.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-job.webp" alt="CivilLink Auftrag" loading="lazy">
-            <div class="video-caption"><strong>Auftrag</strong><span data-i18n="cl-cap-job">Details mit Fotos und Budget.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-offers.webp" alt="CivilLink Angebote" loading="lazy">
-            <div class="video-caption"><strong>Angebote</strong><span data-i18n="cl-cap-offers">Angebote von Fachkräften vergleichen.</span></div>
-          </div>
-          <div class="video-item">
-            <img src="images/civilcmc/civillink-chat.webp" alt="CivilLink Chat" loading="lazy">
-            <div class="video-caption"><strong>Chat</strong><span data-i18n="cl-cap-chat">Direkt mit dem Fachbetrieb schreiben.</span></div>
-          </div>
-      </div>
-      <p class="demo-note reveal" data-i18n="cl-demonote">App-Store-Screenshots. Aktuell 5+ Nutzer, Android folgt.</p>
     </div>
   </div>
 </section>
@@ -470,7 +521,7 @@
     <div class="footer-grid">
       <div class="footer-col"><h4 data-i18n="footer-mail">E-Mail</h4><a href="mailto:meisam.projects@gmail.com">meisam.projects@gmail.com</a></div>
       <div class="footer-col"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/meisam-m-b28a58404/" target="_blank" rel="noopener">Meisam M. ↗</a></div>
-      <div class="footer-col"><h4 data-i18n="footer-projects">Projekte</h4><a href="#civilcmc">CivilCMC</a><a href="#civillink">CivilLink</a><a href="#axis">Axis</a><a href="#meizo">Meizo</a></div>
+      <div class="footer-col"><h4 data-i18n="footer-projects">Projekte</h4><a href="#civillink">CivilLink</a><a href="#max">MAX</a><a href="#civilcmc">CivilCMC</a><a href="#axis">Axis</a><a href="#meizo">Meizo</a></div>
     </div>
     <div class="visit-counter" data-visit-counter></div>
   </div>
