@@ -181,6 +181,44 @@
   .visit-counter{margin-top:clamp(40px,6vw,72px);font-size:11.5px;color:var(--muted);opacity:0;transition:opacity .6s ease;}
   .visit-counter.is-visible{opacity:1;}
   @media (max-width:640px){.footer-grid{grid-template-columns:1fr;}}
+
+  /* Mobil: aufgeräumte Darstellung */
+  @media (max-width:700px){
+    .nav-inner{height:60px;gap:1.1rem;}
+    .brand img{height:26px;}
+    nav a.navlink,.lang-switch .lang-opt{font-size:12.5px;white-space:nowrap;}
+    .lang-switch{gap:0.4rem;}
+    html{scroll-padding-top:60px;}
+    .hero{padding:calc(60px + 40px) 0 48px;}
+    .hero-photo-wrap{width:96px;border-radius:20px;}
+    .hero-title{max-width:none;}
+    .hero-proof{gap:0.5rem 1.1rem;margin-top:1.8rem;}
+    .hero-proof a + a::before{display:none;}
+    .about,.intro,.proj,.cta{padding-top:44px;padding-bottom:44px;}
+    .intro{padding-bottom:12px;}
+    .proj{padding-bottom:40px;}
+    /* Kopfzeile: Nummer oben, Links darunter */
+    .side{flex-direction:column;align-items:flex-start;gap:0.7rem;margin-bottom:1.2rem;}
+    .side .proj-links{flex-direction:row;flex-wrap:wrap;gap:0.4rem 1.2rem;}
+    .proj-tagline{font-size:15px;margin-top:0.9rem;}
+    .proof{gap:0.4rem 1.1rem;margin-top:1.2rem;}
+    .proof span + span::before{display:none;}
+    /* Medien: seitlich wischbar statt winziger Kacheln */
+    .proj-media{margin-top:24px;}
+    .video-grid,.video-grid--wide{display:flex;grid-template-columns:none;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+      margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));padding:0 var(--gutter);
+      scroll-padding:0 var(--gutter);-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-top:0;}
+    .video-grid::-webkit-scrollbar{display:none;}
+    .video-item{flex:0 0 58%;scroll-snap-align:start;}
+    .video-grid--wide .video-item{flex-basis:84%;}
+    .video-caption{font-size:12px;}
+    .demo-note{margin-top:1rem;}
+    .proj-copy{margin-top:2rem;gap:1.6rem;}
+    .feature-grid{margin-top:2rem;}
+    .stack-row{margin-top:1.2rem;gap:0.4rem;}
+    .float-cta{right:1rem;bottom:1rem;padding:0.7rem 1.1rem;}
+  }
+  @media (max-width:520px){.video-grid--wide{grid-template-columns:none;}}
 </style>
 </head>
 <body>
