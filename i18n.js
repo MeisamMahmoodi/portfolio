@@ -75,6 +75,7 @@ const I18N_INDEX = {
   'h-ausgangslage': { de: `Ausgangslage`, en: `Background` },
   'h-loesung': { de: `Meine Lösung`, en: `My solution` },
   'link-live': { de: `Live ansehen ↗`, en: `View live ↗` },
+  'max-link-landing': { de: `Landingpage ansehen ↗`, en: `View landing page ↗` },
 
   'meizo-num': { de: `03 · Operations`, en: `03 · Operations` },
   'meizo-tagline': { de: `Eine SaaS-Plattform für Einsatzplanung, Zeiterfassung und Abrechnung im Reinigungs-Business.`, en: `A SaaS platform for job scheduling, time tracking, and billing in the cleaning business.` },
