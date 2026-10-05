@@ -536,3 +536,4 @@
   #datenschutz .how-grid p{font-size:16px;}
   .hero .quote{margin-top:clamp(32px,5vw,56px);}
   @media (max-width:900px){.auto-grid,.work-grid{grid-template-columns:1fr;}.work-grid{gap:2.6rem;}}
+  .promise-list-eyebrow{margin-bottom:0.9rem;}
