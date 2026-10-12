@@ -15,7 +15,7 @@ function escapeHtml(value) {
 }
 
 module.exports = async (request, response) => {
-  response.setHeader('Access-Control-Allow-Origin', 'https://portfolio-meisam.com');
+  response.setHeader('Access-Control-Allow-Origin', 'https://portfolio-meisammahmoodis-projects.vercel.app');
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

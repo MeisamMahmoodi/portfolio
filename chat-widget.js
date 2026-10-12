@@ -7,7 +7,7 @@
   // Lokal (file:// bzw. localhost) gibt es keine Serverless-Funktionen —
   // dann läuft der Chat gegen die Live-Seite.
   const API_BASE = (location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-    ? 'https://portfolio-meisam.com' : '';
+    ? 'https://portfolio-meisammahmoodis-projects.vercel.app' : '';
   const STRINGS = {
     de: {
       launcher: 'Frag mich etwas',
