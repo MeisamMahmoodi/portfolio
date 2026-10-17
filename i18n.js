@@ -10,6 +10,7 @@ const I18N_INDEX = {
   'nav-services': { de: `Angebote`, en: `Offers` },
   'nav-work': { de: `Projekte`, en: `Projects` },
   'nav-faq': { de: `FAQ`, en: `FAQ` },
+  'sw-nav': { de: `Kaufen`, en: `Buy` },
   'nav-cta': { de: `Kostenloser Check`, en: `Free check` },
   'hero-eyebrow': { de: `Software &amp; KI-Automatisierung für KMU · aus München`, en: `Software &amp; AI automation for SMEs · from Munich` },
   'hero-title': { de: `Ihr Team tippt ab. Ihre Software könnte das selbst.`, en: `Your team retypes data. Your software could do it itself.` },
@@ -335,3 +336,33 @@ function initI18n(dict){
     });
   });
 }
+
+/* Unterseite software.html: gemeinsame Schlüssel (Navigation, Footer) + eigene Texte */
+const I18N_SOFTWARE = Object.assign({}, I18N_INDEX, {
+  'sw-nav': { de: `Kaufen`, en: `Buy` },
+  'sw-eyebrow': { de: `Software zum Kaufen`, en: `Software for sale` },
+  'sw-title': { de: `Meine Software.<small>Selbst gebaut. Direkt von mir.</small>`, en: `My software.<small>Built by me. Straight from me.</small>` },
+  'sw-lead': { de: `Vier Programme, die ich komplett selbst entwickelt habe und im eigenen Alltag nutze. Sie können sie kaufen oder zuerst unverbindlich anfragen.`, en: `Four programs I built entirely myself and use day to day. You can buy them or ask first, no strings attached.` },
+  'sw-buy': { de: `Kaufanfrage senden →`, en: `Send purchase request →` },
+  'sw-more': { de: `Mehr erfahren`, en: `Learn more` },
+  'sw-per-m': { de: `pro Monat`, en: `per month` },
+  'sw-per-y': { de: `pro Jahr`, en: `per year` },
+  'sw-2free': { de: `2 Monate gratis`, en: `2 months free` },
+  'sw-meizo-x': { de: `+ 3 € je Mitarbeiter`, en: `+ €3 per employee` },
+  'sw-from': { de: `ab`, en: `from` },
+  'sw-max-range': { de: `bis 599 € je nach Teamgröße und Umfang`, en: `up to €599 depending on team size and scope` },
+  'sw-per-y-from': { de: `Jahresabo:`, en: `Annual plan:` },
+  'sw-price': { de: `Preis auf Anfrage`, en: `Price on request` },
+  'sw-st-live': { de: `Verfügbar`, en: `Available` },
+  'sw-st-pilot': { de: `Pilotbetriebe gesucht`, en: `Looking for pilots` },
+  'sw-st-dev': { de: `In Entwicklung`, en: `In development` },
+  'sw-max-d': { de: `Der KI-Assistent fürs Büro: liest Mails und Rechnungen, erkennt Fristen und ordnet alles dem richtigen Projekt zu. Für Mac, Windows und iPhone.`, en: `The AI assistant for the office: reads emails and invoices, spots deadlines and files everything under the right project. For Mac, Windows and iPhone.` },
+  'sw-max-buy': { de: `MAX kaufen ↗`, en: `Buy MAX ↗` },
+  'sw-meizo-d': { de: `Einsatzplanung, Zeiterfassung und DATEV-Abrechnung in einem System, gebaut für Reinigungs- und Gebäudedienstleister.`, en: `Scheduling, time tracking and DATEV billing in one system, built for cleaning and facility service providers.` },
+  'sw-mail-d': { de: `Ein schneller Mail-Client mit KI und Sprachsteuerung. Läuft im Browser und als iPhone-App, Ihr Postfach bleibt bei Ihrem Anbieter.`, en: `A fast email client with AI and voice control. Runs in the browser and as an iPhone app, your mailbox stays with your provider.` },
+  'sw-cad-d': { de: `CAD und BIM in einer App für Mac und Windows: zeichnen wie in AutoCAD, bauen wie in Revit, mit IFC-Export und einer KI, die Befehle für Sie ausführt.`, en: `CAD and BIM in one app for Mac and Windows: draw like in AutoCAD, build like in Revit, with IFC export and an AI that runs commands for you.` },
+  'sw-cad-note': { de: `Noch nicht fertig. Sie können sich vormerken lassen.`, en: `Not finished yet. You can get on the list.` },
+  'sw-cad-buy': { de: `Vormerken lassen →`, en: `Join the list →` },
+  'sw-cta-title': { de: `Fragen vor dem Kauf?`, en: `Questions before buying?` },
+  'sw-cta-sub': { de: `Schreiben Sie mir kurz, welche Software Sie interessiert. Ich melde mich persönlich mit Preis und Ablauf.`, en: `Tell me briefly which software you are interested in. I will get back to you personally with the price and how it works.` },
+});
