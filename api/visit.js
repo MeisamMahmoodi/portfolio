@@ -4,6 +4,8 @@
 // Zähl-Logik läuft in einer Postgres-Funktion (RPC) bei Supabase — hier
 // nur ein dünner Proxy, damit URL/Key serverseitig bleiben.
 
+const { rateLimited } = require('./_rate-limit');
+
 module.exports = async (request, response) => {
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -15,6 +17,10 @@ module.exports = async (request, response) => {
   }
   if (request.method !== 'POST') {
     response.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+  if (request.method === 'POST' && rateLimited(request, 'visit', 30, 600000)) {
+    response.status(429).json({ error: 'Zu viele Anfragen.' });
     return;
   }
 

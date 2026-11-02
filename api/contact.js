@@ -14,6 +14,8 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+const { rateLimited } = require('./_rate-limit');
+
 module.exports = async (request, response) => {
   response.setHeader('Access-Control-Allow-Origin', 'https://portfolio-meisammahmoodis-projects.vercel.app');
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -25,6 +27,10 @@ module.exports = async (request, response) => {
   }
   if (request.method !== 'POST') {
     response.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+  if (request.method === 'POST' && rateLimited(request, 'contact', 5, 600000)) {
+    response.status(429).json({ error: 'Zu viele Anfragen. Bitte später erneut versuchen.' });
     return;
   }
 

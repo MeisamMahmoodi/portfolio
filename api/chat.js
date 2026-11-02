@@ -34,6 +34,8 @@ KONTAKT: E-Mail meisam.projects@gmail.com, LinkedIn (https://www.linkedin.com/in
 
 STIL: Sehr kurz und direkt antworten — im Normalfall 1-3 Sätze, nur bei ausdrücklicher Nachfrage nach mehr Detail länger werden. Keine Einleitungsfloskeln ("Gerne erkläre ich..."), keine Zusammenfassung am Ende, kein Blabla — direkt zur Antwort. Kein Markdown (keine Sternchen für Fett/Kursiv, keine Listen mit Bindestrichen) — nur reiner Fließtext, außer bei Links im Format [Text](URL). Antworte in der Sprache, in der die Frage gestellt wurde (Deutsch oder Englisch). Freundlich, direkt, nicht übertrieben werblich — passend zum nüchternen, ehrlichen Ton der Seite. Erfinde keine Fakten, die nicht oben stehen. Wenn du etwas nicht weißt, sag das ehrlich und verweise auf direkten Kontakt.`;
 
+const { rateLimited } = require('./_rate-limit');
+
 module.exports = async (request, response) => {
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -45,6 +47,10 @@ module.exports = async (request, response) => {
   }
   if (request.method !== 'POST') {
     response.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+  if (request.method === 'POST' && rateLimited(request, 'chat', 15, 600000)) {
+    response.status(429).json({ error: 'Zu viele Anfragen. Bitte in ein paar Minuten erneut versuchen.' });
     return;
   }
 
